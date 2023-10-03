@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group
+        android:id="@+id/group1"
+        android:checkableBehavior="single">
+        <item android:title="Task">
+            <menu>
+
+                <item android:id="@+id/mHome"
+                    android:title="Home"
+                    android:icon="@drawable/ic_baseline_home_24"></item>
+                <item android:id="@+id/mProfile"
+                    android:title="Profile"
+                    android:icon="@drawable/ic_baseline_person_pin_24"></item>
+                <item android:id="@+id/mAsset"
+                    android:title="Asset"
+                    android:icon="@drawable/ic_baseline_devices_24"></item>
+                <item android:id="@+id/mAssignment"
+                    android:title="Assignment"
+                    android:icon="@drawable/ic_baseline_assignment_24"></item>
+
+            </menu>
+
+        </item>
+
+    </group>
+
+    <group
+        android:id="@+id/group2"
+        android:checkableBehavior="single">
+        <item android:title="More App">
+
+            <menu>
+                <item android:id="@+id/mContact"
+                    android:title="Contact"
+                    android:icon="@drawable/ic_baseline_email_24"></item>
+                <item android:id="@+id/mLogout"
+                    android:title="Logout"
+                    android:icon="@drawable/ic_baseline_logout_24"></item>
+            </menu>
+
+        </item>
+
+    </group>
+
+
+</menu>
