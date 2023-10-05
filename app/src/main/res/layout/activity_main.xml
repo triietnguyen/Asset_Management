@@ -7,9 +7,10 @@
     android:id="@+id/drawer_layout"
     tools:context=".MainActivity">
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:orientation="vertical"
         >
         <LinearLayout
             android:id="@+id/appBar"
@@ -51,9 +52,7 @@
                 app:tint="#FFFFFF" />
 
         </LinearLayout>
-
-    </RelativeLayout>
-
+    </LinearLayout>
 
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/nav_View"

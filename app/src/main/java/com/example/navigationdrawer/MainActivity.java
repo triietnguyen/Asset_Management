@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -18,8 +19,7 @@ public class MainActivity extends AppCompatActivity {
     DrawerLayout drawerLayout;
     NavigationView navigationView;
     ActionBarDrawerToggle toggle;
-    ImageView imageMenu;
-
+    ImageView imageMenu, bell;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,8 +28,8 @@ public class MainActivity extends AppCompatActivity {
         // Navigation Drawer------------------------------
         drawerLayout = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.nav_View);
-        imageMenu = findViewById(R.id.imageMenu);
 
+        bell = findViewById(R.id.bell);
         toggle = new ActionBarDrawerToggle(MainActivity.this, drawerLayout, R.string.open, R.string.close);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
@@ -41,10 +41,9 @@ public class MainActivity extends AppCompatActivity {
                 int itemId = item.getItemId();
 
                 if (itemId == R.id.mHome) {
-                    Toast.makeText(MainActivity.this, "Clicked", Toast.LENGTH_SHORT).show();
-                    drawerLayout.closeDrawers();
-                } else if (itemId == R.id.mProfile) {
-                    Toast.makeText(MainActivity.this, "Facebook", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(MainActivity.this, MainActivity.class);
+                    startActivity(intent);
+                    Toast.makeText(MainActivity.this, "Home", Toast.LENGTH_SHORT).show();
                     drawerLayout.closeDrawers();
                 }
                 else if (itemId == R.id.mAsset) {
@@ -53,6 +52,12 @@ public class MainActivity extends AppCompatActivity {
                 }
                 else if (itemId == R.id.mAssignment) {
                     Toast.makeText(MainActivity.this, "Rate me", Toast.LENGTH_SHORT).show();
+                    drawerLayout.closeDrawers();
+                }
+                else if (itemId == R.id.mProfile) {
+                    Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
+                    startActivity(intent);
+                    Toast.makeText(MainActivity.this, "Profile", Toast.LENGTH_SHORT).show();
                     drawerLayout.closeDrawers();
                 }
                 return false;
@@ -65,6 +70,16 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 drawerLayout.openDrawer(GravityCompat.START);
+            }
+        });
+
+        bell = findViewById(R.id.bell);
+        bell.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, NotificationActivity.class);
+                startActivity(intent);
+                finish();
             }
         });
     }
