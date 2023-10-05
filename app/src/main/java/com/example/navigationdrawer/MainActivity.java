@@ -60,6 +60,12 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(MainActivity.this, "Profile", Toast.LENGTH_SHORT).show();
                     drawerLayout.closeDrawers();
                 }
+                else if (itemId == R.id.mLogout) {
+                    Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                    startActivity(intent);
+                    Toast.makeText(MainActivity.this, "Logout", Toast.LENGTH_SHORT).show();
+                    finish();
+                }
                 return false;
             }
         });
