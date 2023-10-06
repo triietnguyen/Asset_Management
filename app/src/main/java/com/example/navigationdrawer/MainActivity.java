@@ -43,7 +43,6 @@ public class MainActivity extends AppCompatActivity {
                 if (itemId == R.id.mHome) {
                     Intent intent = new Intent(MainActivity.this, MainActivity.class);
                     startActivity(intent);
-                    Toast.makeText(MainActivity.this, "Home", Toast.LENGTH_SHORT).show();
                     drawerLayout.closeDrawers();
                 }
                 else if (itemId == R.id.mAsset) {
@@ -51,7 +50,8 @@ public class MainActivity extends AppCompatActivity {
                     drawerLayout.closeDrawers();
                 }
                 else if (itemId == R.id.mAssignment) {
-                    Toast.makeText(MainActivity.this, "Rate me", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(MainActivity.this, AssignmentActivity.class);
+                    startActivity(intent);
                     drawerLayout.closeDrawers();
                 }
                 else if (itemId == R.id.mProfile) {

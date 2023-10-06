@@ -27,14 +27,14 @@
             android:textColor="#83898B"
             android:textStyle="bold"
             android:textSize="40dp"/>
+
         <ImageView
             android:layout_width="300dp"
             android:layout_height="300dp"
             android:layout_gravity="center"
-            android:padding="30dp"
             android:background="@drawable/background_image"
-            android:src="@drawable/home"
-            />
+            android:padding="30dp"
+            android:src="@drawable/home" />
     </LinearLayout>
 </LinearLayout>
 

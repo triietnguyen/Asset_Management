@@ -40,7 +40,7 @@
                 android:text="KT-Office"
                 android:layout_marginLeft="10dp"
                 android:textColor="@color/white"
-                android:textSize="18sp"
+                android:textSize="20sp"
                 android:textStyle="bold" />
             <ImageView
                 android:id="@+id/bell"
@@ -52,6 +52,7 @@
                 app:tint="#FFFFFF" />
 
         </LinearLayout>
+        <include layout="@layout/activity_homepage"/>
     </LinearLayout>
 
     <com.google.android.material.navigation.NavigationView
