@@ -1,4 +1,4 @@
-package Models;
+package Models.JavaMailAPI;
 
 import android.app.ProgressDialog;
 import android.content.Context;

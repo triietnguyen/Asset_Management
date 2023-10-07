@@ -1,26 +1,50 @@
 package Models;
 
+import android.text.TextUtils;
 import android.util.Log;
+import android.util.Patterns;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
-import SQLServer.SQLServer;
+import Models.SQLServer.SQLServer;
 
 public class Account {
     private Connection connect;
+    private String email;
+    private String password;
     public int roleId;
-
+    public Account(String email, String password){
+        this.email = email;
+        this.password = password;
+    }
+    public String GetEmail(){
+        return this.email;
+    }
+    public String SetEmail(String email) {
+        return this.email = email;
+    }
+    public String GetPassword(){
+        return this.password;
+    }
+    public String SetPassword(String password) {
+        return this.password = password;
+    }
     public int GetRoleId(){
         return this.roleId;
     }
     public int SetRoleId(int roleId) {
         return this.roleId = roleId;
     }
-    public Account(){};
 
-    public boolean IsCheckValidAccount(String email, String password){
+    public boolean IsValidEmail(){
+        return !TextUtils.isEmpty(email) && Patterns.EMAIL_ADDRESS.matcher(email).matches();
+    }
+    public boolean IsValidPassword(){
+        return !TextUtils.isEmpty(password) && password.length() >=6;
+    }
+    public boolean IsCheckValidAccount(){
         try{
             SQLServer connection = new SQLServer();
             connect = connection.ConnectionSql();
@@ -37,9 +61,6 @@ public class Account {
                     String userDB = rs.getString("Email");
                     String passwordDB = rs.getString("Password");
                     String role_Id = rs.getString("Role_Id");
-                    Log.e("11" , email);
-                    Log.e("22" , password);
-                    Log.e("7777", role_Id);
                     if((email.equalsIgnoreCase(userDB)) && (passwordDB.equalsIgnoreCase(password))){
                         Log.e(""+role_Id,"DB");
                         SetRoleId(Integer.parseInt(role_Id));

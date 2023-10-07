@@ -1,4 +1,4 @@
-package SQLServer;
+package Models.SQLServer;
 
 import android.annotation.SuppressLint;
 import android.os.StrictMode;
@@ -12,7 +12,7 @@ public class SQLServer {
     String uname, pass, ip, port, database;
     @SuppressLint("NewApi")
     public Connection ConnectionSql(){
-        ip = "192.168.1.7";
+        ip = "192.168.1.5";
         database = "Asset_Management";
         uname = "sa";
         pass = "1";

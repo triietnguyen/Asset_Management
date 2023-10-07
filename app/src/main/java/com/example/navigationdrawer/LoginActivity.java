@@ -11,6 +11,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
+import androidx.databinding.ViewDataBinding;
+import com.example.navigationdrawer.BR;
+
+import com.example.navigationdrawer.databinding.ActivityMainBinding;
 
 import java.sql.Connection;
 import java.util.ArrayList;
@@ -18,7 +23,7 @@ import java.util.List;
 import java.util.Random;
 
 import Models.Account;
-import Models.JavaMailAPI;
+import Models.JavaMailAPI.JavaMailAPI;
 
 
 public class LoginActivity extends AppCompatActivity {
@@ -27,15 +32,17 @@ public class LoginActivity extends AppCompatActivity {
     TextView txt_Forgot;
 
     private List<Integer> listNumberRandom = new ArrayList<Integer>();
+    private Login_ModelView loginModelView = new Login_ModelView();
     Connection connect;
     String ConnectionResult = "";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+
+        ViewDataBinding activityMainBinding = DataBindingUtil.setContentView(this,R.layout.activity_login);
+        activityMainBinding.setVariable(BR.LoginModelView, loginModelView);
         AnhXa();
-        Handle_Sign_In_Component();
-        Handle_Forgot_Component();
+        Handle_Component();
     }
     public void AnhXa(){
         edt_Email = (EditText)findViewById(R.id.edt_email_LoginPage);
@@ -43,19 +50,7 @@ public class LoginActivity extends AppCompatActivity {
         txt_Forgot =(TextView)findViewById(R.id.TxtFgPass);
         btn_SignIn = (Button)findViewById(R.id.btn_SignIn_LoginPage);
     }
-    public void Handle_Sign_In_Component(){
-        btn_SignIn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-//                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-//                startActivity(intent);
-//                Toast.makeText(LoginActivity.this, "Login User Page", Toast.LENGTH_SHORT).show();
-//                SendMail();
-                OnCheckValidAccount();
-            }
-        });
-    }
-    public void Handle_Forgot_Component(){
+    public void Handle_Component(){
         txt_Forgot.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -63,36 +58,7 @@ public class LoginActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-    }
-
-
-    public void OnCheckValidAccount(){
-        Account account = new Account();
-
-        int roleAdmin = 1;
-        int roleUser = 2;
-
-        boolean isValidAccount = account.IsCheckValidAccount(
-                edt_Email.getText().toString().trim(),
-                edt_Password.getText().toString().trim());
-        int roleId = account.GetRoleId();
-        if(isValidAccount && roleId == roleUser){
-
-            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-            startActivity(intent);
-            Toast.makeText(this, "Login User Page", Toast.LENGTH_SHORT).show();
-
-        }
-        else if(isValidAccount && roleId == roleAdmin){
-
-            Intent intent = new Intent(LoginActivity.this, MainAdminActivity.class);
-            startActivity(intent);
-            Toast.makeText(this, "Login Admin Page", Toast.LENGTH_SHORT).show();
-
-        }
-        else Toast.makeText(this, "Đăng nhập sai", Toast.LENGTH_SHORT).show();
-
-
+        btn_SignIn.setOnClickListener(view -> loginModelView.OnClickButton(this));
     }
 
     public void HandleForgotPassword(){
