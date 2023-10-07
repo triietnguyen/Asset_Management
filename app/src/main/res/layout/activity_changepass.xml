@@ -25,19 +25,11 @@
             android:textStyle="bold"
             android:textSize="20dp">
         </TextView>
-        <TextView
-            android:id="@+id/save"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
             android:layout_gravity="center"
-            android:layout_marginLeft="30dp"
-            android:text="Save"
-            android:textSize="20dp"
-            android:textStyle="bold"
-            android:textColor="#DD2323"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            >
-        </TextView>
+            android:src="@drawable/baseline_save_24"></ImageView>
     </LinearLayout>
 
     <LinearLayout

@@ -85,6 +85,8 @@ public class LoginActivity extends AppCompatActivity {
         }
         else if(isValidAccount && roleId == roleAdmin){
 
+            Intent intent = new Intent(LoginActivity.this, MainAdminActivity.class);
+            startActivity(intent);
             Toast.makeText(this, "Login Admin Page", Toast.LENGTH_SHORT).show();
 
         }
@@ -94,7 +96,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void HandleForgotPassword(){
-        ///                                                    buttonForgotPassword.gettext().tostring(); cai nay la cua user nguoi dung nhap vao
+        ///buttonForgotPassword.gettext().tostring(); cai nay la cua user nguoi dung nhap vao
         boolean isValid_SMS = OnValid_OTP(listNumberRandom,"123456");
     }
 
