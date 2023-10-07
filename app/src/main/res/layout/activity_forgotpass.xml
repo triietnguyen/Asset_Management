@@ -27,18 +27,25 @@
             android:textStyle="bold"
             android:textSize="30dp">
         </TextView>
-        <TextView
-            android:layout_marginHorizontal="15dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Input your email"
-            android:textSize="20dp">
-        </TextView>
+
         <EditText
-            android:id="@+id/edt_email_LoginPage"
+            android:id="@+id/edt_email_forgot"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:hint="Email"
+            android:layout_marginHorizontal="15dp"
+            android:background="#EEEEEE"
+            android:textSize="20dp"
+            android:layout_marginVertical="15dp"
+            android:inputType="textEmailAddress"
+            android:paddingHorizontal="10dp"
+            >
+        </EditText>
+        <EditText
+            android:id="@+id/edt_OTP"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:hint="Enter OTP"
             android:layout_marginHorizontal="15dp"
             android:background="#EEEEEE"
             android:textSize="20dp"
