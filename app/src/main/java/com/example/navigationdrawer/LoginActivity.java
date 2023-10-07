@@ -40,7 +40,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         ViewDataBinding activityMainBinding = DataBindingUtil.setContentView(this,R.layout.activity_login);
-        activityMainBinding.setVariable(BR.LoginModelView, loginModelView);
+        activityMainBinding.setVariable(BR.Login_ModelView, loginModelView);
         AnhXa();
         Handle_Component();
     }
