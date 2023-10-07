@@ -17,17 +17,17 @@ import androidx.appcompat.app.AppCompatActivity;
 import java.util.ArrayList;
 
 public class NotificationActivity extends AppCompatActivity {
-    ImageView image;
+    ImageView img_Back;
     ListView listView;
-    ArrayList<String> arrayList;
+    ArrayList<String> ListNotification;
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notification);
-        image = (ImageView) findViewById(R.id.back_notification);
+        img_Back = (ImageView) findViewById(R.id.back_notification);
         listView = (ListView) findViewById(R.id.lv);
-        image.setOnClickListener(new View.OnClickListener() {
+        img_Back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(NotificationActivity.this,MainActivity.class);
@@ -36,25 +36,27 @@ public class NotificationActivity extends AppCompatActivity {
             }
         });
 
-        arrayList = new ArrayList<>();
-        arrayList.add("A");
-        arrayList.add("B");
-        arrayList.add("A");
-        arrayList.add("B");
-        arrayList.add("A");
-        arrayList.add("B");
-        arrayList.add("A");
-        arrayList.add("B");
-        arrayList.add("A");
-        arrayList.add("B");
-        arrayList.add("A");
-        arrayList.add("B");
-        arrayList.add("A");
-        arrayList.add("B");
-        arrayList.add("A");
-        arrayList.add("B");
+        ListNotification = new ArrayList<>();
+        ListNotification.add("A");
+        ListNotification.add("B");
+        ListNotification.add("A");
+        ListNotification.add("B");
+        ListNotification.add("A");
+        ListNotification.add("B");
+        ListNotification.add("A");
+        ListNotification.add("B");
+        ListNotification.add("A");
+        ListNotification.add("B");
+        ListNotification.add("A");
+        ListNotification.add("B");
+        ListNotification.add("A");
+        ListNotification.add("B");
+        ListNotification.add("A");
+        ListNotification.add("B");
+        ListNotification.add("A");
+        ListNotification.add("B");
 
-        Adapter adapter = new ArrayAdapter(NotificationActivity.this, android.R.layout.simple_list_item_1,arrayList);
+        Adapter adapter = new ArrayAdapter(NotificationActivity.this, android.R.layout.simple_list_item_1,ListNotification);
         listView.setAdapter((ListAdapter) adapter);
     }
 }
