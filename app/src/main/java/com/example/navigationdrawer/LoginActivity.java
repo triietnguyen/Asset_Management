@@ -58,13 +58,7 @@ public class LoginActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        btn_SignIn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(LoginActivity.this, Login_ModelView.class);
-                startActivity(intent);
-            }
-        });
+        btn_SignIn.setOnClickListener(view -> loginModelView.OnClickButton(this));
     }
 
     public void HandleForgotPassword(){

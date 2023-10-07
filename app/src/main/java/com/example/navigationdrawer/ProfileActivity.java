@@ -39,7 +39,7 @@ public class ProfileActivity extends AppCompatActivity {
         btn_Change_Password.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ProfileActivity.this, ChangePasswordActivity.class);
+                Intent intent = new Intent(ProfileActivity.this, ChangePasswordProfileActivity.class);
                 startActivity(intent);
             }
         });
