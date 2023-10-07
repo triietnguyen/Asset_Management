@@ -1,51 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    >
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="?attr/colorPrimary"
-        android:orientation="horizontal">
-        <ImageView
-            android:id="@+id/back_notification"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:layout_margin="20dp"
-            android:src="@drawable/baseline_arrow_back_ios_24">
-        </ImageView>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:textColor="#FFFFFF"
-            android:layout_marginRight="50dp"
-            android:text="Notification"
-            android:textStyle="bold"
-            android:textSize="20dp">
-        </TextView>
-    </LinearLayout>
-    <ScrollView
-        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/scrollView6"
-        android:fillViewport="true">
-
+        android:orientation="vertical">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <ListView
-                android:id="@+id/lv"
+            android:background="?attr/colorPrimary"
+            android:orientation="horizontal">
+            <ImageView
+                android:id="@+id/back_notification"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_margin="20dp"
+                android:src="@drawable/baseline_arrow_back_ios_24">
+            </ImageView>
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                >
-            </ListView>
-
+                android:gravity="center"
+                android:textColor="#FFFFFF"
+                android:layout_marginRight="50dp"
+                android:text="Notification"
+                android:textStyle="bold"
+                android:textSize="20dp">
+            </TextView>
         </LinearLayout>
-    </ScrollView>
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/scrollView6"
+            android:fillViewport="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <ListView
+                    android:id="@+id/lv"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    >
+                </ListView>
+
+            </LinearLayout>
+        </ScrollView>
 
 
-</LinearLayout>
+    </LinearLayout>
+</layout>
