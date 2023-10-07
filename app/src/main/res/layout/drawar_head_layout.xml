@@ -1,57 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <LinearLayout
-        android:layout_marginBottom="15dp"
-        android:layout_marginTop="25dp"
-        android:id="@+id/drawarHeader"
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        >
-
-        <ImageView
-            android:layout_marginLeft="10dp"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:src="@drawable/logo_profile_1"
-            />
+        android:layout_height="match_parent">
 
         <LinearLayout
-            android:layout_gravity="center"
+            android:layout_marginBottom="15dp"
+            android:layout_marginTop="25dp"
+            android:id="@+id/drawarHeader"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
+            android:orientation="horizontal"
             >
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textStyle="bold"
-                android:textColor="?attr/colorPrimary"
-                android:text="Triet Nguyen"
+
+            <ImageView
                 android:layout_marginLeft="10dp"
-                android:textSize="20sp"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:src="@drawable/logo_profile_1"
                 />
 
-            <TextView
+            <LinearLayout
+                android:layout_gravity="center"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="#AE000000"
-                android:text="triet@gmail.com"
-                android:layout_marginLeft="10dp"
-                android:textSize="18sp"
-                />
+                android:orientation="vertical"
+                >
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:textColor="?attr/colorPrimary"
+                    android:text="Triet Nguyen"
+                    android:layout_marginLeft="10dp"
+                    android:textSize="20sp"
+                    />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="#AE000000"
+                    android:text="triet@gmail.com"
+                    android:layout_marginLeft="10dp"
+                    android:textSize="18sp"
+                    />
+
+            </LinearLayout>
 
         </LinearLayout>
-
-    </LinearLayout>
-    <View
-        android:elevation="5dp"
-        android:layout_below="@id/drawarHeader"
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:background="#43000000"
-        />
-</RelativeLayout>
+        <View
+            android:elevation="5dp"
+            android:layout_below="@id/drawarHeader"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="#43000000"
+            />
+    </RelativeLayout>
+</layout>
