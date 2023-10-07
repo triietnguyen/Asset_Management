@@ -33,7 +33,7 @@
             android:name=".AssignmentActivity"
             android:exported="false" />
         <activity
-            android:name=".ForgotPass"
+            android:name=".ForgotPasswordActivity"
             android:exported="false" />
         <activity
             android:name=".ChangePasswordActivity"

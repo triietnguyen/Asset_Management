@@ -9,7 +9,7 @@ import android.widget.ImageView;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-public class ForgotPass extends AppCompatActivity {
+public class ForgotPasswordActivity extends AppCompatActivity {
 
     ImageView img_Account;
     Button btn_Find;
@@ -30,7 +30,7 @@ public class ForgotPass extends AppCompatActivity {
         img_Account.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ForgotPass.this, LoginActivity.class);
+                Intent intent = new Intent(ForgotPasswordActivity.this, LoginActivity.class);
                 startActivity(intent);
                 finish();
             }
