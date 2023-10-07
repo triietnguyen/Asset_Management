@@ -20,7 +20,7 @@ public class Account {
     }
     public Account(){};
 
-    public boolean IsCheckValidAccount(String userName, String password){
+    public boolean IsCheckValidAccount(String email, String password){
         try{
             SQLServer connection = new SQLServer();
             connect = connection.ConnectionSql();
@@ -34,13 +34,13 @@ public class Account {
 
                 while(rs.next()){
                     Log.e("4444", "4444");
-                    String userDB = rs.getString("Username");
+                    String userDB = rs.getString("Email");
                     String passwordDB = rs.getString("Password");
                     String role_Id = rs.getString("Role_Id");
-                    Log.e("11" , userName);
+                    Log.e("11" , email);
                     Log.e("22" , password);
                     Log.e("7777", role_Id);
-                    if((userName.equalsIgnoreCase(userDB)) && (passwordDB.equalsIgnoreCase(password))){
+                    if((email.equalsIgnoreCase(userDB)) && (passwordDB.equalsIgnoreCase(password))){
                         Log.e(""+role_Id,"DB");
                         SetRoleId(Integer.parseInt(role_Id));
                         return true;

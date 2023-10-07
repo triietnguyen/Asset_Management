@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -21,8 +22,9 @@ import Models.JavaMailAPI;
 
 
 public class LoginActivity extends AppCompatActivity {
-    EditText emaillogin,passwordlogin;
-    Button loginbtn;
+    EditText edt_Email,edt_Password;
+    Button btn_SignIn;
+    TextView txt_Forgot;
 
     private List<Integer> listNumberRandom = new ArrayList<Integer>();
     Connection connect;
@@ -31,18 +33,34 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
-        emaillogin = (EditText)findViewById(R.id.emaillogin);
-        passwordlogin = (EditText)findViewById(R.id.passwordlogin);
-        loginbtn = (Button)findViewById(R.id.loginbtn);
-
-        loginbtn.setOnClickListener(new View.OnClickListener() {
+        AnhXa();
+        Handle_Sign_In_Component();
+        Handle_Forgot_Component();
+    }
+    public void AnhXa(){
+        edt_Email = (EditText)findViewById(R.id.edt_email_LoginPage);
+        edt_Password = (EditText)findViewById(R.id.edt_Pasword_LoginPage);
+        txt_Forgot =(TextView)findViewById(R.id.TxtFgPass);
+        btn_SignIn = (Button)findViewById(R.id.btn_SignIn_LoginPage);
+    }
+    public void Handle_Sign_In_Component(){
+        btn_SignIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 //                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
 //                startActivity(intent);
+//                Toast.makeText(LoginActivity.this, "Login User Page", Toast.LENGTH_SHORT).show();
 //                SendMail();
                 OnCheckValidAccount();
+            }
+        });
+    }
+    public void Handle_Forgot_Component(){
+        txt_Forgot.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LoginActivity.this, ForgotPass.class);
+                startActivity(intent);
             }
         });
     }
@@ -55,17 +73,20 @@ public class LoginActivity extends AppCompatActivity {
         int roleUser = 2;
 
         boolean isValidAccount = account.IsCheckValidAccount(
-                emaillogin.getText().toString().trim(),
-                passwordlogin.getText().toString().trim());
+                edt_Email.getText().toString().trim(),
+                edt_Password.getText().toString().trim());
         int roleId = account.GetRoleId();
         if(isValidAccount && roleId == roleUser){
 
             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
             startActivity(intent);
+            Toast.makeText(this, "Login User Page", Toast.LENGTH_SHORT).show();
 
         }
         else if(isValidAccount && roleId == roleAdmin){
 
+            Intent intent = new Intent(LoginActivity.this, MainAdminActivity.class);
+            startActivity(intent);
             Toast.makeText(this, "Login Admin Page", Toast.LENGTH_SHORT).show();
 
         }
@@ -75,7 +96,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void HandleForgotPassword(){
-        ///                                                    buttonForgotPassword.gettext().tostring();
+        ///buttonForgotPassword.gettext().tostring(); cai nay la cua user nguoi dung nhap vao
         boolean isValid_SMS = OnValid_OTP(listNumberRandom,"123456");
     }
 
@@ -93,7 +114,7 @@ public class LoginActivity extends AppCompatActivity {
         Log.e("test","test1");
         OnValid_OTP(listNumberRandom,"123456");
         Log.e("test","test2");
-        JavaMailAPI java = new JavaMailAPI(this,emaillogin.getText().toString().trim(),listNumberRandom.toString());
+        JavaMailAPI java = new JavaMailAPI(this,edt_Email.getText().toString().trim(),listNumberRandom.toString());
         java.execute();
     }
 

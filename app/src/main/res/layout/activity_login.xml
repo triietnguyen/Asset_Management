@@ -54,7 +54,7 @@
         android:orientation="vertical"
         >
         <EditText
-            android:id="@+id/emaillogin"
+            android:id="@+id/edt_email_LoginPage"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:hint="Email"
@@ -68,7 +68,7 @@
         </EditText>
 
         <EditText
-            android:id="@+id/passwordlogin"
+            android:id="@+id/edt_Pasword_LoginPage"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:hint="Password"
@@ -92,7 +92,7 @@
             >
         </TextView>
         <Button
-            android:id="@+id/loginbtn"
+            android:id="@+id/btn_SignIn_LoginPage"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"

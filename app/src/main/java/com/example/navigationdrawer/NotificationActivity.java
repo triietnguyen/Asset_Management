@@ -45,6 +45,14 @@ public class NotificationActivity extends AppCompatActivity {
         arrayList.add("B");
         arrayList.add("A");
         arrayList.add("B");
+        arrayList.add("A");
+        arrayList.add("B");
+        arrayList.add("A");
+        arrayList.add("B");
+        arrayList.add("A");
+        arrayList.add("B");
+        arrayList.add("A");
+        arrayList.add("B");
 
         Adapter adapter = new ArrayAdapter(NotificationActivity.this, android.R.layout.simple_list_item_1,arrayList);
         listView.setAdapter((ListAdapter) adapter);

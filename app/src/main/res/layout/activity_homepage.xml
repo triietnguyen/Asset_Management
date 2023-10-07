@@ -5,112 +5,77 @@
     android:gravity="center"
     android:orientation="vertical">
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginHorizontal="10dp"
         android:orientation="vertical"
-        android:layout_gravity="center">
+    >
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center"
+            android:layout_marginVertical="20dp"
+            android:src="@drawable/baseline_menu_book_24"></ImageView>
         <LinearLayout
             android:orientation="horizontal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:padding="20dp"
-                android:layout_marginEnd="5dp"
-                android:orientation="vertical"
-                >
-
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#66B49D"
+            android:padding="20dp">
                 <ImageButton
-                    android:layout_width="90dp"
-                    android:layout_height="90dp"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_marginRight="20dp"
                     android:background="@drawable/device"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
+                    android:layout_gravity="center"
                     android:text="Devices"
                     android:textColor="@color/black"
                     android:textSize="24sp"
                     android:textStyle="bold"/>
             </LinearLayout>
-            <LinearLayout
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="15dp"
+            android:background="#4B7EBF"
+            android:padding="20dp">
+            <ImageButton
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/ic_baseline_assignment_24"/>
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:padding="20dp"
-                android:layout_marginEnd="5dp"
-                android:orientation="vertical"
-                >
-                <ImageButton
-                    android:id="@+id/PI"
-                    android:layout_width="90dp"
-                    android:layout_height="90dp"
-                    android:background="@drawable/personal_informaion"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:text="Profile"
-                    android:textColor="@color/black"
-                    android:textSize="24sp"
-                    android:textStyle="bold"/>
-            </LinearLayout>
+                android:layout_gravity="center"
+                android:text="Assignments"
+                android:textColor="@color/black"
+                android:textSize="24sp"
+                android:textStyle="bold"/>
         </LinearLayout>
         <LinearLayout
             android:orientation="horizontal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-            <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#E06A86"
+            android:padding="20dp">
+            <ImageButton
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/ic_baseline_contact_support_24"/>
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:padding="20dp"
-                android:layout_marginEnd="5dp"
-                android:orientation="vertical"
-                >
-
-                <ImageButton
-                    android:layout_width="90dp"
-                    android:layout_height="90dp"
-                    android:background="@drawable/report"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:text="Report"
-                    android:textColor="@color/black"
-                    android:textSize="24sp"
-                    android:textStyle="bold"/>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:padding="20dp"
-                android:layout_marginEnd="5dp"
-                android:orientation="vertical"
-                >
-                <ImageButton
-                    android:id="@+id/Logout"
-                    android:layout_width="90dp"
-                    android:layout_height="90dp"
-                    android:background="@drawable/logout"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:text="Logout"
-                    android:textColor="@color/black"
-                    android:textSize="24sp"
-                    android:textStyle="bold"/>
-            </LinearLayout>
+                android:layout_gravity="center"
+                android:text="Support"
+                android:textColor="@color/black"
+                android:textSize="24sp"
+                android:textStyle="bold"/>
         </LinearLayout>
-
     </LinearLayout>
 </LinearLayout>
