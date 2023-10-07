@@ -10,24 +10,23 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class AssignmentActivity extends AppCompatActivity {
-    ImageView img_back_assignment;
+    ImageView img_Back;
     Button btn_New_Request;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_assignment);
         AnhXa();
-        Handle_Back_Component();
-        Handle_New_Request_Component();
+        Handle_Component();
     }
 
     void AnhXa(){
-        img_back_assignment = (ImageView)findViewById(R.id.img_back_assignment);
+        img_Back = (ImageView)findViewById(R.id.img_back_assignment);
         btn_New_Request = (Button)findViewById(R.id.btn_New_Request);
     }
 
-    void Handle_Back_Component(){
-        img_back_assignment.setOnClickListener(new View.OnClickListener() {
+    void Handle_Component(){
+        img_Back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(AssignmentActivity.this, MainActivity.class);
@@ -35,8 +34,7 @@ public class AssignmentActivity extends AppCompatActivity {
                 finish();
             }
         });
-    }
-    void Handle_New_Request_Component(){
+
         btn_New_Request.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

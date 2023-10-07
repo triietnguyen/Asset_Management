@@ -40,7 +40,7 @@ public class LoginActivity extends AppCompatActivity {
     public void AnhXa(){
         edt_Email = (EditText)findViewById(R.id.edt_email_LoginPage);
         edt_Password = (EditText)findViewById(R.id.edt_Pasword_LoginPage);
-        txt_Forgot =(TextView)findViewById(R.id.TxtFgPass);
+        txt_Forgot =(TextView)findViewById(R.id.txt_Forgot_Password);
         btn_SignIn = (Button)findViewById(R.id.btn_SignIn_LoginPage);
     }
     public void Handle_Sign_In_Component(){
@@ -59,7 +59,7 @@ public class LoginActivity extends AppCompatActivity {
         txt_Forgot.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(LoginActivity.this, ForgotPass.class);
+                Intent intent = new Intent(LoginActivity.this, ForgotPasswordActivity.class);
                 startActivity(intent);
             }
         });

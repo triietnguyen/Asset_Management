@@ -83,7 +83,7 @@
                 >
             </EditText>
             <TextView
-                android:id="@+id/TxtFgPass"
+                android:id="@+id/txt_Forgot_Password"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
@@ -109,8 +109,6 @@
                 android:layout_marginTop="20dp"
                 >
             </Button>
-
-
         </LinearLayout>
     </LinearLayout>
 </layout>
