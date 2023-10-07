@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    >
     <data>
         <variable
             name="Login_ModelView"
             type="com.example.navigationdrawer.Login_ModelView" />
     </data>
     <LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
@@ -64,7 +64,7 @@
                 android:id="@+id/edt_email_LoginPage"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:text="@={Login_ModelView.email}"
+                android:text="@={Login_ModelView.password}"
                 android:hint="Email"
                 android:layout_marginHorizontal="25dp"
                 android:background="#EEEEEE"
@@ -74,11 +74,11 @@
                 android:paddingHorizontal="10dp"
                 >
             </EditText>
-
             <EditText
                 android:id="@+id/edt_Pasword_LoginPage"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
+                android:text="@={Login_ModelView.password}"
                 android:hint="Password"
                 android:layout_marginHorizontal="25dp"
                 android:background="#EEEEEE"
