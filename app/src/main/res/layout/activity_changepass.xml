@@ -31,7 +31,7 @@
                 android:id="@+id/img_btn_save"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
-                android:layout_marginStart="50dp"
+                android:layout_marginStart="30dp"
                 android:layout_gravity="center"
                 android:background="?attr/colorPrimary"
                 android:src="@drawable/baseline_save_24"></ImageButton>

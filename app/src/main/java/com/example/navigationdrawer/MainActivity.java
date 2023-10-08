@@ -61,8 +61,9 @@ public class MainActivity extends AppCompatActivity {
                     drawer_Layout.closeDrawers();
                 }
                 else if (itemId == R.id.mLogout) {
-                    finish();
-                    Toast.makeText(MainActivity.this, "Logout", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                    startActivity(intent);
+                    drawer_Layout.closeDrawers();
                 }
                 return false;
             }
