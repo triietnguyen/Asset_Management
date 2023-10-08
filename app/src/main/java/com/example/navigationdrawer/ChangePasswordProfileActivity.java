@@ -23,15 +23,14 @@ public class ChangePasswordProfileActivity extends AppCompatActivity {
         Handle_Component();
     }
     void AnhXa(){
-        button = (ImageView)findViewById(R.id.back);
+        button = (ImageView)findViewById(R.id.back_activity);
         img_Btn_Save =(ImageButton)findViewById(R.id.img_btn_save);
     }
     void Handle_Component(){
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ChangePasswordProfileActivity.this, ProfileActivity.class);
-                startActivity(intent);
+                finish();
             }
         });
     }

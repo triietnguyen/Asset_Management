@@ -5,6 +5,7 @@ import android.util.Log;
 import android.util.Patterns;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
@@ -15,28 +16,35 @@ public class Account {
     private String email;
     private String password;
     public int roleId;
+
     public Account(String email, String password){
         this.email = email;
         this.password = password;
     }
+
+
+
     public String GetEmail(){
         return this.email;
     }
     public String SetEmail(String email) {
         return this.email = email;
     }
+
     public String GetPassword(){
         return this.password;
     }
     public String SetPassword(String password) {
         return this.password = password;
     }
+
     public int GetRoleId(){
         return this.roleId;
     }
     public int SetRoleId(int roleId) {
         return this.roleId = roleId;
     }
+
 
     public boolean IsValidEmail(){
         return !TextUtils.isEmpty(email) && Patterns.EMAIL_ADDRESS.matcher(email).matches();
@@ -69,6 +77,31 @@ public class Account {
 
                 }
                 return false;
+            }
+
+        }catch(Exception e){
+            Log.e(e.getMessage(),"Log error");
+        }
+        return false;
+    }
+
+    public boolean IsUpdateEmail(){
+        try{
+            SQLServer connection = new SQLServer();
+            connect = connection.ConnectionSql();
+            if(connect != null){
+                String query = "UPDATE [dbo].[User] SET Password = ? WHERE Email = ?";
+                PreparedStatement preparedStatement = connect.prepareStatement(query);
+                preparedStatement.setString(1, password);
+                preparedStatement.setString(2, email);
+
+                int rowsAffected = preparedStatement.executeUpdate();
+                if (rowsAffected > 0) {
+                    return true;
+
+                } else {
+                    return false;
+                }
             }
 
         }catch(Exception e){
