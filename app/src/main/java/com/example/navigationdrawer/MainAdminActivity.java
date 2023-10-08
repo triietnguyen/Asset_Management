@@ -64,23 +64,28 @@ public class MainAdminActivity extends AppCompatActivity {
                     Intent intent = new Intent(MainAdminActivity.this, LoginActivity.class);
                     startActivity(intent);
                     Toast.makeText(MainAdminActivity.this, "Logout", Toast.LENGTH_SHORT).show();
+                    drawerLayout.closeDrawers();
                     finish();
                 }
                 else if (itemId == R.id.mFeedback) {
                     Intent intent = new Intent(MainAdminActivity.this, LoginActivity.class);
                     startActivity(intent);
                     Toast.makeText(MainAdminActivity.this, "Logout", Toast.LENGTH_SHORT).show();
+                    drawerLayout.closeDrawers();
                     finish();
                 }
                 else if (itemId == R.id.mExport) {
                     Intent intent = new Intent(MainAdminActivity.this, LoginActivity.class);
                     startActivity(intent);
                     Toast.makeText(MainAdminActivity.this, "Logout", Toast.LENGTH_SHORT).show();
+                    drawerLayout.closeDrawers();
                     finish();
                 }
                 else if (itemId == R.id.mLogout) {
+                    Intent intent = new Intent(MainAdminActivity.this, LoginActivity.class);
+                    startActivity(intent);
+                    drawerLayout.closeDrawers();
                     finish();
-                    Toast.makeText(MainAdminActivity.this, "Logout", Toast.LENGTH_SHORT).show();
                 }
                 return false;
             }

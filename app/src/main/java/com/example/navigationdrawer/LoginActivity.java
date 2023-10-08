@@ -31,7 +31,6 @@ public class LoginActivity extends AppCompatActivity {
     Button btn_SignIn;
     TextView txt_Forgot;
 
-    private List<Integer> listNumberRandom = new ArrayList<Integer>();
     private Login_ModelView loginModelView = new Login_ModelView();
     Connection connect;
     String ConnectionResult = "";
@@ -61,28 +60,7 @@ public class LoginActivity extends AppCompatActivity {
         btn_SignIn.setOnClickListener(view -> loginModelView.OnClickButton(this));
     }
 
-    public void HandleForgotPassword(){
-        ///buttonForgotPassword.gettext().tostring(); cai nay la cua user nguoi dung nhap vao
-        boolean isValid_SMS = OnValid_OTP(listNumberRandom,"123456");
-    }
 
-    public void SendMail(){
-        listNumberRandom.clear();
-        listNumberRandom = HandleOtp_SMS();
-        Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                listNumberRandom.clear();
-                Log.e("Da xoa",listNumberRandom.toString());
-            }
-        }, 30000);
-        Log.e("test","test1");
-        OnValid_OTP(listNumberRandom,"123456");
-        Log.e("test","test2");
-        JavaMailAPI java = new JavaMailAPI(this,edt_Email.getText().toString().trim(),listNumberRandom.toString());
-        java.execute();
-    }
 
     public boolean OnValid_OTP(List<Integer> numberRandom, String numberOfUser){
         String str_numberRandom = "";
