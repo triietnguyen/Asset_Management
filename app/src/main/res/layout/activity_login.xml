@@ -1,19 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<<<<<<< HEAD
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     >
-=======
-<layout>
->>>>>>> 377dba6836968a34aab6844fddfc2345f4e5f05e
     <data>
         <variable
             name="Login_ModelView"
             type="com.example.navigationdrawer.Login_ModelView" />
     </data>
     <LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
@@ -32,7 +26,6 @@
                 android:src="@drawable/lock" />
 
             <TextView
-<<<<<<< HEAD
 
                 android:id="@+id/textView1"
                 android:layout_width="match_parent"
@@ -45,20 +38,6 @@
                 android:textStyle="bold" />
         </LinearLayout>
 
-=======
-
-                android:id="@+id/textView1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="KT_Office"
-                android:textAppearance="@style/TextAppearance.AppCompat.Display2"
-                android:textColor="@color/black"
-                android:textSize="30dp"
-                android:textStyle="bold" />
-        </LinearLayout>
-
->>>>>>> 377dba6836968a34aab6844fddfc2345f4e5f05e
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -98,9 +77,9 @@
 
             <EditText
                 android:id="@+id/edt_Pasword_LoginPage"
-                android:text="@={Login_ModelView.password}"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
+                android:text="@={Login_ModelView.password}"
                 android:hint="Password"
                 android:layout_marginHorizontal="25dp"
                 android:background="#EEEEEE"
@@ -111,7 +90,7 @@
                 >
             </EditText>
             <TextView
-                android:id="@+id/txt_Forgot_Password"
+                android:id="@+id/txt_ForgotPassword_LoginPage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
@@ -137,16 +116,9 @@
                 android:layout_marginTop="20dp"
                 >
             </Button>
-<<<<<<< HEAD
-        </LinearLayout>
-    </LinearLayout>
-
-</layout>
-=======
 
 
         </LinearLayout>
     </LinearLayout>
 
 </layout>
->>>>>>> 377dba6836968a34aab6844fddfc2345f4e5f05e
