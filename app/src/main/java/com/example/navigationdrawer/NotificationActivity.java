@@ -30,8 +30,6 @@ public class NotificationActivity extends AppCompatActivity {
         img_Back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(NotificationActivity.this,MainActivity.class);
-                startActivity(intent);
                 finish();
             }
         });

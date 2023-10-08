@@ -13,7 +13,8 @@ public class SQLServer {
     @SuppressLint("NewApi")
     public Connection ConnectionSql(){
 //        ip = "192.168.1.5";
-        ip = "192.168.1.8";
+//        ip = "192.168.1.8";
+        ip = "192.168.2.7";
         database = "Asset_Management";
         uname = "sa";
         pass = "1";

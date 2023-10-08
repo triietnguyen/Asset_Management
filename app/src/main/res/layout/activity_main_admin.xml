@@ -39,7 +39,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:text="KT-Office"
+                    android:text="Admin Dashboard"
                     android:layout_marginLeft="10dp"
                     android:textColor="@color/white"
                     android:textSize="20sp"
@@ -54,7 +54,9 @@
                     app:tint="#FFFFFF" />
 
             </LinearLayout>
-            <include layout="@layout/activity_homepage_admin"/>
+            <include layout="@layout/activity_homepage_admin">
+
+            </include>
         </LinearLayout>
 
         <com.google.android.material.navigation.NavigationView
