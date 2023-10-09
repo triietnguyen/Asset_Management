@@ -2,6 +2,8 @@ package com.example.navigationdrawer;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
@@ -11,8 +13,11 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
+import androidx.databinding.DataBindingUtil;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import com.example.navigationdrawer.databinding.ActivityMainAdminBinding;
+import com.example.navigationdrawer.databinding.DrawarHeadLayoutBinding;
 import com.google.android.material.navigation.NavigationView;
 
 public class MainAdminActivity extends AppCompatActivity {
@@ -20,16 +25,31 @@ public class MainAdminActivity extends AppCompatActivity {
     NavigationView navigationView;
     ActionBarDrawerToggle toggle;
     ImageView imageMenu, bell;
+    MainAdminActivity_ModelView modelView = new MainAdminActivity_ModelView();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main_admin);
+        ActivityMainAdminBinding binding = (ActivityMainAdminBinding) DataBindingUtil.setContentView(this, R.layout.activity_main_admin);
+        DrawarHeadLayoutBinding drawarHeadLayoutBinding = DataBindingUtil.inflate(LayoutInflater.from(this), R.layout.drawar_head_layout, binding.navView, false);
+        modelView.GetData();
+        drawarHeadLayoutBinding.setDrawerModelView(modelView);
+        binding.navView.addHeaderView(drawarHeadLayoutBinding.getRoot());
 
-        // Navigation Drawer------------------------------
+        AnhXa();
+        Handle_Component();
+    }
+
+
+    public void AnhXa(){
         drawerLayout = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.nav_View);
-
         bell = findViewById(R.id.bell);
+        imageMenu = findViewById(R.id.imageMenu);
+
+
+    }
+
+    public void Handle_Component(){
         toggle = new ActionBarDrawerToggle(MainAdminActivity.this, drawerLayout, R.string.open, R.string.close);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
@@ -90,9 +110,6 @@ public class MainAdminActivity extends AppCompatActivity {
                 return false;
             }
         });
-
-        // App Bar Click Event
-        imageMenu = findViewById(R.id.imageMenu);
         imageMenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -100,7 +117,6 @@ public class MainAdminActivity extends AppCompatActivity {
             }
         });
 
-        bell = findViewById(R.id.bell);
         bell.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

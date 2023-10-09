@@ -11,6 +11,7 @@ import androidx.databinding.Observable;
 import androidx.databinding.ObservableField;
 
 import Models.Account;
+import Models.MyApplication;
 
 public class Login_ModelView extends BaseObservable {
     private String email;
@@ -42,11 +43,13 @@ public class Login_ModelView extends BaseObservable {
                 Intent intent = new Intent(context, MainActivity.class);
                 context.startActivity(intent);
                 Toast.makeText(context, "Login User Page", Toast.LENGTH_SHORT).show();
+                MyApplication.getInstance().SetSharedData(email.trim());
             }
             else if(account.IsCheckValidAccount() && account.GetRoleId() == roleAdmin){
-            Intent intent = new Intent(context, MainAdminActivity.class);
-            context.startActivity(intent);
-            Toast.makeText(context, "Login Admin Page", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(context, MainAdminActivity.class);
+                context.startActivity(intent);
+                Toast.makeText(context, "Login Admin Page", Toast.LENGTH_SHORT).show();
+                MyApplication.getInstance().SetSharedData(email.trim());
             }
             else Toast.makeText(context, "Đăng nhập sai", Toast.LENGTH_SHORT).show();
         }

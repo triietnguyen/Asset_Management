@@ -13,6 +13,9 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.databinding.ViewDataBinding;
+import androidx.drawerlayout.widget.DrawerLayout;
+
+import com.example.navigationdrawer.databinding.ActivityChangepassForgetBinding;
 
 import Models.MyApplication;
 
@@ -23,16 +26,16 @@ public class ChangPasswordForgetActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         ViewDataBinding activityMainBinding = DataBindingUtil.setContentView(this,R.layout.activity_changepass_forget);
         activityMainBinding.setVariable(BR.ChangePasswordForget_ModelView, changePasswordForget_ModelView);
-        AnhXa();
-        Handle_Component();
-        MyApplication myApp = (MyApplication) getApplication();
 
-        // Set và lấy dữ liệu
-        String data = myApp.GetSharedData();
-        Toast.makeText(this, "DATA : "+data, Toast.LENGTH_SHORT).show();
+        AnhXa();
+
+        Handle_Component();
+
     }
+
 
     void AnhXa(){
         img_Back = (ImageView)findViewById(R.id.back);
