@@ -11,7 +11,7 @@
             android:background="?attr/colorPrimary"
             android:orientation="horizontal">
             <ImageView
-                android:id="@+id/back_notification"
+                android:id="@+id/back_AssetLayout"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
                 android:layout_margin="20dp"
@@ -34,8 +34,8 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:textStyle="bold"
-                android:text="Device Management"
-                android:textSize="30dp">
+                android:text="Devices List"
+                android:textSize="25dp">
             </TextView>
         </LinearLayout>
         <LinearLayout

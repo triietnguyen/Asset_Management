@@ -65,7 +65,7 @@
                 android:text="@={Login_ModelView.email}"
                 android:hint="Email"
                 android:layout_marginHorizontal="25dp"
-                android:background="#EEEEEE"
+                android:background="@drawable/custom_bg_edt"
                 android:textSize="20dp"
                 android:layout_marginVertical="10dp"
                 android:inputType="textEmailAddress"
@@ -73,13 +73,13 @@
                 >
             </EditText>
             <EditText
-                android:id="@+id/edt_Pasword_LoginPage"
+                android:id="@+id/edt_Password_LoginPage"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:text="@={Login_ModelView.password}"
                 android:hint="Password"
                 android:layout_marginHorizontal="25dp"
-                android:background="#EEEEEE"
+                android:background="@drawable/custom_bg_edt"
                 android:textSize="20dp"
                 android:layout_marginVertical="10dp"
                 android:inputType="textPassword"
@@ -103,7 +103,6 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginHorizontal="30dp"
-                android:paddingVertical="12dp"
                 android:background="@drawable/custom_bg_border"
                 android:text="Sign in"
                 android:textSize="25dp"
