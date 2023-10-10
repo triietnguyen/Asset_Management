@@ -4,7 +4,9 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Handler;
+import android.text.TextUtils;
 import android.util.Log;
+import android.util.Patterns;
 import android.widget.Toast;
 
 import androidx.databinding.BaseObservable;
@@ -62,20 +64,26 @@ public class ForgotPassword_ModelView extends BaseObservable {
     }
 
     public void SendMail(Context context){
-        listNumberRandom.clear();
-        listNumberRandom = HandleOtp_SMS();
-        Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                listNumberRandom.clear();
-            }
-        }, 30000);
+        if(TextUtils.isEmpty(email)){
+            return;
+        }
+        else if(!TextUtils.isEmpty(email) && Patterns.EMAIL_ADDRESS.matcher(email).matches()){
+            listNumberRandom.clear();
+            listNumberRandom = HandleOtp_SMS();
+            Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    listNumberRandom.clear();
+                }
+            }, 30000);
 
-        JavaMailAPI java = new JavaMailAPI(context,email.trim(),listNumberRandom.toString());
-        java.execute();
+            JavaMailAPI java = new JavaMailAPI(context,email.trim(),listNumberRandom.toString());
+            java.execute();
 
-        MyApplication.getInstance().SetSharedData(email.trim());
+            MyApplication.getInstance().SetSharedData(email.trim());
+        }
+
     }
     public List<Integer> HandleOtp_SMS(){
         List<Integer> numberRandom = new ArrayList<Integer>();

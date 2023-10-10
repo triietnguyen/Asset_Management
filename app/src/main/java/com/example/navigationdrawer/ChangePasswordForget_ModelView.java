@@ -1,6 +1,7 @@
 package com.example.navigationdrawer;
 
 import android.content.Context;
+import android.text.TextUtils;
 import android.util.Log;
 import android.widget.Toast;
 

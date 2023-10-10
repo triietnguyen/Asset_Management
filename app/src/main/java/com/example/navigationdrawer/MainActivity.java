@@ -4,14 +4,20 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
+import androidx.databinding.DataBindingUtil;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 
+import com.example.navigationdrawer.databinding.ActivityMainAdminBinding;
+import com.example.navigationdrawer.databinding.ActivityMainBinding;
+//import com.example.navigationdrawer.databinding.DrawarHeadLayoutBinding;
+import com.example.navigationdrawer.databinding.DrawarUserHeadLayoutBinding;
 import com.google.android.material.navigation.NavigationView;
 
 public class MainActivity extends AppCompatActivity {
@@ -19,10 +25,17 @@ public class MainActivity extends AppCompatActivity {
     NavigationView navigation_View;
     ActionBarDrawerToggle action_Toggle;
     ImageView img_Menu, img_Notification;
+    MainActivity_ModelView modelView = new MainActivity_ModelView();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ActivityMainBinding binding = (ActivityMainBinding) DataBindingUtil.setContentView(this, R.layout.activity_main);
+        DrawarUserHeadLayoutBinding drawarUserHeadLayoutBinding = DataBindingUtil.inflate(LayoutInflater.from(this), R.layout.drawar_user_head_layout, binding.navView, false);
+        modelView.GetData();
+        drawarUserHeadLayoutBinding.setDrawerModelView(modelView);
+        binding.navView.addHeaderView(drawarUserHeadLayoutBinding.getRoot());
+
         AnhXa();
         Handle_Component();
     }
