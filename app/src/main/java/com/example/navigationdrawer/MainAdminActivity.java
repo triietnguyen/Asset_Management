@@ -17,7 +17,8 @@ import androidx.databinding.DataBindingUtil;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.example.navigationdrawer.databinding.ActivityMainAdminBinding;
-import com.example.navigationdrawer.databinding.DrawarHeadLayoutBinding;
+import com.example.navigationdrawer.databinding.DrawarAdminHeadLayoutBinding;
+//import com.example.navigationdrawer.databinding.DrawarHeadLayoutBinding;
 import com.google.android.material.navigation.NavigationView;
 
 public class MainAdminActivity extends AppCompatActivity {
@@ -30,10 +31,10 @@ public class MainAdminActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ActivityMainAdminBinding binding = (ActivityMainAdminBinding) DataBindingUtil.setContentView(this, R.layout.activity_main_admin);
-        DrawarHeadLayoutBinding drawarHeadLayoutBinding = DataBindingUtil.inflate(LayoutInflater.from(this), R.layout.drawar_head_layout, binding.navView, false);
+        DrawarAdminHeadLayoutBinding drawarAdminHeadLayoutBinding = DataBindingUtil.inflate(LayoutInflater.from(this), R.layout.drawar_admin_head_layout, binding.navView, false);
         modelView.GetData();
-        drawarHeadLayoutBinding.setDrawerModelView(modelView);
-        binding.navView.addHeaderView(drawarHeadLayoutBinding.getRoot());
+        drawarAdminHeadLayoutBinding.setDrawerModelView(modelView);
+        binding.navView.addHeaderView(drawarAdminHeadLayoutBinding.getRoot());
 
         AnhXa();
         Handle_Component();
@@ -45,7 +46,6 @@ public class MainAdminActivity extends AppCompatActivity {
         navigationView = findViewById(R.id.nav_View);
         bell = findViewById(R.id.bell);
         imageMenu = findViewById(R.id.imageMenu);
-
 
     }
 

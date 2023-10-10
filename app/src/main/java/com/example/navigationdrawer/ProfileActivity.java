@@ -9,15 +9,22 @@ import android.widget.ImageView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
+
+import com.example.navigationdrawer.databinding.ActivityProfileBinding;
 
 public class ProfileActivity extends AppCompatActivity {
     ImageView imgView_Back;
     Button btn_Change_Password;
+    ProfileActivity_ModelView profileActivityModelView = new ProfileActivity_ModelView();
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_profile);
+        ActivityProfileBinding binding = DataBindingUtil.setContentView(this,R.layout.activity_profile);
+        profileActivityModelView.GetData();
+        binding.setProfileActivityModelView(profileActivityModelView);
+
         AnhXa();
         Handle_Component();
     }

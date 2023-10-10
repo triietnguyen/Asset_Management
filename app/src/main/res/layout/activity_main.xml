@@ -3,6 +3,11 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="MainActivity_ModelView"
+            type="com.example.navigationdrawer.MainActivity_ModelView" />
+    </data>
     <androidx.drawerlayout.widget.DrawerLayout
 
         android:layout_width="match_parent"
@@ -63,7 +68,6 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_gravity="start"
-            app:headerLayout="@layout/drawar_head_layout"
             app:menu="@menu/navigation_menu" />
 
     </androidx.drawerlayout.widget.DrawerLayout>
