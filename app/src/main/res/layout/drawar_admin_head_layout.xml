@@ -13,7 +13,6 @@
             android:layout_marginBottom="15dp"
             android:layout_marginTop="25dp"
             android:id="@+id/drawarHeader"
-            android:background="?attr/colorPrimary"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -44,7 +43,7 @@
                     />
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textColor="#AE000000"
                     android:text="@={Drawer_ModelView.email}"
