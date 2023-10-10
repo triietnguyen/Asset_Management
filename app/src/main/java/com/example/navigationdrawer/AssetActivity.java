@@ -26,7 +26,8 @@ public class AssetActivity extends AppCompatActivity {
         img_Back_Asset.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
+                Intent intent = new Intent(AssetActivity.this, MainActivity.class);
+                startActivity(intent);
             }
         });
     }

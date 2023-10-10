@@ -66,7 +66,8 @@ public class MainAdminActivity extends AppCompatActivity {
                     drawerLayout.closeDrawers();
                 }
                 else if (itemId == R.id.mAsset) {
-                    Toast.makeText(MainAdminActivity.this, "Dashboard", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(MainAdminActivity.this, AssetAdminActivity.class);
+                    startActivity(intent);
                     drawerLayout.closeDrawers();
                 }
                 else if (itemId == R.id.mAssignment) {
@@ -75,31 +76,21 @@ public class MainAdminActivity extends AppCompatActivity {
                     drawerLayout.closeDrawers();
                 }
                 else if (itemId == R.id.mProfile) {
-                    Intent intent = new Intent(MainAdminActivity.this, ProfileActivity.class);
+                    Intent intent = new Intent(MainAdminActivity.this, ProfileAdminActivity.class);
                     startActivity(intent);
-                    Toast.makeText(MainAdminActivity.this, "Profile", Toast.LENGTH_SHORT).show();
                     drawerLayout.closeDrawers();
                 }
                 else if (itemId == R.id.mStaff) {
-                    Intent intent = new Intent(MainAdminActivity.this, LoginActivity.class);
-                    startActivity(intent);
-                    Toast.makeText(MainAdminActivity.this, "Logout", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainAdminActivity.this, "Staff", Toast.LENGTH_SHORT).show();
                     drawerLayout.closeDrawers();
-                    finish();
                 }
                 else if (itemId == R.id.mFeedback) {
-                    Intent intent = new Intent(MainAdminActivity.this, LoginActivity.class);
-                    startActivity(intent);
-                    Toast.makeText(MainAdminActivity.this, "Logout", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainAdminActivity.this, "Feedback", Toast.LENGTH_SHORT).show();
                     drawerLayout.closeDrawers();
-                    finish();
                 }
                 else if (itemId == R.id.mExport) {
-                    Intent intent = new Intent(MainAdminActivity.this, LoginActivity.class);
-                    startActivity(intent);
-                    Toast.makeText(MainAdminActivity.this, "Logout", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainAdminActivity.this, "Export", Toast.LENGTH_SHORT).show();
                     drawerLayout.closeDrawers();
-                    finish();
                 }
                 else if (itemId == R.id.mLogout) {
                     Intent intent = new Intent(MainAdminActivity.this, LoginActivity.class);
@@ -120,7 +111,7 @@ public class MainAdminActivity extends AppCompatActivity {
         bell.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainAdminActivity.this, NotificationActivity.class);
+                Intent intent = new Intent(MainAdminActivity.this, NotificationAdminActivity.class);
                 startActivity(intent);
                 finish();
             }
