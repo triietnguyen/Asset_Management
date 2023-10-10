@@ -28,7 +28,13 @@ public class NotificationActivity extends AppCompatActivity {
         setContentView(R.layout.activity_notification);
         img_Back = (ImageView) findViewById(R.id.back_notification);
         listView = (ListView) findViewById(R.id.lv);
-        img_Back.setOnClickListener(view -> finish());
+        img_Back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(NotificationActivity.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
 
         ListNotification = new ArrayList<>();
         ListNotification.add("A");

@@ -7,7 +7,10 @@ import android.util.Patterns;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.Statement;
+import java.util.HashMap;
+import java.util.Map;
 
 import Models.SQLServer.SQLServer;
 
@@ -20,6 +23,10 @@ public class Account {
     public Account(String email, String password){
         this.email = email;
         this.password = password;
+    }
+    public Account(String email){
+        this.email = email;
+
     }
 
 
@@ -108,5 +115,40 @@ public class Account {
             Log.e(e.getMessage(),"Log error");
         }
         return false;
+    }
+
+    public Map<String,String> GetUserFromDB(){
+
+        Map<String, String> userDB = new HashMap<>();
+        try{
+            SQLServer connection = new SQLServer();
+            connect = connection.ConnectionSql();
+            if(connect != null){
+                String query = "SELECT u.* " +
+                        "FROM [dbo].[User] u "+
+                        "WHERE u.Email = ?";
+                PreparedStatement preparedStatement = connect.prepareStatement(query);
+                preparedStatement.setString(1, email);
+
+                ResultSet rs = preparedStatement.executeQuery();
+                ResultSetMetaData metaData = rs.getMetaData();
+                int columnCount = metaData.getColumnCount();
+                while(rs.next()){
+                    for (int i = 1; i <= columnCount; i++) {
+                        String columnName = metaData.getColumnName(i);
+                        String columnValue = rs.getString(i);
+
+                        userDB.put(columnName,columnValue);
+
+                        Log.e("Column Name: " + columnName, "Column Value: " + columnValue);
+                    }
+                }
+
+            }
+
+        }catch(Exception e){
+            Log.e(e.getMessage(),"Log error");
+        }
+        return userDB;
     }
 }
