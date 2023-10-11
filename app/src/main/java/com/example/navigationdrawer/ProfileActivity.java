@@ -13,7 +13,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
-import com.example.navigationdrawer.databinding.ActivityProfileBinding;
+import com.example.navigationdrawer.databinding.ActivityUserProfileBinding;
 import com.github.dhaval2404.imagepicker.ImagePicker;
 
 public class ProfileActivity extends AppCompatActivity {
@@ -24,7 +24,7 @@ public class ProfileActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ActivityProfileBinding binding = DataBindingUtil.setContentView(this,R.layout.activity_profile);
+        ActivityUserProfileBinding binding = DataBindingUtil.setContentView(this,R.layout.activity_user_profile);
         profileActivityModelView.GetData();
         binding.setProfileActivityModelView(profileActivityModelView);
         AnhXa();
@@ -63,12 +63,16 @@ public class ProfileActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        Uri uri = Uri.parse(profileActivityModelView.getImage());
+        img_User.setImageURI(uri);
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         Uri uri = data.getData();
+        profileActivityModelView.setImage(uri.toString());
         Toast.makeText(this, "uri "+uri, Toast.LENGTH_SHORT).show();
         img_User.setImageURI(uri);
 

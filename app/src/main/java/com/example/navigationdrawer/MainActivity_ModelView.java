@@ -1,5 +1,7 @@
 package com.example.navigationdrawer;
 
+import android.util.Log;
+
 import androidx.databinding.BaseObservable;
 import androidx.databinding.Bindable;
 
@@ -12,6 +14,7 @@ import Models.MyApplication;
 public class MainActivity_ModelView extends BaseObservable {
     private String fullName;
     private String email;
+    private String image;
     Map<String, String> userMap = new HashMap<>();
 
     @Bindable
@@ -31,8 +34,20 @@ public class MainActivity_ModelView extends BaseObservable {
         this.email = email;
         notifyPropertyChanged(BR.email);
     }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+        String data = MyApplication.getInstance().GetSharedData();
+        Account account = new Account(data);
+        account.UpdateImg(image);
+    }
+
     public void GetData(){
-        String emailDB,fullnameDb;
+        String emailDB,fullnameDb,imageDB;
 
         String data = MyApplication.getInstance().GetSharedData();
         Account account = new Account(data);
@@ -40,8 +55,11 @@ public class MainActivity_ModelView extends BaseObservable {
 
         emailDB = userMap.get("Email");
         fullnameDb = userMap.get("Fullname");
+        imageDB = userMap.get("Image");
+        Log.e("imageDB",imageDB);
 
         this.setEmail(emailDB);
         this.setFullName(fullnameDb);
+        this.setImage(imageDB);
     }
 }

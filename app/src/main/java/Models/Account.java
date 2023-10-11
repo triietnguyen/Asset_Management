@@ -92,7 +92,54 @@ public class Account {
         return false;
     }
 
-    public boolean IsUpdateEmail(){
+    public boolean IsCheckValidPassword(){
+        try{
+            SQLServer connection = new SQLServer();
+            connect = connection.ConnectionSql();
+            if(connect != null){
+                String query = "SELECT u.* " +
+                        "FROM [dbo].[User] u "+
+                        "WHERE Email = ?";
+                PreparedStatement preparedStatement = connect.prepareStatement(query);
+                preparedStatement.setString(1, email);
+                ResultSet rs = preparedStatement.executeQuery();
+                while(rs.next()){
+                    String passwordDB = rs.getString("Password");
+                    if((password.equalsIgnoreCase(passwordDB)) ){
+                        return true;
+                    }
+                }
+                return false;
+            }
+        }catch(Exception e){
+            Log.e(e.getMessage(),"Log error");
+        }
+        return false;
+    }
+
+    public void UpdateImg(String imgURL){
+        try{
+            SQLServer connection = new SQLServer();
+            connect = connection.ConnectionSql();
+            if(connect != null){
+                String query = "UPDATE [dbo].[User] SET Image = ? WHERE Email = ?";
+                PreparedStatement preparedStatement = connect.prepareStatement(query);
+                preparedStatement.setString(1, imgURL);
+                preparedStatement.setString(2, email);
+
+                int rowsAffected = preparedStatement.executeUpdate();
+                if (rowsAffected > 0) {
+                    Log.e("Image","Cap nhat thanh cong");
+                } else {
+                    Log.e("Image","Cap nhat khong thanh cong");
+                }
+            }
+        }catch(Exception e){
+            Log.e(e.getMessage(),"Log error");
+        }
+    }
+
+    public boolean IsUpdatePassword(){
         try{
             SQLServer connection = new SQLServer();
             connect = connection.ConnectionSql();

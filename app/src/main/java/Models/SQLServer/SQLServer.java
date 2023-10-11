@@ -12,7 +12,7 @@ public class SQLServer {
     String uname, pass, ip, port, database;
     @SuppressLint("NewApi")
     public Connection ConnectionSql(){
-        ip = "10.101.34.119";
+        ip = "192.168.1.6";
         database = "Asset_Management";
         uname = "sa";
         pass = "1";
