@@ -16,6 +16,7 @@ public class ProfileActivity_ModelView extends BaseObservable {
     private String birthday;
     private String gender;
     private String phone;
+    private String image;
 
     Map<String, String> userMap = new HashMap<>();
 
@@ -73,8 +74,19 @@ public class ProfileActivity_ModelView extends BaseObservable {
         notifyPropertyChanged(BR.phone);
     }
 
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+        String data = MyApplication.getInstance().GetSharedData();
+        Account account = new Account(data);
+        account.UpdateImg(image);
+    }
+
     public void GetData(){
-        String emailDB,fullnameDb,addressDB,birthdayDB,genderDB,phoneDB;
+        String emailDB,fullnameDb,addressDB,birthdayDB,genderDB,phoneDB,imageDB;
 
         String data = MyApplication.getInstance().GetSharedData();
         Account account = new Account(data);
@@ -86,6 +98,7 @@ public class ProfileActivity_ModelView extends BaseObservable {
         birthdayDB = userMap.get("Date_of_birth");
         genderDB = userMap.get("Gender");
         phoneDB = userMap.get("Phone");
+        imageDB = userMap.get("Image");
 
         this.setEmail(emailDB);
         this.setFullname(fullnameDb);
@@ -93,6 +106,7 @@ public class ProfileActivity_ModelView extends BaseObservable {
         this.setBirthday(birthdayDB);
         this.setGender(genderDB);
         this.setPhone(phoneDB);
+        this.setImage(imageDB);
     }
 
 

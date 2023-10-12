@@ -1,5 +1,6 @@
 package com.example.navigationdrawer;
 
+import android.app.Activity;
 import android.content.Context;
 import android.text.TextUtils;
 import android.util.Log;
@@ -45,9 +46,10 @@ public class ChangePasswordForget_ModelView extends BaseObservable {
             String password = account.GetPassword();
             if (password.trim().equalsIgnoreCase(newPasswordVerify)) {
 
-                boolean isFisnihed = account.IsUpdateEmail();
+                boolean isFisnihed = account.IsUpdatePassword();
                 if (isFisnihed) {
                     Toast.makeText(context, "Saved Successful", Toast.LENGTH_SHORT).show();
+                    ((Activity) context).finish();
                 }
                 else{
                     Toast.makeText(context, "Saved is not Successful", Toast.LENGTH_SHORT).show();

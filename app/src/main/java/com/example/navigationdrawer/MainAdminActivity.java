@@ -1,6 +1,7 @@
 package com.example.navigationdrawer;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -31,9 +32,15 @@ public class MainAdminActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ActivityMainAdminBinding binding = (ActivityMainAdminBinding) DataBindingUtil.setContentView(this, R.layout.activity_main_admin);
-        DrawarAdminHeadLayoutBinding drawarAdminHeadLayoutBinding = DataBindingUtil.inflate(LayoutInflater.from(this), R.layout.drawar_admin_head_layout, binding.navView, false);
+
         modelView.GetData();
+
+        DrawarAdminHeadLayoutBinding drawarAdminHeadLayoutBinding = DataBindingUtil.inflate(LayoutInflater.from(this), R.layout.drawar_admin_head_layout, binding.navView, false);
+
+        Uri uri = Uri.parse(modelView.getImage());
+        drawarAdminHeadLayoutBinding.imgAdminDrawerPage.setImageURI(uri);
         drawarAdminHeadLayoutBinding.setDrawerModelView(modelView);
+
         binding.navView.addHeaderView(drawarAdminHeadLayoutBinding.getRoot());
 
         AnhXa();

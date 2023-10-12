@@ -1,6 +1,7 @@
 package com.example.navigationdrawer;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
@@ -8,16 +9,20 @@ import androidx.databinding.DataBindingUtil;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.example.navigationdrawer.databinding.ActivityMainAdminBinding;
 import com.example.navigationdrawer.databinding.ActivityMainBinding;
 //import com.example.navigationdrawer.databinding.DrawarHeadLayoutBinding;
 import com.example.navigationdrawer.databinding.DrawarUserHeadLayoutBinding;
+import com.github.dhaval2404.imagepicker.ImagePicker;
 import com.google.android.material.navigation.NavigationView;
 
 public class MainActivity extends AppCompatActivity {
@@ -29,11 +34,15 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
         ActivityMainBinding binding = (ActivityMainBinding) DataBindingUtil.setContentView(this, R.layout.activity_main);
-        DrawarUserHeadLayoutBinding drawarUserHeadLayoutBinding = DataBindingUtil.inflate(LayoutInflater.from(this), R.layout.drawar_user_head_layout, binding.navView, false);
+
         modelView.GetData();
+
+        DrawarUserHeadLayoutBinding drawarUserHeadLayoutBinding = DataBindingUtil.inflate(LayoutInflater.from(this), R.layout.drawar_user_head_layout, binding.navView, false);
+        Uri uri = Uri.parse(modelView.getImage());
+        drawarUserHeadLayoutBinding.imgUserDrawerPage.setImageURI(uri);
         drawarUserHeadLayoutBinding.setDrawerModelView(modelView);
+
         binding.navView.addHeaderView(drawarUserHeadLayoutBinding.getRoot());
 
         AnhXa();
@@ -44,6 +53,8 @@ public class MainActivity extends AppCompatActivity {
         navigation_View = findViewById(R.id.nav_View);
         img_Notification = findViewById(R.id.bell);
         img_Menu = findViewById(R.id.imageMenu);
+
+
     }
 
     void Handle_Component(){
@@ -51,6 +62,7 @@ public class MainActivity extends AppCompatActivity {
         action_Toggle = new ActionBarDrawerToggle(MainActivity.this, drawer_Layout, R.string.open, R.string.close);
         drawer_Layout.addDrawerListener(action_Toggle);
         action_Toggle.syncState();
+
 
         // Drawer click event
         navigation_View.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
@@ -107,7 +119,12 @@ public class MainActivity extends AppCompatActivity {
                 finish();
             }
         });
+
+//        Uri uri = Uri.parse(modelView.getImage());
+//        img_User.setImageURI(uri);
+
     }
+
 
 }
 
