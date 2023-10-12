@@ -29,8 +29,6 @@ public class Account {
 
     }
 
-
-
     public String GetEmail(){
         return this.email;
     }
