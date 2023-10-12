@@ -12,7 +12,7 @@
             android:background="?attr/colorPrimary"
             android:orientation="horizontal">
             <ImageView
-                android:id="@+id/img_back_assignment"
+                android:id="@+id/img_Back_NewRequestPage"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
                 android:layout_margin="20dp"
@@ -53,12 +53,12 @@
             android:orientation="vertical"
             >
             <EditText
-                android:id="@+id/edt_date"
+                android:id="@+id/edt_Date_NewRequestPage"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:hint="dd/mm/yy"
                 android:layout_marginHorizontal="25dp"
-                android:background="#EEEEEE"
+                android:background="@drawable/custom_bg_edt"
                 android:textSize="20dp"
                 android:layout_marginVertical="10dp"
                 android:inputType="date"
@@ -71,7 +71,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginHorizontal="25dp"
-                android:background="#EEEEEE"
+                android:background="@drawable/custom_bg_edt"
                 android:textSize="20dp"
                 android:layout_marginVertical="10dp"
                 android:inputType="text"
@@ -80,11 +80,10 @@
             </EditText>
 
             <Button
-                android:id="@+id/btn_Save"
+                android:id="@+id/btn_Save_NewRequestPage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:background="@drawable/custom_bg_border"
                 android:text="Save"
                 android:textSize="25dp"
                 android:textStyle="bold"

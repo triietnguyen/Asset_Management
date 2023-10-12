@@ -20,6 +20,7 @@ public class NotificationActivity extends AppCompatActivity {
     ImageView img_Back;
     ListView listView;
     ArrayList<String> ListNotification;
+    private Login_ModelView loginModelView = new Login_ModelView();
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -30,9 +31,8 @@ public class NotificationActivity extends AppCompatActivity {
         img_Back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(NotificationActivity.this,MainActivity.class);
+                Intent intent = new Intent(NotificationActivity.this, MainActivity.class);
                 startActivity(intent);
-                finish();
             }
         });
 

@@ -1,18 +1,28 @@
 package com.example.navigationdrawer;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
+import androidx.databinding.DataBindingUtil;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.example.navigationdrawer.databinding.ActivityMainAdminBinding;
+import com.example.navigationdrawer.databinding.ActivityMainBinding;
+//import com.example.navigationdrawer.databinding.DrawarHeadLayoutBinding;
+import com.example.navigationdrawer.databinding.DrawarUserHeadLayoutBinding;
+import com.github.dhaval2404.imagepicker.ImagePicker;
 import com.google.android.material.navigation.NavigationView;
 
 public class MainActivity extends AppCompatActivity {
@@ -20,19 +30,39 @@ public class MainActivity extends AppCompatActivity {
     NavigationView navigation_View;
     ActionBarDrawerToggle action_Toggle;
     ImageView img_Menu, img_Notification;
+    MainActivity_ModelView modelView = new MainActivity_ModelView();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        ActivityMainBinding binding = (ActivityMainBinding) DataBindingUtil.setContentView(this, R.layout.activity_main);
 
-        // Navigation Drawer------------------------------
+        modelView.GetData();
+
+        DrawarUserHeadLayoutBinding drawarUserHeadLayoutBinding = DataBindingUtil.inflate(LayoutInflater.from(this), R.layout.drawar_user_head_layout, binding.navView, false);
+        Uri uri = Uri.parse(modelView.getImage());
+        drawarUserHeadLayoutBinding.imgUserDrawerPage.setImageURI(uri);
+        drawarUserHeadLayoutBinding.setDrawerModelView(modelView);
+
+        binding.navView.addHeaderView(drawarUserHeadLayoutBinding.getRoot());
+
+        AnhXa();
+        Handle_Component();
+    }
+    void AnhXa(){
         drawer_Layout = findViewById(R.id.drawer_layout);
         navigation_View = findViewById(R.id.nav_View);
-
         img_Notification = findViewById(R.id.bell);
+        img_Menu = findViewById(R.id.imageMenu);
+
+
+    }
+
+    void Handle_Component(){
+        // Navigation Drawer------------------------------
         action_Toggle = new ActionBarDrawerToggle(MainActivity.this, drawer_Layout, R.string.open, R.string.close);
         drawer_Layout.addDrawerListener(action_Toggle);
         action_Toggle.syncState();
+
 
         // Drawer click event
         navigation_View.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
@@ -43,10 +73,13 @@ public class MainActivity extends AppCompatActivity {
                 if (itemId == R.id.mHome) {
                     Intent intent = new Intent(MainActivity.this, MainActivity.class);
                     startActivity(intent);
+                    finish();
                     drawer_Layout.closeDrawers();
                 }
                 else if (itemId == R.id.mAsset) {
-                    Toast.makeText(MainActivity.this, "Dashboard", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(MainActivity.this, AssetActivity.class);
+                    startActivity(intent);
+                    finish();
                     drawer_Layout.closeDrawers();
                 }
                 else if (itemId == R.id.mAssignment) {
@@ -57,19 +90,20 @@ public class MainActivity extends AppCompatActivity {
                 else if (itemId == R.id.mProfile) {
                     Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
                     startActivity(intent);
-                    Toast.makeText(MainActivity.this, "Profile", Toast.LENGTH_SHORT).show();
+                    finish();
                     drawer_Layout.closeDrawers();
                 }
                 else if (itemId == R.id.mLogout) {
+                    Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                    startActivity(intent);
+                    drawer_Layout.closeDrawers();
                     finish();
-                    Toast.makeText(MainActivity.this, "Logout", Toast.LENGTH_SHORT).show();
                 }
                 return false;
             }
         });
 
         // App Bar Click Event
-        img_Menu = findViewById(R.id.imageMenu);
         img_Menu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -77,7 +111,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        img_Notification = findViewById(R.id.bell);
         img_Notification.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -86,5 +119,12 @@ public class MainActivity extends AppCompatActivity {
                 finish();
             }
         });
+
+//        Uri uri = Uri.parse(modelView.getImage());
+//        img_User.setImageURI(uri);
+
     }
+
+
 }
+

@@ -10,7 +10,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class AssignmentActivity extends AppCompatActivity {
-    ImageView img_Back;
+    ImageView img_Back_Assignment;
     Button btn_New_Request;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -21,16 +21,14 @@ public class AssignmentActivity extends AppCompatActivity {
     }
 
     void AnhXa(){
-        img_Back = (ImageView)findViewById(R.id.img_back_assignment);
-        btn_New_Request = (Button)findViewById(R.id.btn_New_Request);
+        img_Back_Assignment = (ImageView)findViewById(R.id.img_Back_AssignmentPage);
+        btn_New_Request = (Button)findViewById(R.id.btn_New_Request_AssignmentPage);
     }
 
     void Handle_Component(){
-        img_Back.setOnClickListener(new View.OnClickListener() {
+        img_Back_Assignment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(AssignmentActivity.this, MainActivity.class);
-                startActivity(intent);
                 finish();
             }
         });
@@ -40,7 +38,6 @@ public class AssignmentActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(AssignmentActivity.this, NewRequestActivity.class);
                 startActivity(intent);
-                finish();
             }
         });
     }

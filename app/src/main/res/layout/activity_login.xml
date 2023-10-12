@@ -19,12 +19,10 @@
             android:layout_gravity="center"
             android:layout_marginTop="50dp"
             android:orientation="horizontal">
-
             <ImageView
                 android:layout_width="120dp"
                 android:layout_height="120dp"
                 android:src="@drawable/lock" />
-
             <TextView
 
                 android:id="@+id/textView1"
@@ -64,10 +62,10 @@
                 android:id="@+id/edt_email_LoginPage"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:text="@={Login_ModelView.password}"
+                android:text="@={Login_ModelView.email}"
                 android:hint="Email"
                 android:layout_marginHorizontal="25dp"
-                android:background="#EEEEEE"
+                android:background="@drawable/custom_bg_edt"
                 android:textSize="20dp"
                 android:layout_marginVertical="10dp"
                 android:inputType="textEmailAddress"
@@ -75,13 +73,13 @@
                 >
             </EditText>
             <EditText
-                android:id="@+id/edt_Pasword_LoginPage"
+                android:id="@+id/edt_Password_LoginPage"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:text="@={Login_ModelView.password}"
                 android:hint="Password"
                 android:layout_marginHorizontal="25dp"
-                android:background="#EEEEEE"
+                android:background="@drawable/custom_bg_edt"
                 android:textSize="20dp"
                 android:layout_marginVertical="10dp"
                 android:inputType="textPassword"
@@ -89,7 +87,7 @@
                 >
             </EditText>
             <TextView
-                android:id="@+id/txt_Forgot_Password"
+                android:id="@+id/txt_ForgotPassword_LoginPage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
@@ -105,7 +103,6 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginHorizontal="30dp"
-                android:paddingVertical="12dp"
                 android:background="@drawable/custom_bg_border"
                 android:text="Sign in"
                 android:textSize="25dp"

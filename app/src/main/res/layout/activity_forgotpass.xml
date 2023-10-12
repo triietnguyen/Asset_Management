@@ -2,6 +2,11 @@
 <layout
     xmlns:android="http://schemas.android.com/apk/res/android"
     >
+    <data>
+        <variable
+            name="ForgotPassword"
+            type="com.example.navigationdrawer.ForgotPassword_ModelView" />
+    </data>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -30,25 +35,27 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
             android:gravity="center"
             android:orientation="horizontal">
             <EditText
                 android:id="@+id/edt_email_forgot"
                 android:layout_width="270dp"
                 android:layout_height="50dp"
+                android:text="@={ForgotPassword.email}"
                 android:hint="Email"
-                android:background="#EEEEEE"
+                android:background="@drawable/custom_bg_edt"
                 android:textSize="20dp"
                 android:layout_marginVertical="15dp"
                 android:inputType="textEmailAddress"
+                android:layout_marginHorizontal="15dp"
                 android:paddingHorizontal="10dp"
                 >
             </EditText>
             <ImageButton
                 android:id="@+id/img_btn_forgot_layout"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@drawable/custom_bg_edt"
                 android:src="@drawable/baseline_send_24">
             </ImageButton>
         </LinearLayout>
@@ -60,9 +67,10 @@
             android:id="@+id/edt_OTP"
             android:layout_width="270dp"
             android:layout_height="50dp"
+            android:text="@={ForgotPassword.code}"
             android:hint="Enter OTP"
             android:layout_marginHorizontal="15dp"
-            android:background="#EEEEEE"
+            android:background="@drawable/custom_bg_edt"
             android:textSize="20dp"
             android:layout_marginVertical="15dp"
             android:inputType="number"

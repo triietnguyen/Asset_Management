@@ -1,7 +1,10 @@
 package com.example.navigationdrawer;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
@@ -11,8 +14,12 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
+import androidx.databinding.DataBindingUtil;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import com.example.navigationdrawer.databinding.ActivityMainAdminBinding;
+import com.example.navigationdrawer.databinding.DrawarAdminHeadLayoutBinding;
+//import com.example.navigationdrawer.databinding.DrawarHeadLayoutBinding;
 import com.google.android.material.navigation.NavigationView;
 
 public class MainAdminActivity extends AppCompatActivity {
@@ -20,16 +27,36 @@ public class MainAdminActivity extends AppCompatActivity {
     NavigationView navigationView;
     ActionBarDrawerToggle toggle;
     ImageView imageMenu, bell;
+    MainAdminActivity_ModelView modelView = new MainAdminActivity_ModelView();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main_admin);
+        ActivityMainAdminBinding binding = (ActivityMainAdminBinding) DataBindingUtil.setContentView(this, R.layout.activity_main_admin);
 
-        // Navigation Drawer------------------------------
+        modelView.GetData();
+
+        DrawarAdminHeadLayoutBinding drawarAdminHeadLayoutBinding = DataBindingUtil.inflate(LayoutInflater.from(this), R.layout.drawar_admin_head_layout, binding.navView, false);
+
+        Uri uri = Uri.parse(modelView.getImage());
+        drawarAdminHeadLayoutBinding.imgAdminDrawerPage.setImageURI(uri);
+        drawarAdminHeadLayoutBinding.setDrawerModelView(modelView);
+
+        binding.navView.addHeaderView(drawarAdminHeadLayoutBinding.getRoot());
+
+        AnhXa();
+        Handle_Component();
+    }
+
+
+    public void AnhXa(){
         drawerLayout = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.nav_View);
-
         bell = findViewById(R.id.bell);
+        imageMenu = findViewById(R.id.imageMenu);
+
+    }
+
+    public void Handle_Component(){
         toggle = new ActionBarDrawerToggle(MainAdminActivity.this, drawerLayout, R.string.open, R.string.close);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
@@ -46,7 +73,8 @@ public class MainAdminActivity extends AppCompatActivity {
                     drawerLayout.closeDrawers();
                 }
                 else if (itemId == R.id.mAsset) {
-                    Toast.makeText(MainAdminActivity.this, "Dashboard", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(MainAdminActivity.this, AssetAdminActivity.class);
+                    startActivity(intent);
                     drawerLayout.closeDrawers();
                 }
                 else if (itemId == R.id.mAssignment) {
@@ -55,39 +83,31 @@ public class MainAdminActivity extends AppCompatActivity {
                     drawerLayout.closeDrawers();
                 }
                 else if (itemId == R.id.mProfile) {
-                    Intent intent = new Intent(MainAdminActivity.this, ProfileActivity.class);
+                    Intent intent = new Intent(MainAdminActivity.this, ProfileAdminActivity.class);
                     startActivity(intent);
-                    Toast.makeText(MainAdminActivity.this, "Profile", Toast.LENGTH_SHORT).show();
                     drawerLayout.closeDrawers();
                 }
                 else if (itemId == R.id.mStaff) {
-                    Intent intent = new Intent(MainAdminActivity.this, LoginActivity.class);
-                    startActivity(intent);
-                    Toast.makeText(MainAdminActivity.this, "Logout", Toast.LENGTH_SHORT).show();
-                    finish();
+                    Toast.makeText(MainAdminActivity.this, "Staff", Toast.LENGTH_SHORT).show();
+                    drawerLayout.closeDrawers();
                 }
                 else if (itemId == R.id.mFeedback) {
-                    Intent intent = new Intent(MainAdminActivity.this, LoginActivity.class);
-                    startActivity(intent);
-                    Toast.makeText(MainAdminActivity.this, "Logout", Toast.LENGTH_SHORT).show();
-                    finish();
+                    Toast.makeText(MainAdminActivity.this, "Feedback", Toast.LENGTH_SHORT).show();
+                    drawerLayout.closeDrawers();
                 }
                 else if (itemId == R.id.mExport) {
-                    Intent intent = new Intent(MainAdminActivity.this, LoginActivity.class);
-                    startActivity(intent);
-                    Toast.makeText(MainAdminActivity.this, "Logout", Toast.LENGTH_SHORT).show();
-                    finish();
+                    Toast.makeText(MainAdminActivity.this, "Export", Toast.LENGTH_SHORT).show();
+                    drawerLayout.closeDrawers();
                 }
                 else if (itemId == R.id.mLogout) {
+                    Intent intent = new Intent(MainAdminActivity.this, LoginActivity.class);
+                    startActivity(intent);
+                    drawerLayout.closeDrawers();
                     finish();
-                    Toast.makeText(MainAdminActivity.this, "Logout", Toast.LENGTH_SHORT).show();
                 }
                 return false;
             }
         });
-
-        // App Bar Click Event
-        imageMenu = findViewById(R.id.imageMenu);
         imageMenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -95,11 +115,10 @@ public class MainAdminActivity extends AppCompatActivity {
             }
         });
 
-        bell = findViewById(R.id.bell);
         bell.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainAdminActivity.this, NotificationActivity.class);
+                Intent intent = new Intent(MainAdminActivity.this, NotificationAdminActivity.class);
                 startActivity(intent);
                 finish();
             }
