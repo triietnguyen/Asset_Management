@@ -34,27 +34,33 @@ public class Login_ModelView extends BaseObservable {
         notifyPropertyChanged(BR.password); // BR.email được sinh ra tự động bởi Data Binding
     }
     public void OnClickButton(Context context){
-        int roleAdmin = 1;
-        int roleUser = 2;
-        Account account = new Account(email,password);
-        if(account.IsValidEmail() && account.IsValidPassword()){
-//            Log.e("Login",account.GetEmail() + account.GetPassword());
-            if(account.IsCheckValidAccount() && account.GetRoleId() == roleUser){
-                Intent intent = new Intent(context, MainActivity.class);
-                context.startActivity(intent);
-                Toast.makeText(context, "Login User Page", Toast.LENGTH_SHORT).show();
-                MyApplication.getInstance().SetSharedData(email.trim());
-            }
-            else if(account.IsCheckValidAccount() && account.GetRoleId() == roleAdmin){
-                Intent intent = new Intent(context, MainAdminActivity.class);
-                context.startActivity(intent);
-                Toast.makeText(context, "Login Admin Page", Toast.LENGTH_SHORT).show();
-                MyApplication.getInstance().SetSharedData(email.trim());
-            }
-            else Toast.makeText(context, "Đăng nhập sai", Toast.LENGTH_SHORT).show();
-        }
-        else{
-            Log.e("False",account.GetEmail() + account.GetPassword());
-        }
+        Intent intent = new Intent(context, MainActivity.class);
+        context.startActivity(intent);
+        Toast.makeText(context, "Login User Page", Toast.LENGTH_SHORT).show();
+
+
+
+//        int roleAdmin = 1;
+//        int roleUser = 2;
+//        Account account = new Account(email,password);
+//        if(account.IsValidEmail() && account.IsValidPassword()){
+////            Log.e("Login",account.GetEmail() + account.GetPassword());
+//            if(account.IsCheckValidAccount() && account.GetRoleId() == roleUser){
+//                Intent intent = new Intent(context, MainActivity.class);
+//                context.startActivity(intent);
+//                Toast.makeText(context, "Login User Page", Toast.LENGTH_SHORT).show();
+//                MyApplication.getInstance().SetSharedData(email.trim());
+//            }
+//            else if(account.IsCheckValidAccount() && account.GetRoleId() == roleAdmin){
+//                Intent intent = new Intent(context, MainAdminActivity.class);
+//                context.startActivity(intent);
+//                Toast.makeText(context, "Login Admin Page", Toast.LENGTH_SHORT).show();
+//                MyApplication.getInstance().SetSharedData(email.trim());
+//            }
+//            else Toast.makeText(context, "Đăng nhập sai", Toast.LENGTH_SHORT).show();
+//        }
+//        else{
+//            Log.e("False",account.GetEmail() + account.GetPassword());
+//        }
     }
 }

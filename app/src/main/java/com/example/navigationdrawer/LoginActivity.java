@@ -1,5 +1,6 @@
 package com.example.navigationdrawer;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -15,6 +16,7 @@ import androidx.databinding.DataBindingUtil;
 import androidx.databinding.ViewDataBinding;
 import com.example.navigationdrawer.BR;
 
+import com.example.navigationdrawer.databinding.ActivityLoginBinding;
 import com.example.navigationdrawer.databinding.ActivityMainBinding;
 
 import java.sql.Connection;
@@ -31,15 +33,16 @@ public class LoginActivity extends AppCompatActivity {
     Button btn_SignIn;
     TextView txt_Forgot;
 
-    private Login_ModelView loginModelView = new Login_ModelView();
+    private Login_ModelView loginModelView = new Login_ModelView();;
     Connection connect;
     String ConnectionResult = "";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        ViewDataBinding activityMainBinding = DataBindingUtil.setContentView(this,R.layout.activity_login);
-        activityMainBinding.setVariable(BR.Login_ModelView, loginModelView);
+        ViewDataBinding activityLoginBinding = DataBindingUtil.setContentView(this,R.layout.activity_login);
+        activityLoginBinding.setVariable(BR.Login_ModelView,loginModelView);
+
         AnhXa();
         Handle_Component();
     }
@@ -57,6 +60,7 @@ public class LoginActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
         btn_SignIn.setOnClickListener(view -> loginModelView.OnClickButton(this));
     }
 
