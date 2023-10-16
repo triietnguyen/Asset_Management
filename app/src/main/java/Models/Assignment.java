@@ -8,20 +8,13 @@ public class Assignment {
 
     String status;
 
-    public Assignment(String id, String asset_code, String asset_name, String assigned_to, String assigned_by, String assigned_date, String status) {
+    public Assignment(String id, String asset_code, String asset_name, String category, String assigned_to, String assigned_by, String assigned_date, String status) {
         this.id = id;
         this.asset_code = asset_code;
+        this.category = category;
         this.asset_name = asset_name;
         this.assigned_to = assigned_to;
         this.assigned_by = assigned_by;
-        this.assigned_date = assigned_date;
-        this.status = status;
-    }
-
-    public Assignment(String asset_code, String asset_name, String category, String assigned_date, String status) {
-        this.asset_code = asset_code;
-        this.asset_name = asset_name;
-        this.category = category;
         this.assigned_date = assigned_date;
         this.status = status;
     }

@@ -42,27 +42,31 @@ public class AssignmentActivity extends AppCompatActivity {
 
     private List<Assignment> getList() {
         List<Assignment> assignmentList = new ArrayList<>();
-        assignmentList.add(new Assignment("1","a", "a", "1","1"));
-        assignmentList.add(new Assignment("1","a", "a", "1","1"));
-        assignmentList.add(new Assignment("1","a", "a", "1","1"));
-        assignmentList.add(new Assignment("1","a", "a", "1","1"));
-        assignmentList.add(new Assignment("1","a", "a", "1","1"));
-        assignmentList.add(new Assignment("1","a", "a", "1","1"));
-        assignmentList.add(new Assignment("1","a", "a", "1","1"));
-        assignmentList.add(new Assignment("1","a", "a", "1","1"));
-        assignmentList.add(new Assignment("1","a", "a", "1","1"));
-        assignmentList.add(new Assignment("1","a", "a", "1","1"));
-        assignmentList.add(new Assignment("1","a", "a", "1","1"));
-        assignmentList.add(new Assignment("1","a", "a", "1","1"));
-        assignmentList.add(new Assignment("1","a", "a", "1","1"));
-        assignmentList.add(new Assignment("1","a", "a", "1","1"));
-        assignmentList.add(new Assignment("1","a", "a", "1","1"));
-        assignmentList.add(new Assignment("1","a", "a", "1","1"));
-        assignmentList.add(new Assignment("1","a", "a", "1","1"));
-        assignmentList.add(new Assignment("1","a", "a", "1","1"));
-        assignmentList.add(new Assignment("1","a", "a", "1","1"));
-        assignmentList.add(new Assignment("1","a", "a", "1","1"));
-        assignmentList.add(new Assignment("1","a", "a", "1","1"));
+        assignmentList.add(new Assignment("a","a","a","a","a","a","a","a"));
+        assignmentList.add(new Assignment("a","a","a","a","a","a","a","a"));
+        assignmentList.add(new Assignment("a","a","a","a","a","a","a","a"));
+        assignmentList.add(new Assignment("a","a","a","a","a","a","a","a"));
+        assignmentList.add(new Assignment("a","a","a","a","a","a","a","a"));
+        assignmentList.add(new Assignment("a","a","a","a","a","a","a","a"));
+        assignmentList.add(new Assignment("a","a","a","a","a","a","a","a"));
+        assignmentList.add(new Assignment("a","a","a","a","a","a","a","a"));
+        assignmentList.add(new Assignment("a","a","a","a","a","a","a","a"));
+        assignmentList.add(new Assignment("a","a","a","a","a","a","a","a"));
+        assignmentList.add(new Assignment("a","a","a","a","a","a","a","a"));
+        assignmentList.add(new Assignment("a","a","a","a","a","a","a","a"));
+        assignmentList.add(new Assignment("a","a","a","a","a","a","a","a"));
+        assignmentList.add(new Assignment("a","a","a","a","a","a","a","a"));
+        assignmentList.add(new Assignment("a","a","a","a","a","a","a","a"));
+        assignmentList.add(new Assignment("a","a","a","a","a","a","a","a"));
+        assignmentList.add(new Assignment("a","a","a","a","a","a","a","a"));
+        assignmentList.add(new Assignment("a","a","a","a","a","a","a","a"));
+        assignmentList.add(new Assignment("a","a","a","a","a","a","a","a"));
+        assignmentList.add(new Assignment("a","a","a","a","a","a","a","a"));
+        assignmentList.add(new Assignment("a","a","a","a","a","a","a","a"));
+        assignmentList.add(new Assignment("a","a","a","a","a","a","a","a"));
+        assignmentList.add(new Assignment("a","a","a","a","a","a","a","a"));
+        assignmentList.add(new Assignment("a","a","a","a","a","a","a","a"));
+
         return  assignmentList;
     }
 
