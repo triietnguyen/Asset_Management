@@ -5,14 +5,14 @@
     <data>
         <variable
             name="MainAdminActivity_ModelView"
-            type="com.example.navigationdrawer.MainAdminActivity_ModelView" />
+            type="ViewModels.Admin.MainAdmin_ModelView" />
     </data>
     <androidx.drawerlayout.widget.DrawerLayout
 
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/drawer_layout"
-        tools:context=".MainActivity">
+        tools:context=".main.MainActivity">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -23,7 +23,7 @@
                 android:id="@+id/appBar"
                 android:layout_width="match_parent"
                 android:layout_height="?actionBarSize"
-                android:background="?attr/colorPrimary"
+                android:background="#2B67B3"
                 android:gravity="center_horizontal"
                 android:orientation="horizontal"
                 android:paddingStart="15dp"

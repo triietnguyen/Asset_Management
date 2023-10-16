@@ -5,13 +5,13 @@
     <data>
         <variable
             name="Login_ModelView"
-            type="com.example.navigationdrawer.Login_ModelView" />
+            type="ViewModels.Login_ModelView" />
     </data>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        tools:context=".LoginActivity"
+        tools:context=".login.LoginActivity"
         android:background="#DEE1FE">
         <LinearLayout
             android:layout_width="wrap_content"
@@ -103,7 +103,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginHorizontal="30dp"
-                android:background="@drawable/custom_bg_border"
+                android:backgroundTint="#2B67B3"
                 android:text="Sign in"
                 android:textSize="25dp"
                 android:textStyle="bold"

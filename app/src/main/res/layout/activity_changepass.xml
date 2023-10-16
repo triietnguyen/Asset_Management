@@ -4,7 +4,7 @@
     <data>
         <variable
             name="ChangePassword_ModelView"
-            type="com.example.navigationdrawer.ChangePasswordProfile_ModelView" />
+            type="ViewModels.ChangePasswordProfile_ModelView" />
     </data>
 
     <LinearLayout
@@ -15,7 +15,6 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="?attr/colorPrimary"
             android:orientation="horizontal">
             <ImageView
                 android:id="@+id/back_activity"
@@ -28,19 +27,18 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:textColor="#FFFFFF"
                 android:text="Change your Password"
                 android:textStyle="bold"
-                android:textSize="20dp">
+                android:textSize="25dp">
             </TextView>
-            <ImageButton
+            <ImageView
                 android:id="@+id/img_btn_save"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
                 android:layout_marginStart="30dp"
                 android:layout_gravity="center"
-                android:background="?attr/colorPrimary"
-                android:src="@drawable/baseline_save_24"></ImageButton>
+                android:backgroundTint="@color/white"
+                android:src="@drawable/baseline_save_24"></ImageView>
         </LinearLayout>
 
         <LinearLayout
