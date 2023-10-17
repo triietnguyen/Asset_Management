@@ -45,7 +45,7 @@ public class AssignmentAdminActivity extends AppCompatActivity {
 
     private List<Assignment> getList(){
         List<Assignment> assignment_list = new ArrayList<>();
-        assignment_list.add(new Assignment("a","a","a","a","a","a","a","a"));
+        assignment_list.add(new Assignment("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa","aaaaaaaaaaaaaaaaa","aaaaaaaaaaaaaaaaaaa","aaaaaaaaaaaaaaa","a","a","a","a"));
         assignment_list.add(new Assignment("a","a","a","a","a","a","a","a"));
         assignment_list.add(new Assignment("a","a","a","a","a","a","a","a"));
         assignment_list.add(new Assignment("a","a","a","a","a","a","a","a"));

@@ -124,7 +124,6 @@ public class Account {
                 PreparedStatement preparedStatement = connect.prepareStatement(query);
                 preparedStatement.setString(1, imgURL);
                 preparedStatement.setString(2, email);
-
                 int rowsAffected = preparedStatement.executeUpdate();
                 if (rowsAffected > 0) {
                     Log.e("Image","Cap nhat thanh cong");
