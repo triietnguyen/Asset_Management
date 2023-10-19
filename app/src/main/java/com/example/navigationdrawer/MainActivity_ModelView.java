@@ -56,7 +56,7 @@ public class MainActivity_ModelView extends BaseObservable {
         emailDB = userMap.get("Email");
         fullnameDb = userMap.get("Fullname");
         imageDB = userMap.get("Image");
-        Log.e("imageDB",imageDB);
+
 
         this.setEmail(emailDB);
         this.setFullName(fullnameDb);

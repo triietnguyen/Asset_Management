@@ -39,8 +39,8 @@ public class MainActivity extends AppCompatActivity {
         modelView.GetData();
 
         DrawarUserHeadLayoutBinding drawarUserHeadLayoutBinding = DataBindingUtil.inflate(LayoutInflater.from(this), R.layout.drawar_user_head_layout, binding.navView, false);
-//        Uri uri = Uri.parse(modelView.getImage());
-//        drawarUserHeadLayoutBinding.imgUserDrawerPage.setImageURI(uri);
+        Uri uri = Uri.parse(modelView.getImage());
+        drawarUserHeadLayoutBinding.imgUserDrawerPage.setImageURI(uri);
         drawarUserHeadLayoutBinding.setDrawerModelView(modelView);
 
         binding.navView.addHeaderView(drawarUserHeadLayoutBinding.getRoot());
