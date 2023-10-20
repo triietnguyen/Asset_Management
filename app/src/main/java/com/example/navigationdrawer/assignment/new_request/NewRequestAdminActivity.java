@@ -1,9 +1,11 @@
 package com.example.navigationdrawer.assignment.new_request;
 
+import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -13,7 +15,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.navigationdrawer.R;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 public class NewRequestAdminActivity extends AppCompatActivity {
 
@@ -53,6 +57,29 @@ public class NewRequestAdminActivity extends AppCompatActivity {
                 finish();
             }
         });
+
+        edt_Date.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Pick_Date();
+            }
+        });
+    }
+
+    private void Pick_Date(){
+        Calendar calendar = Calendar.getInstance();
+        int date = calendar.get(Calendar.DATE);
+        int month = calendar.get(Calendar.MONTH);
+        int year = calendar.get(Calendar.YEAR);
+        DatePickerDialog datePickerDialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                calendar.set(year,month,dayOfMonth);
+                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
+                edt_Date.setText(simpleDateFormat.format(calendar.getTime()));
+            }
+        }, year,month,date);
+        datePickerDialog.show();
     }
 
     public void CategoryRequestAdapter(){

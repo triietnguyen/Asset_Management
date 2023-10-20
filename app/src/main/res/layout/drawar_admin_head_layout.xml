@@ -10,12 +10,13 @@
         android:layout_height="match_parent">
 
         <LinearLayout
-            android:layout_marginBottom="15dp"
-            android:layout_marginTop="25dp"
+            android:paddingTop="25dp"
+            android:paddingBottom="15dp"
             android:id="@+id/drawarHeader"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
+            android:background="#2B67B3"
             >
 
             <de.hdodenhof.circleimageview.CircleImageView
@@ -38,7 +39,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textStyle="bold"
-                    android:textColor="@color/black"
+                    android:textColor="@color/white"
                     android:text="@={Drawer_ModelView.fullName}"
                     android:layout_marginLeft="10dp"
                     android:textSize="20sp"
@@ -47,7 +48,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textColor="#AE000000"
+                    android:textColor="#AEF6F5F5"
                     android:text="@={Drawer_ModelView.email}"
                     android:layout_marginLeft="10dp"
                     android:textSize="18sp"

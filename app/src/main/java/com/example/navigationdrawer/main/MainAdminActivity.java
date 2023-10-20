@@ -25,6 +25,7 @@ import com.example.navigationdrawer.databinding.DrawarAdminHeadLayoutBinding;
 import com.example.navigationdrawer.login.LoginActivity;
 import com.example.navigationdrawer.notification.NotificationAdminActivity;
 import com.example.navigationdrawer.profile.ProfileAdminActivity;
+import com.example.navigationdrawer.user.UserAdminActivity;
 import com.google.android.material.navigation.NavigationView;
 
 import ViewModels.Admin.MainAdmin_ModelView;
@@ -99,7 +100,8 @@ public class MainAdminActivity extends AppCompatActivity {
                     drawerLayout.closeDrawers();
                 }
                 else if (itemId == R.id.mStaff) {
-                    Toast.makeText(MainAdminActivity.this, "Staff", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(MainAdminActivity.this, UserAdminActivity.class);
+                    startActivity(intent);
                     drawerLayout.closeDrawers();
                 }
                 else if (itemId == R.id.mFeedback) {

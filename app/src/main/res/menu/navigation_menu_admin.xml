@@ -8,15 +8,18 @@
                 <item android:id="@+id/mHome"
                     android:title="Home"
                     android:icon="@drawable/ic_baseline_home_24"></item>
+                <item android:id="@+id/mStaff"
+                    android:title="Staff"
+                    android:icon="@drawable/staff"></item>
                 <item android:id="@+id/mAsset"
                     android:title="Asset"
                     android:icon="@drawable/ic_baseline_devices_24"></item>
                 <item android:id="@+id/mAssignment"
                     android:title="Assignment"
                     android:icon="@drawable/ic_baseline_assignment_24"></item>
-                <item android:id="@+id/mStaff"
-                    android:title="Staff"
-                    android:icon="@drawable/staff"></item>
+                <item android:id="@+id/mRequest"
+                    android:title="Request"
+                    android:icon="@drawable/baseline_request_quote_24"></item>
             </menu>
         </item>
     </group>
