@@ -33,7 +33,7 @@ public class AssetActivity extends AppCompatActivity {
     ActionBarDrawerToggle action_Toggle;
     RecyclerView recyclerView;
     AssetApdapter assetApdapter;
-    ImageView img_Back_Asset;
+    ImageView imageMenu;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -76,7 +76,7 @@ public class AssetActivity extends AppCompatActivity {
     void AnhXa(){
         drawer_Layout = findViewById(R.id.drawer_layout);
         navigation_View = findViewById(R.id.nav_View);
-        img_Back_Asset = findViewById(R.id.back_AssetLayout);
+        imageMenu = findViewById(R.id.imageMenu);
         recyclerView = findViewById(R.id.recycler_view_asset_layout);
     }
 
@@ -100,9 +100,6 @@ public class AssetActivity extends AppCompatActivity {
                     drawer_Layout.closeDrawers();
                 }
                 else if (itemId == R.id.mAsset) {
-                    Intent intent = new Intent(AssetActivity.this, AssetActivity.class);
-                    startActivity(intent);
-                    finish();
                     drawer_Layout.closeDrawers();
                 }
                 else if (itemId == R.id.mAssignment) {
@@ -127,7 +124,7 @@ public class AssetActivity extends AppCompatActivity {
         });
 
         // App Bar Click Event
-        img_Back_Asset.setOnClickListener(new View.OnClickListener() {
+        imageMenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 drawer_Layout.openDrawer(GravityCompat.START);

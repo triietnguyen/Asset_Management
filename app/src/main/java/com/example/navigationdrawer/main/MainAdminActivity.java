@@ -82,8 +82,6 @@ public class MainAdminActivity extends AppCompatActivity {
                 int itemId = item.getItemId();
 
                 if (itemId == R.id.mHome) {
-                    Intent intent = new Intent(MainAdminActivity.this, MainAdminActivity.class);
-                    startActivity(intent);
                     drawerLayout.closeDrawers();
                 }
                 else if (itemId == R.id.mAsset) {

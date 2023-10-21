@@ -74,9 +74,6 @@ public class MainActivity extends AppCompatActivity {
                 int itemId = item.getItemId();
 
                 if (itemId == R.id.mHome) {
-                    Intent intent = new Intent(MainActivity.this, MainActivity.class);
-                    startActivity(intent);
-                    finish();
                     drawer_Layout.closeDrawers();
                 }
                 else if (itemId == R.id.mAsset) {
@@ -88,6 +85,7 @@ public class MainActivity extends AppCompatActivity {
                 else if (itemId == R.id.mAssignment) {
                     Intent intent = new Intent(MainActivity.this, AssignmentActivity.class);
                     startActivity(intent);
+                    finish();
                     drawer_Layout.closeDrawers();
                 }
                 else if (itemId == R.id.mProfile) {

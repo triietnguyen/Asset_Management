@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -16,11 +17,17 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.navigationdrawer.R;
+import com.example.navigationdrawer.asset.AssetAdminActivity;
 import com.example.navigationdrawer.asset.AssetApdapter;
 import com.example.navigationdrawer.assignment.AssignmentActivity;
+import com.example.navigationdrawer.assignment.AssignmentAdminActivity;
 import com.example.navigationdrawer.login.LoginActivity;
 import com.example.navigationdrawer.main.MainActivity;
+import com.example.navigationdrawer.main.MainAdminActivity;
 import com.example.navigationdrawer.profile.ProfileActivity;
+import com.example.navigationdrawer.profile.ProfileAdminActivity;
+import com.example.navigationdrawer.request.RequestAdminActivity;
+import com.example.navigationdrawer.user.UserAdminActivity;
 import com.google.android.material.navigation.NavigationView;
 
 import java.util.ArrayList;
@@ -29,18 +36,18 @@ import java.util.List;
 import Models.Asset;
 
 public class ReportActivity extends AppCompatActivity {
-    DrawerLayout drawer_Layout;
-    NavigationView navigation_View;
-    ActionBarDrawerToggle action_Toggle;
+    DrawerLayout drawerLayout;
+    NavigationView navigationView;
+    ActionBarDrawerToggle toggle;
     RecyclerView recyclerView;
     AssetApdapter assetApdapter;
-    ImageView img_Back_Asset;
+    ImageView imageMenu;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_reportt_admin);
-//        AnhXa();
-//        Handle_Component();
+        setContentView(R.layout.activity_report_admin);
+        AnhXa();
+        Handle_Component();
 //        setRecycleView();
     }
 
@@ -75,52 +82,65 @@ public class ReportActivity extends AppCompatActivity {
     }
 
     void AnhXa(){
-        drawer_Layout = findViewById(R.id.drawer_layout);
-        navigation_View = findViewById(R.id.nav_View);
-        img_Back_Asset = findViewById(R.id.back_AssetLayout);
+        drawerLayout = findViewById(R.id.drawer_layout);
+        navigationView = findViewById(R.id.nav_View);
+        imageMenu = findViewById(R.id.imageMenu);
         recyclerView = findViewById(R.id.recycler_view_asset_layout);
     }
 
     void Handle_Component(){
         // Navigation Drawer------------------------------
-        action_Toggle = new ActionBarDrawerToggle(ReportActivity.this, drawer_Layout, R.string.open, R.string.close);
-        drawer_Layout.addDrawerListener(action_Toggle);
-        action_Toggle.syncState();
-
+        toggle = new ActionBarDrawerToggle(ReportActivity.this, drawerLayout, R.string.open, R.string.close);
+        drawerLayout.addDrawerListener(toggle);
+        toggle.syncState();
 
         // Drawer click event
-        navigation_View.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 int itemId = item.getItemId();
 
                 if (itemId == R.id.mHome) {
-                    Intent intent = new Intent(ReportActivity.this, MainActivity.class);
+                    Intent intent = new Intent(ReportActivity.this, MainAdminActivity.class);
                     startActivity(intent);
-                    finish();
-                    drawer_Layout.closeDrawers();
+                    drawerLayout.closeDrawers();
                 }
                 else if (itemId == R.id.mAsset) {
-                    Intent intent = new Intent(ReportActivity.this, ReportActivity.class);
+                    Intent intent = new Intent(ReportActivity.this, AssetAdminActivity.class);
                     startActivity(intent);
-                    finish();
-                    drawer_Layout.closeDrawers();
+                    drawerLayout.closeDrawers();
                 }
                 else if (itemId == R.id.mAssignment) {
-                    Intent intent = new Intent(ReportActivity.this, AssignmentActivity.class);
+                    Intent intent = new Intent(ReportActivity.this, AssignmentAdminActivity.class);
                     startActivity(intent);
-                    drawer_Layout.closeDrawers();
+                    drawerLayout.closeDrawers();
+                }
+                else if (itemId == R.id.mRequest) {
+                    Intent intent = new Intent(ReportActivity.this, RequestAdminActivity.class);
+                    startActivity(intent);
+                    drawerLayout.closeDrawers();
                 }
                 else if (itemId == R.id.mProfile) {
-                    Intent intent = new Intent(ReportActivity.this, ProfileActivity.class);
+                    Intent intent = new Intent(ReportActivity.this, ProfileAdminActivity.class);
                     startActivity(intent);
-                    finish();
-                    drawer_Layout.closeDrawers();
+                    drawerLayout.closeDrawers();
+                }
+                else if (itemId == R.id.mStaff) {
+                    Intent intent = new Intent(ReportActivity.this, UserAdminActivity.class);
+                    startActivity(intent);
+                    drawerLayout.closeDrawers();
+                }
+                else if (itemId == R.id.mFeedback) {
+                    Toast.makeText(ReportActivity.this, "Feedback", Toast.LENGTH_SHORT).show();
+                    drawerLayout.closeDrawers();
+                }
+                else if (itemId == R.id.mReport) {
+                    drawerLayout.closeDrawers();
                 }
                 else if (itemId == R.id.mLogout) {
                     Intent intent = new Intent(ReportActivity.this, LoginActivity.class);
                     startActivity(intent);
-                    drawer_Layout.closeDrawers();
+                    drawerLayout.closeDrawers();
                     finish();
                 }
                 return false;
@@ -128,10 +148,10 @@ public class ReportActivity extends AppCompatActivity {
         });
 
         // App Bar Click Event
-        img_Back_Asset.setOnClickListener(new View.OnClickListener() {
+        imageMenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                drawer_Layout.openDrawer(GravityCompat.START);
+                drawerLayout.openDrawer(GravityCompat.START);
             }
         });
     }

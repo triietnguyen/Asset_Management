@@ -11,42 +11,57 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
             <LinearLayout
+                android:id="@+id/appBar"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:layout_height="?actionBarSize"
+                android:background="#2B67B3"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal"
+                android:paddingStart="15dp"
+                android:paddingEnd="15dp"
+                android:visibility="visible">
+
                 <ImageView
-                    android:id="@+id/back_AssetLayout"
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
-                    android:layout_margin="20dp"
-                    android:src="@drawable/ic_menu">
-                </ImageView>
+                    android:id="@+id/imageMenu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="20dp"
+                    android:src="@drawable/ic_menu"
+                    app:tint="#FFFFFF" />
+
+                <TextView
+                    android:id="@+id/textTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="Asset"
+                    android:layout_marginLeft="10dp"
+                    android:textColor="@color/white"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+                <ImageView
+                    android:id="@+id/bell"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center"
+                    android:layout_marginRight="25dp"
+                    android:src="@drawable/baseline_notifications_active_24"
+                    app:tint="#FFFFFF" />
+
             </LinearLayout>
+
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:gravity="center"
-                android:layout_marginVertical="15dp"
-                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="20dp"
                 android:orientation="horizontal">
                 <ImageView
                     android:layout_width="50dp"
                     android:layout_height="60dp"
                     android:src="@drawable/device"></ImageView>
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:textStyle="bold"
-                    android:text="Asset List"
-                    android:textSize="30dp">
-                </TextView>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:orientation="horizontal">
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
