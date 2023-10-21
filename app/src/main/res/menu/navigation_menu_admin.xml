@@ -34,8 +34,8 @@
                 <item android:id="@+id/mFeedback"
                     android:title="Feedback"
                     android:icon="@drawable/ic_baseline_email_24"></item>
-                <item android:id="@+id/mExport"
-                    android:title="Export"
+                <item android:id="@+id/mReport"
+                    android:title="Report"
                     android:icon="@drawable/baseline_sim_card_download_24"></item>
                 <item android:id="@+id/mLogout"
                     android:title="Logout"

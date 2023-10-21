@@ -58,8 +58,6 @@ public class MainActivity extends AppCompatActivity {
         navigation_View = findViewById(R.id.nav_View);
         img_Notification = findViewById(R.id.bell);
         img_Menu = findViewById(R.id.imageMenu);
-
-
     }
 
     void Handle_Component(){
@@ -76,9 +74,6 @@ public class MainActivity extends AppCompatActivity {
                 int itemId = item.getItemId();
 
                 if (itemId == R.id.mHome) {
-                    Intent intent = new Intent(MainActivity.this, MainActivity.class);
-                    startActivity(intent);
-                    finish();
                     drawer_Layout.closeDrawers();
                 }
                 else if (itemId == R.id.mAsset) {
@@ -90,6 +85,7 @@ public class MainActivity extends AppCompatActivity {
                 else if (itemId == R.id.mAssignment) {
                     Intent intent = new Intent(MainActivity.this, AssignmentActivity.class);
                     startActivity(intent);
+                    finish();
                     drawer_Layout.closeDrawers();
                 }
                 else if (itemId == R.id.mProfile) {
@@ -124,12 +120,6 @@ public class MainActivity extends AppCompatActivity {
                 finish();
             }
         });
-
-//        Uri uri = Uri.parse(modelView.getImage());
-//        img_User.setImageURI(uri);
-
     }
-
-
 }
 

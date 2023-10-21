@@ -21,6 +21,18 @@
         tools:targetApi="31"
         android:name="Models.MyApplication">
         <activity
+            android:name=".user.CreateUserAdminActivity"
+            android:exported="false" />
+        <activity
+            android:name=".asset.CreateAssetAdminActivity"
+            android:exported="false" />
+        <activity
+            android:name=".report.ReportActivity"
+            android:exported="false" />
+        <activity
+            android:name=".request.RequestAdminActivity"
+            android:exported="false" />
+        <activity
             android:name=".user.UserAdminActivity"
             android:exported="false" />
         <activity
