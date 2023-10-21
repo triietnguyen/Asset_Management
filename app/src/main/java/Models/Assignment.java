@@ -6,6 +6,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,11 +21,12 @@ public class Assignment {
 
     String status;
 
+    String endDate,description;
+
     private Connection connect;
 
-    public Assignment(String id, String asset_code, String asset_name, String category, String assigned_to, String assigned_by, String assigned_date, String status) {
+    public Assignment(String id, String asset_name, String category, String assigned_to, String assigned_by, String assigned_date, String status) {
         this.id = id;
-        this.asset_code = asset_code;
         this.category = category;
         this.asset_name = asset_name;
         this.assigned_to = assigned_to;
@@ -33,9 +35,22 @@ public class Assignment {
         this.status = status;
     }
 
+    public Assignment(String asset_code, String category, String assigned_to, String assigned_by, String assigned_date,String endDate,String description, String status) {
+        this.asset_code = asset_code;
+        this.category = category;
+        this.assigned_to = assigned_to;
+        this.assigned_by = assigned_by;
+        this.assigned_date = assigned_date;
+        this.endDate = endDate;
+        this.description = description;
+        this.status = status;
+    }
+
     public Assignment(){
 
     }
+
+
 
     public String getCategory() {
         return category;
@@ -107,7 +122,7 @@ public class Assignment {
             SQLServer connection = new SQLServer();
             connect = connection.ConnectionSql();
             if(connect != null){
-                String query = "SELECT assign.[Id], a.[Asset_id], a.[Asset_Name], c.[Category_Name], " +
+                String query = "SELECT assign.[Assignment_id], a.[Asset_id], a.[Asset_Name], c.[Category_Name], " +
                         "u_user.Fullname AS UserFullName, u_admin.Fullname AS AdminFullName, assign.[Status], assign.[StartDate] " +
                         "FROM Assignment assign " +
                         "LEFT JOIN [User] u_admin ON assign.[Admin_id] = u_admin.[User_id] AND u_admin.[Role_id] = 1 " +
@@ -119,8 +134,8 @@ public class Assignment {
                 ResultSetMetaData metaData = rs.getMetaData();
                 int columnCount = metaData.getColumnCount();
                 while(rs.next()){
-                    String assignmentID = rs.getString("Id");
-                    String assetID = rs.getString("Asset_id");
+
+                    String assignmentId = rs.getString("Assignment_id");
                     String assetName = rs.getString("Asset_Name");
                     String categoryName = rs.getString("Category_Name");
                     String user = rs.getString("UserFullName");
@@ -132,8 +147,8 @@ public class Assignment {
                         status = "Pending";
                     }
 
-                    Assignment assignment = new Assignment(assignmentID,
-                            assetID,
+                    Assignment assignment = new Assignment(
+                            assignmentId,
                             assetName,
                             categoryName,
                             user,
@@ -151,5 +166,28 @@ public class Assignment {
         }
         return null;
 
+    }
+
+    public void AddAssignment(){
+        try {
+            SQLServer connection = new SQLServer();
+            connect = connection.ConnectionSql();
+            if (connect != null) {
+                String query = "INSERT INTO [dbo].[Assignment] ([Asset_id],[Category_id],[User_id],[Admin_id],[StartDate],[EndDate],[Description],[Status]) " +
+                        "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+                PreparedStatement preparedStatement = connect.prepareStatement(query);
+                preparedStatement.setString(1, asset_code);
+                preparedStatement.setString(2, category);
+                preparedStatement.setString(3, assigned_to);
+                preparedStatement.setString(4, assigned_by);
+                preparedStatement.setString(5, assigned_date);
+                preparedStatement.setString(6, endDate);
+                preparedStatement.setString(7, description);
+                preparedStatement.setString(8, status);
+                preparedStatement.executeUpdate();
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

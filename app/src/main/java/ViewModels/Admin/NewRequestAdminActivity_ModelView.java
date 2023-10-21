@@ -1,5 +1,9 @@
 package ViewModels.Admin;
 
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.util.Log;
+
 import androidx.databinding.BaseObservable;
 import androidx.databinding.Bindable;
 
@@ -8,7 +12,10 @@ import com.example.navigationdrawer.BR;
 import java.util.List;
 
 import Models.Asset;
+import Models.Assignment;
 import Models.Category;
+import Models.MyApplication;
+import Models.User;
 
 public class NewRequestAdminActivity_ModelView extends BaseObservable {
     String date;
@@ -21,16 +28,31 @@ public class NewRequestAdminActivity_ModelView extends BaseObservable {
         notifyPropertyChanged(BR.date);
     }
 
-    public List<String> GetAllCategory(){
+    public List<Category> GetAllCategory(){
        Category c = new Category();
        return c.GetAllCategory();
     }
-    public List<String> GetAllAssetByCategory(String categoryName){
+    public List<Asset> GetAllAssetByCategory(String categoryName){
         Asset a = new Asset();
         return a.GetAssetByCategoryName(categoryName);
     }
-//
-//    public void OnClickSaveButton(){
-//
-//    }
+
+    public List<User> GetAllUser(){
+        User u = new User();
+        return u.GetUserAdapter();
+    }
+
+    public void OnClickSaveButton(Context context){
+        SharedPreferences sharedPreferences = context.getSharedPreferences("Assignment", Context.MODE_PRIVATE);
+        String categoryID = sharedPreferences.getString("Category_id","");
+        String userID = sharedPreferences.getString("User_id","");
+        String assetID = sharedPreferences.getString("Asset_id","");
+
+        User u = new User();
+        String adminID = u.GetNameUserByEmail(MyApplication.getInstance().GetSharedData());
+
+        Assignment a = new Assignment(assetID,categoryID,userID,adminID,date,"2023-02-03","1","1");
+        a.AddAssignment();
+
+    }
 }

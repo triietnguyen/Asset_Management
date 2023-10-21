@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <TableLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:stretchColumns="1,2,3,4,5,6">
+        <TableRow
+            android:layout_marginVertical="10dp">
+            <TextView
+                android:id="@+id/txt_staff_id_layout"
+                android:layout_marginHorizontal="10dp"
+                android:layout_width="120dp"
+                android:textSize="16dp"
+                android:layout_weight="0.5"
+                android:gravity="center"/>
+            <TextView
+                android:id="@+id/txt_staff_name_layout"
+                android:layout_marginHorizontal="10dp"
+                android:layout_width="120dp"
+                android:textSize="16dp"
+                android:layout_weight="0.5"
+                android:gravity="center"/>
+            <TextView
+                android:id="@+id/txt_staff_join_date_layout"
+                android:layout_marginHorizontal="10dp"
+                android:layout_width="120dp"
+                android:textSize="16dp"
+                android:layout_weight="0.5"
+                android:gravity="center"/>
+            <TextView
+                android:id="@+id/txt_staff_type_layout"
+                android:layout_marginHorizontal="10dp"
+                android:layout_width="120dp"
+                android:textSize="16dp"
+                android:layout_weight="0.5"
+                android:gravity="center" />
+            <ImageView
+                android:id="@+id/img_staff_edit_layout"
+                android:layout_width="50dp"
+                android:layout_weight="0.5"
+                android:gravity="center"
+                android:src="@drawable/baseline_edit_24"
+                >
+            </ImageView>
+            <ImageView
+                android:id="@+id/img_staff_delete_layout"
+                android:layout_width="50dp"
+                android:src="@drawable/baseline_delete_24"
+                >
+            </ImageView>
+        </TableRow>
+    </TableLayout>
+</layout>

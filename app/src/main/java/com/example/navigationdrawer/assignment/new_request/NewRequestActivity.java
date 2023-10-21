@@ -1,10 +1,12 @@
 package com.example.navigationdrawer.assignment.new_request;
 
+import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
@@ -17,10 +19,13 @@ import androidx.databinding.DataBindingUtil;
 import com.example.navigationdrawer.R;
 import com.example.navigationdrawer.databinding.ActivityNewRequestBinding;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
+import Models.Category;
 import ViewModels.User.NewRequestActivity_ModelView;
+import java.util.Calendar;
 
 public class NewRequestActivity extends AppCompatActivity {
 
@@ -65,10 +70,33 @@ public class NewRequestActivity extends AppCompatActivity {
                 finish();
             }
         });
+        edt_Date.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Pick_Date();
+            }
+        });
+    }
+
+    private void Pick_Date(){
+        Calendar calendar = Calendar.getInstance();
+        int date = calendar.get(Calendar.DATE);
+        int month = calendar.get(Calendar.MONTH);
+        int year = calendar.get(Calendar.YEAR);
+        DatePickerDialog datePickerDialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                calendar.set(year,month,dayOfMonth);
+                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
+                edt_Date.setText(simpleDateFormat.format(calendar.getTime()));
+            }
+        }, year,month,date);
+        datePickerDialog.show();
     }
 
     public void CategoryRequestAdapter(){
-        List<String> listCategory = newRequestActivityModelView.GetAllCategory();
+        //Dang Fix
+        List<Category> listCategory = newRequestActivityModelView.GetAllCategory();
 
         ArrayAdapter arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, listCategory);
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -78,12 +106,12 @@ public class NewRequestActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
                 // Sự kiện xảy ra khi một mục được chọn
-                String selectedItem = (String) parentView.getItemAtPosition(position);
-                List<String> listCategoryName = newRequestActivityModelView.GetAllAssetByCategory(selectedItem);
-
-                AssetRequestAdapter(listCategoryName);
-                // Làm gì đó với mục đã chọn
-                Toast.makeText(getApplicationContext(), "Bạn đã chọn: " + selectedItem, Toast.LENGTH_SHORT).show();
+//                String selectedItem = (String) parentView.getItemAtPosition(position);
+//                List<Asset> listCategoryName = newRequestActivityModelView.GetAllAssetByCategory(selectedItem);
+//
+//                AssetRequestAdapter(listCategoryName);
+//                // Làm gì đó với mục đã chọn
+//                Toast.makeText(getApplicationContext(), "Bạn đã chọn: " + selectedItem, Toast.LENGTH_SHORT).show();
             }
 
             @Override

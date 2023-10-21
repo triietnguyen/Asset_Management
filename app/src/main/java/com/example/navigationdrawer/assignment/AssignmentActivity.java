@@ -42,30 +42,8 @@ public class AssignmentActivity extends AppCompatActivity {
 
     private List<Assignment> getList() {
         List<Assignment> assignmentList = new ArrayList<>();
-        assignmentList.add(new Assignment("a","a","a","a","a","a","a","a"));
-        assignmentList.add(new Assignment("a","a","a","a","a","a","a","a"));
-        assignmentList.add(new Assignment("a","a","a","a","a","a","a","a"));
-        assignmentList.add(new Assignment("a","a","a","a","a","a","a","a"));
-        assignmentList.add(new Assignment("a","a","a","a","a","a","a","a"));
-        assignmentList.add(new Assignment("a","a","a","a","a","a","a","a"));
-        assignmentList.add(new Assignment("a","a","a","a","a","a","a","a"));
-        assignmentList.add(new Assignment("a","a","a","a","a","a","a","a"));
-        assignmentList.add(new Assignment("a","a","a","a","a","a","a","a"));
-        assignmentList.add(new Assignment("a","a","a","a","a","a","a","a"));
-        assignmentList.add(new Assignment("a","a","a","a","a","a","a","a"));
-        assignmentList.add(new Assignment("a","a","a","a","a","a","a","a"));
-        assignmentList.add(new Assignment("a","a","a","a","a","a","a","a"));
-        assignmentList.add(new Assignment("a","a","a","a","a","a","a","a"));
-        assignmentList.add(new Assignment("a","a","a","a","a","a","a","a"));
-        assignmentList.add(new Assignment("a","a","a","a","a","a","a","a"));
-        assignmentList.add(new Assignment("a","a","a","a","a","a","a","a"));
-        assignmentList.add(new Assignment("a","a","a","a","a","a","a","a"));
-        assignmentList.add(new Assignment("a","a","a","a","a","a","a","a"));
-        assignmentList.add(new Assignment("a","a","a","a","a","a","a","a"));
-        assignmentList.add(new Assignment("a","a","a","a","a","a","a","a"));
-        assignmentList.add(new Assignment("a","a","a","a","a","a","a","a"));
-        assignmentList.add(new Assignment("a","a","a","a","a","a","a","a"));
-        assignmentList.add(new Assignment("a","a","a","a","a","a","a","a"));
+        assignmentList.add(new Assignment("a","a","a","a","a","a","a"));
+
 
         return  assignmentList;
     }

@@ -31,11 +31,11 @@ public class NewRequestActivity_ModelView extends BaseObservable {
         notifyPropertyChanged(BR.description);
     }
 
-    public List<String> GetAllCategory(){
+    public List<Category> GetAllCategory(){
         Category c = new Category();
         return c.GetAllCategory();
     }
-    public List<String> GetAllAssetByCategory(String categoryName){
+    public List<Asset> GetAllAssetByCategory(String categoryName){
         Asset a = new Asset();
         return a.GetAssetByCategoryName(categoryName);
     }

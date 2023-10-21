@@ -48,6 +48,14 @@ public class AssignmentAdminActivity extends AppCompatActivity {
     }
 
 
+    private List<Assignment> getList(){
+        List<Assignment> assignment_list = new ArrayList<>();
+        assignment_list.add(new Assignment("1","1","1","1","1","1","1"));
+
+        return assignment_list;
+    }
+
+
     void AnhXa(){
         img_Back_Assignment = (ImageView)findViewById(R.id.img_Back_AssignmentPage);
         btn_New_Request = (Button)findViewById(R.id.btn_New_Request_AssignmentPage);
