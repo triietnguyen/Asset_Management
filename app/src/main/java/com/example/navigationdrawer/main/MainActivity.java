@@ -58,8 +58,6 @@ public class MainActivity extends AppCompatActivity {
         navigation_View = findViewById(R.id.nav_View);
         img_Notification = findViewById(R.id.bell);
         img_Menu = findViewById(R.id.imageMenu);
-
-
     }
 
     void Handle_Component(){
@@ -124,12 +122,6 @@ public class MainActivity extends AppCompatActivity {
                 finish();
             }
         });
-
-//        Uri uri = Uri.parse(modelView.getImage());
-//        img_User.setImageURI(uri);
-
     }
-
-
 }
 

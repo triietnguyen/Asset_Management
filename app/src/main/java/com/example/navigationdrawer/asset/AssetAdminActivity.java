@@ -3,6 +3,7 @@ package com.example.navigationdrawer.asset;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 
 import androidx.annotation.Nullable;
@@ -21,7 +22,10 @@ import Models.Asset;
 public class AssetAdminActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     AssetAdminApdapter assetAdminApdapter;
-    ImageView img_Back_Asset_Admin;
+
+    Button btn_create;
+
+    ImageView back_Asset_AdminLayout;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,18 +65,24 @@ public class AssetAdminActivity extends AppCompatActivity {
     }
 
     void AnhXa(){
-
-        img_Back_Asset_Admin = (ImageView) findViewById(R.id.back_Asset_AdminLayout);
+        btn_create = (Button) findViewById(R.id.btn_create);
+        back_Asset_AdminLayout = (ImageView) findViewById(R.id.back_Asset_AdminLayout);
         recyclerView = findViewById(R.id.recycler_view_asset_layout_admin);
     }
     void Handle_Component(){
-        img_Back_Asset_Admin.setOnClickListener(new View.OnClickListener() {
+        back_Asset_AdminLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(AssetAdminActivity.this, MainAdminActivity.class);
                 startActivity(intent);
             }
         });
-
+        btn_create.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(AssetAdminActivity.this, CreateAssetAdminActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 }

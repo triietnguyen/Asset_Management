@@ -25,6 +25,8 @@ import com.example.navigationdrawer.databinding.DrawarAdminHeadLayoutBinding;
 import com.example.navigationdrawer.login.LoginActivity;
 import com.example.navigationdrawer.notification.NotificationAdminActivity;
 import com.example.navigationdrawer.profile.ProfileAdminActivity;
+import com.example.navigationdrawer.report.ReportActivity;
+import com.example.navigationdrawer.request.RequestAdminActivity;
 import com.example.navigationdrawer.user.UserAdminActivity;
 import com.google.android.material.navigation.NavigationView;
 
@@ -94,6 +96,11 @@ public class MainAdminActivity extends AppCompatActivity {
                     startActivity(intent);
                     drawerLayout.closeDrawers();
                 }
+                else if (itemId == R.id.mRequest) {
+                    Intent intent = new Intent(MainAdminActivity.this, RequestAdminActivity.class);
+                    startActivity(intent);
+                    drawerLayout.closeDrawers();
+                }
                 else if (itemId == R.id.mProfile) {
                     Intent intent = new Intent(MainAdminActivity.this, ProfileAdminActivity.class);
                     startActivity(intent);
@@ -108,8 +115,9 @@ public class MainAdminActivity extends AppCompatActivity {
                     Toast.makeText(MainAdminActivity.this, "Feedback", Toast.LENGTH_SHORT).show();
                     drawerLayout.closeDrawers();
                 }
-                else if (itemId == R.id.mExport) {
-                    Toast.makeText(MainAdminActivity.this, "Export", Toast.LENGTH_SHORT).show();
+                else if (itemId == R.id.mReport) {
+                    Intent intent = new Intent(MainAdminActivity.this, ReportActivity.class);
+                    startActivity(intent);
                     drawerLayout.closeDrawers();
                 }
                 else if (itemId == R.id.mLogout) {
