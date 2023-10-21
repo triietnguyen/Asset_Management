@@ -13,5 +13,5 @@ dependencyResolutionManagement {
         maven { url "https://jitpack.io" }
     }
 }
-rootProject.name = "navigation drawer"
+rootProject.name = "asset management"
 include ':app'
