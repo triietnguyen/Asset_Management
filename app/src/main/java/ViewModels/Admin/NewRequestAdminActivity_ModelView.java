@@ -1,5 +1,6 @@
 package ViewModels.Admin;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.util.Log;
@@ -43,6 +44,9 @@ public class NewRequestAdminActivity_ModelView extends BaseObservable {
     }
 
     public void OnClickSaveButton(Context context){
+        if(date == null){
+            return;
+        }
         SharedPreferences sharedPreferences = context.getSharedPreferences("Assignment", Context.MODE_PRIVATE);
         String categoryID = sharedPreferences.getString("Category_id","");
         String userID = sharedPreferences.getString("User_id","");
@@ -53,6 +57,8 @@ public class NewRequestAdminActivity_ModelView extends BaseObservable {
 
         Assignment a = new Assignment(assetID,categoryID,userID,adminID,date,"2023-02-03","1","1");
         a.AddAssignment();
+
+        ((Activity) context).finish();
 
     }
 }
