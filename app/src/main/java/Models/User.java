@@ -147,7 +147,7 @@ public class User {
         return null;
     }
 
-        public List<User> GetUserAdapter(){
+        public List<User> GetAllUser(){
         List<User> listUser = new ArrayList<>();
         try{
             SQLServer connection = new SQLServer();
@@ -159,7 +159,6 @@ public class User {
                 Statement st = connect.createStatement();
                 ResultSet rs = st.executeQuery(query);
                 while(rs.next()){
-
                     String idUser = rs.getString("User_id");
                     String emailUser = rs.getString("Email");
                     String passwordUser = rs.getString("Password");

@@ -5,6 +5,7 @@ import android.util.Log;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,6 +27,34 @@ public class Asset {
 
     }
 
+    public List<Asset> GetAllAsset(){
+        List<Asset> listAsset = new ArrayList<>();
+        try{
+            SQLServer connection = new SQLServer();
+            connect = connection.ConnectionSql();
+            if(connect != null){
+                String query = "SELECT a.* " +
+                        "FROM [dbo].[Asset] a ";
+                Statement st = connect.createStatement();
+                ResultSet rs = st.executeQuery(query);
+                while (rs.next()) {
+                    String id = rs.getString("Asset_id");
+                    String name = rs.getString("Asset_Name");
+                    String categoryId = rs.getString("Category_id");
+                    String quantity = rs.getString("Quantity");
+                    String status = rs.getString("Status");
+                    Asset a = new Asset(id,name,categoryId,quantity,status);
+                    listAsset.add((a));
+
+                }
+                return listAsset;
+
+            }
+        }catch(Exception e){
+            Log.e(e.getMessage(),"Log error");
+        }
+        return null;
+    }
     public List<Asset> GetAssetByCategoryName(String categoryName) {
         List<Asset> listAsset = new ArrayList<>();
         try {

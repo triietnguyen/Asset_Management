@@ -36,6 +36,8 @@ import java.util.List;
 
 import Models.Asset;
 import Models.User;
+import ViewModels.Admin.AssignmentAdminActivity_ModelView;
+import ViewModels.Admin.UserAdminActivity_ModelView;
 
 public class UserAdminActivity extends AppCompatActivity {
     DrawerLayout drawerLayout;
@@ -43,6 +45,7 @@ public class UserAdminActivity extends AppCompatActivity {
     ActionBarDrawerToggle toggle;
     RecyclerView recyclerView;
     UserAdminApdapter userAdminApdapter;
+    UserAdminActivity_ModelView userAdminActivityModelView;
     ImageView imageMenu;
 
     Button create_User;
@@ -56,37 +59,11 @@ public class UserAdminActivity extends AppCompatActivity {
     }
 
     private void setRecycleView() {
+        userAdminActivityModelView = new UserAdminActivity_ModelView();
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        userAdminApdapter = new UserAdminApdapter(this, getList());
+        userAdminApdapter = new UserAdminApdapter(this, userAdminActivityModelView.GetAllUser());
         recyclerView.setAdapter(userAdminApdapter);
-    }
-
-    private List<User> getList() {
-        List<User> userList = new ArrayList<>();
-        userList.add(new User("a","a","a","1","a","a","a","a","a","a","a"));
-        userList.add(new User("a","a","a","1","a","a","a","a","a","a","a"));
-        userList.add(new User("a","a","a","1","a","a","a","a","a","a","a"));
-        userList.add(new User("a","a","a","1","a","a","a","a","a","a","a"));
-        userList.add(new User("a","a","a","1","a","a","a","a","a","a","a"));
-        userList.add(new User("a","a","a","1","a","a","a","a","a","a","a"));
-        userList.add(new User("a","a","a","1","a","a","a","a","a","a","a"));
-        userList.add(new User("a","a","a","1","a","a","a","a","a","a","a"));
-        userList.add(new User("a","a","a","1","a","a","a","a","a","a","a"));
-        userList.add(new User("a","a","a","1","a","a","a","a","a","a","a"));
-        userList.add(new User("a","a","a","1","a","a","a","a","a","a","a"));
-        userList.add(new User("a","a","a","1","a","a","a","a","a","a","a"));
-        userList.add(new User("a","a","a","1","a","a","a","a","a","a","a"));
-        userList.add(new User("a","a","a","1","a","a","a","a","a","a","a"));
-        userList.add(new User("a","a","a","1","a","a","a","a","a","a","a"));
-        userList.add(new User("a","a","a","1","a","a","a","a","a","a","a"));
-        userList.add(new User("a","a","a","1","a","a","a","a","a","a","a"));
-        userList.add(new User("a","a","a","1","a","a","a","a","a","a","a"));
-        userList.add(new User("a","a","a","1","a","a","a","a","a","a","a"));
-        userList.add(new User("a","a","a","1","a","a","a","a","a","a","a"));
-        userList.add(new User("a","a","a","1","a","a","a","a","a","a","a"));
-
-        return  userList;
     }
 
     void AnhXa(){

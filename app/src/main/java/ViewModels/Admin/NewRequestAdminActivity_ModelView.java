@@ -45,7 +45,7 @@ public class NewRequestAdminActivity_ModelView extends BaseObservable {
 
     public List<User> GetAllUser(){
         User u = new User();
-        return u.GetUserAdapter();
+        return u.GetAllUser();
     }
 
     public void OnClickSaveButton(Context context) {
