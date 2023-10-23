@@ -25,13 +25,15 @@ public class Assignment {
 
     private Connection connect;
 
-    public Assignment(String id, String asset_name, String category, String assigned_to, String assigned_by, String assigned_date, String status) {
+    public Assignment(String id,String asset_code, String asset_name, String category, String assigned_to, String assigned_by, String assigned_date,String endDate, String status) {
         this.id = id;
+        this.asset_code = asset_code;
         this.category = category;
         this.asset_name = asset_name;
         this.assigned_to = assigned_to;
         this.assigned_by = assigned_by;
         this.assigned_date = assigned_date;
+        this.endDate = endDate;
         this.status = status;
     }
 
@@ -122,7 +124,7 @@ public class Assignment {
             SQLServer connection = new SQLServer();
             connect = connection.ConnectionSql();
             if(connect != null){
-                String query = "SELECT assign.[Assignment_id], a.[Asset_id], a.[Asset_Name], c.[Category_Name], " +
+                String query = "SELECT assign.[Assignment_id], a.[Asset_id], a.[Asset_Name], assign.[EndDate], c.[Category_Name], " +
                         "u_user.Fullname AS UserFullName, u_admin.Fullname AS AdminFullName, assign.[Status], assign.[StartDate] " +
                         "FROM Assignment assign " +
                         "LEFT JOIN [User] u_admin ON assign.[Admin_id] = u_admin.[User_id] AND u_admin.[Role_id] = 1 " +
@@ -134,13 +136,14 @@ public class Assignment {
                 ResultSetMetaData metaData = rs.getMetaData();
                 int columnCount = metaData.getColumnCount();
                 while(rs.next()){
-
+                    String assetID = rs.getString("Asset_id");
                     String assignmentId = rs.getString("Assignment_id");
                     String assetName = rs.getString("Asset_Name");
                     String categoryName = rs.getString("Category_Name");
                     String user = rs.getString("UserFullName");
                     String admin = rs.getString("AdminFullName");
                     String startDate = rs.getString("StartDate");
+                    String EndDate = rs.getString("EndDate");
                     String status = rs.getString("Status");
 
                     if(status.equalsIgnoreCase("1")){
@@ -149,11 +152,13 @@ public class Assignment {
 
                     Assignment assignment = new Assignment(
                             assignmentId,
+                            assetID,
                             assetName,
                             categoryName,
                             user,
                             admin,
                             startDate,
+                            EndDate,
                             status);
 
                     listAssignment.add(assignment);
