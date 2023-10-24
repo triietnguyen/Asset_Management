@@ -31,6 +31,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import Models.Asset;
+import ViewModels.Admin.AssetAdminActivity_ModelView;
+import ViewModels.Admin.UserAdminActivity_ModelView;
 
 public class AssetAdminActivity extends AppCompatActivity {
     DrawerLayout drawerLayout;
@@ -38,6 +40,8 @@ public class AssetAdminActivity extends AppCompatActivity {
     ActionBarDrawerToggle toggle;
     RecyclerView recyclerView;
     AssetAdminApdapter assetAdminApdapter;
+
+    AssetAdminActivity_ModelView assetAdminActivityModelView;
 
     Button btn_create;
 
@@ -52,32 +56,11 @@ public class AssetAdminActivity extends AppCompatActivity {
     }
 
     private void setRecycleView() {
+        assetAdminActivityModelView = new AssetAdminActivity_ModelView();
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        assetAdminApdapter = new AssetAdminApdapter(this, getList());
+        assetAdminApdapter = new AssetAdminApdapter(this, assetAdminActivityModelView.GetAllAsset());
         recyclerView.setAdapter(assetAdminApdapter);
-    }
-
-    private List<Asset> getList() {
-        List<Asset> assetList = new ArrayList<>();
-        assetList.add(new Asset("a","a","a","1"));
-        assetList.add(new Asset("a","a","a","1"));
-        assetList.add(new Asset("a","a","a","1"));
-        assetList.add(new Asset("a","a","a","1"));
-        assetList.add(new Asset("a","a","a","1"));
-        assetList.add(new Asset("a","a","a","1"));
-        assetList.add(new Asset("a","a","a","1"));
-        assetList.add(new Asset("a","a","a","1"));
-        assetList.add(new Asset("a","a","a","1"));
-        assetList.add(new Asset("a","a","a","1"));
-        assetList.add(new Asset("a","a","a","1"));
-        assetList.add(new Asset("a","a","a","1"));
-        assetList.add(new Asset("a","a","a","1"));
-        assetList.add(new Asset("a","a","a","1"));
-        assetList.add(new Asset("a","a","a","1"));
-        assetList.add(new Asset("a","a","a","1"));
-        assetList.add(new Asset("a","a","a","1"));
-        return  assetList;
     }
 
     void AnhXa(){

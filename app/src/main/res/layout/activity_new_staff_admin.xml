@@ -2,6 +2,11 @@
 <layout
     xmlns:android="http://schemas.android.com/apk/res/android"
     >
+    <data>
+        <variable
+            name="UserAdminActivity_ModelView"
+            type="ViewModels.Admin.UserAdminActivity_ModelView" />
+    </data>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -18,7 +23,7 @@
             <ImageView
                 android:layout_width="50dp"
                 android:layout_height="60dp"
-                android:src="@drawable/staff"></ImageView>
+                android:src="@drawable/staff"/>
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -48,6 +53,7 @@
                 android:id="@+id/edt_Joined_Date_Layout"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
+                android:text="@={UserAdminActivity_ModelView.date}"
                 android:hint="dd/mm/yy"
                 android:background="@drawable/custom_bg_edt"
                 android:textSize="20dp"
@@ -122,9 +128,7 @@
                     android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
                     android:layout_marginEnd="10dp"
-                    android:src="@drawable/baseline_arrow_drop_down_24">
-
-                </ImageView>
+                    android:src="@drawable/baseline_arrow_drop_down_24"/>
             </RelativeLayout>
             <TextView
                 android:layout_width="match_parent"
@@ -226,9 +230,7 @@
                     android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
                     android:layout_marginEnd="10dp"
-                    android:src="@drawable/baseline_arrow_drop_down_24">
-
-                </ImageView>
+                    android:src="@drawable/baseline_arrow_drop_down_24"/>
             </RelativeLayout>
 
             <LinearLayout

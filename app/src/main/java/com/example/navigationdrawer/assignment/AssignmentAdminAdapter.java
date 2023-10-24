@@ -28,7 +28,7 @@ public class AssignmentAdminAdapter extends RecyclerView.Adapter<AssignmentAdmin
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.item_management_layout_admin,parent,false);
+        View view = LayoutInflater.from(context).inflate(R.layout.item_assignment_layout_admin,parent,false);
         return new ViewHolder(view);
     }
 
