@@ -22,7 +22,7 @@ public class AssignmentAdminActivity_ModelView {
     private Connection connect;
     public List<Assignment> GetAllAssignment(){
         Assignment assignment = new Assignment();
-        List<Assignment> listAssign = assignment.GetAllAssignment();
+        List<Assignment> listAssign = assignment.GetAllAssignmentAvailable();
         return listAssign;
 
     }

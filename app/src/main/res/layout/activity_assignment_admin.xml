@@ -105,7 +105,7 @@
                             android:layout_width="120dp"
                             android:gravity="center"
                             android:textSize="16dp"
-                            android:text="Asset Name"
+                            android:text="Asset Code"
                             android:textStyle="bold"/>
                         <TextView
                             android:layout_weight="0.5"

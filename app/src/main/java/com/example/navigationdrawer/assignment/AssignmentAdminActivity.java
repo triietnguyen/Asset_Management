@@ -71,12 +71,7 @@ public class AssignmentAdminActivity extends AppCompatActivity {
     }
 
 
-    private List<Assignment> getList(){
-        List<Assignment> assignment_list = new ArrayList<>();
-        assignment_list.add(new Assignment("1","1","1","1","1","1","1","a"));
 
-        return assignment_list;
-    }
 
 
     void AnhXa(){

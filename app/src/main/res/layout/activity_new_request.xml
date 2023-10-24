@@ -65,6 +65,8 @@
                     android:layout_height="50dp"
                     android:text="@={NewRequestActivity_ModelView.date}"
                     android:hint="dd/mm/yy"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
                     android:background="@drawable/custom_bg_edt"
                     android:textSize="20dp"
                     android:layout_marginVertical="10dp"

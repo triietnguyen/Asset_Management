@@ -147,7 +147,7 @@ public class User {
         return null;
     }
 
-        public List<User> GetUserAdapter(){
+        public List<User> GetAllUser(){
         List<User> listUser = new ArrayList<>();
         try{
             SQLServer connection = new SQLServer();

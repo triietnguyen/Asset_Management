@@ -2,6 +2,7 @@ package com.example.navigationdrawer.assignment;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -28,6 +29,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import Models.Assignment;
+import Models.MyApplication;
+import Models.User;
+import ViewModels.User.AssignmentActivity_ModelView;
 
 public class AssignmentActivity extends AppCompatActivity {
     DrawerLayout drawer_Layout;
@@ -38,6 +42,7 @@ public class AssignmentActivity extends AppCompatActivity {
     AssignmentApdapter assignmentApdapter;
     ImageView imageMenu;
     Button btn_New_Request;
+    AssignmentActivity_ModelView assignmentActivityModelView;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,19 +52,15 @@ public class AssignmentActivity extends AppCompatActivity {
         setRecycleView();
     }
     private void setRecycleView() {
+        User u = new User();
+        String userID = u.GetNameUserByEmail(MyApplication.getInstance().GetSharedData());
+        assignmentActivityModelView = new AssignmentActivity_ModelView();
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        assignmentApdapter = new AssignmentApdapter(this, getList());
+        assignmentApdapter = new AssignmentApdapter(this, assignmentActivityModelView.GetAllAssignment(userID));
         recyclerView.setAdapter(assignmentApdapter);
     }
 
-    private List<Assignment> getList() {
-        List<Assignment> assignmentList = new ArrayList<>();
-        assignmentList.add(new Assignment("a","a","a","a","a","a","a","a"));
-
-
-        return  assignmentList;
-    }
 
     void AnhXa(){
         drawer_Layout = findViewById(R.id.drawer_layout);

@@ -88,6 +88,14 @@
                             android:layout_marginHorizontal="10dp"
                             android:gravity="center"
                             android:textSize="16dp"
+                            android:text="Username"
+                            android:textStyle="bold"/>
+                        <TextView
+                            android:layout_weight="0.5"
+                            android:layout_width="120dp"
+                            android:layout_marginHorizontal="10dp"
+                            android:gravity="center"
+                            android:textSize="16dp"
                             android:text="Asset_Name"
                             android:textStyle="bold"/>
                         <TextView
@@ -104,7 +112,23 @@
                             android:layout_width="120dp"
                             android:gravity="center"
                             android:textSize="16dp"
+                            android:text="Description"
+                            android:textStyle="bold"/>
+                        <TextView
+                            android:layout_weight="0.5"
+                            android:layout_marginHorizontal="10dp"
+                            android:layout_width="120dp"
+                            android:gravity="center"
+                            android:textSize="16dp"
                             android:text="Assigned_Date"
+                            android:textStyle="bold"/>
+                        <TextView
+                            android:layout_weight="0.5"
+                            android:layout_marginHorizontal="10dp"
+                            android:layout_width="120dp"
+                            android:gravity="center"
+                            android:textSize="16dp"
+                            android:text="EndDate"
                             android:textStyle="bold"/>
                         <TextView
                             android:layout_weight="0.5"

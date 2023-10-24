@@ -1,6 +1,8 @@
 package com.example.navigationdrawer.assignment.new_request;
 
 import android.app.DatePickerDialog;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -23,6 +25,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
+import Models.Asset;
 import Models.Category;
 import ViewModels.User.NewRequestActivity_ModelView;
 import java.util.Calendar;
@@ -36,10 +39,15 @@ public class NewRequestActivity extends AppCompatActivity {
     Spinner spinnerCategoryRequest;
     Spinner spinnerAssetRequest;
     NewRequestActivity_ModelView newRequestActivityModelView;
+
+    List<String> listCategoryName = new ArrayList<>();
+    List<String> listAssetName = new ArrayList<>();
+    SharedPreferences sharedPreferences;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_new_request);
+        sharedPreferences = getSharedPreferences("Assignment", Context.MODE_PRIVATE);
         ActivityNewRequestBinding _binding = DataBindingUtil.setContentView(this,R.layout.activity_new_request);
         newRequestActivityModelView = new NewRequestActivity_ModelView();
         _binding.setNewRequestActivityModelView(newRequestActivityModelView);
@@ -57,13 +65,7 @@ public class NewRequestActivity extends AppCompatActivity {
         spinnerAssetRequest = (Spinner) findViewById(R.id.asset_spinner);
     }
     public void Handle_Component(){
-        btn_Save.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(NewRequestActivity.this, "Failed", Toast.LENGTH_SHORT).show();
-                finish();
-            }
-        });
+        btn_Save.setOnClickListener(view -> newRequestActivityModelView.OnClickSaveButton(this));
         img_Back_NewRequest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -87,7 +89,7 @@ public class NewRequestActivity extends AppCompatActivity {
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                 calendar.set(year,month,dayOfMonth);
-                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
+                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
                 edt_Date.setText(simpleDateFormat.format(calendar.getTime()));
             }
         }, year,month,date);
@@ -95,10 +97,14 @@ public class NewRequestActivity extends AppCompatActivity {
     }
 
     public void CategoryRequestAdapter(){
-        //Dang Fix
-        List<Category> listCategory = newRequestActivityModelView.GetAllCategory();
 
-        ArrayAdapter arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, listCategory);
+        List<Category> listCategory = newRequestActivityModelView.GetAllCategory();
+        listCategoryName.clear();
+        for(Category c : listCategory){
+            listCategoryName.add(c.GetName());
+        }
+
+        ArrayAdapter arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, listCategoryName);
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerCategoryRequest.setAdapter(arrayAdapter);
 
@@ -106,12 +112,20 @@ public class NewRequestActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
                 // Sự kiện xảy ra khi một mục được chọn
-//                String selectedItem = (String) parentView.getItemAtPosition(position);
-//                List<Asset> listCategoryName = newRequestActivityModelView.GetAllAssetByCategory(selectedItem);
-//
-//                AssetRequestAdapter(listCategoryName);
-//                // Làm gì đó với mục đã chọn
-//                Toast.makeText(getApplicationContext(), "Bạn đã chọn: " + selectedItem, Toast.LENGTH_SHORT).show();
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+
+                Category c = listCategory.get(position);
+                String selectedId = c.GetID();
+                String selectedItem = c.GetName();
+
+                List<Asset> listAssetByCategoryName = newRequestActivityModelView.GetAllAssetByCategory(selectedItem);
+                AssetRequestAdapter(listAssetByCategoryName);
+
+                editor.putString("Category_id",selectedId);
+                editor.commit();
+
+                // Làm gì đó với mục đã chọn
+                Toast.makeText(getApplicationContext(), "Id đã chọn: " + selectedId, Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -121,10 +135,45 @@ public class NewRequestActivity extends AppCompatActivity {
         });
     }
 
-    public void AssetRequestAdapter(List<String> listCategoryName){
 
-        ArrayAdapter arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, listCategoryName);
+    public void AssetRequestAdapter(List<Asset> listAssetByCategory){
+        listAssetName.clear();
+        for(Asset a : listAssetByCategory){
+            listAssetName.add(a.getAsset_name());
+        }
+
+        ArrayAdapter arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, listAssetName);
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerAssetRequest.setAdapter(arrayAdapter);
+
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+        if(listAssetName.size() == 0){
+            editor.putString("Asset_id","");
+            editor.commit();
+            return;
+        }
+        else{
+            spinnerAssetRequest.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+
+
+                    Asset SelectedItem = listAssetByCategory.get(position);
+                    String Assetid = SelectedItem.getAsset_id();
+
+                    editor.putString("Asset_id",Assetid);
+                    editor.commit();
+
+                    Toast.makeText(getApplicationContext(), "Id đã chọn: " + Assetid, Toast.LENGTH_SHORT).show();
+                }
+
+                @Override
+                public void onNothingSelected(AdapterView<?> parentView) {
+                    // Sự kiện xảy ra khi không có mục nào được chọn
+                }
+            });
+        }
+
     }
 }

@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.util.Log;
+import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.databinding.BaseObservable;
@@ -25,6 +26,7 @@ import Models.User;
 
 public class NewRequestAdminActivity_ModelView extends BaseObservable {
     String date;
+
     @Bindable
     public String getDate() {
         return date;
@@ -45,7 +47,7 @@ public class NewRequestAdminActivity_ModelView extends BaseObservable {
 
     public List<User> GetAllUser(){
         User u = new User();
-        return u.GetUserAdapter();
+        return u.GetAllUser();
     }
 
     public void OnClickSaveButton(Context context) {
@@ -81,11 +83,15 @@ public class NewRequestAdminActivity_ModelView extends BaseObservable {
             String categoryID = sharedPreferences.getString("Category_id","");
             String userID = sharedPreferences.getString("User_id","");
             String assetID = sharedPreferences.getString("Asset_id","");
+            Log.e("assetID",assetID);
+            if (assetID.equalsIgnoreCase("")) {
+                return;
+            }
 
             User u = new User();
             String adminID = u.GetNameUserByEmail(MyApplication.getInstance().GetSharedData());
 
-            Assignment a = new Assignment(assetID,categoryID,userID,adminID,currentDate_Str,date,"","1");
+            Assignment a = new Assignment(null,assetID,null,categoryID,userID,adminID,currentDate_Str,date,"","1");
             a.AddAssignment();
 
             ((Activity) context).finish();
