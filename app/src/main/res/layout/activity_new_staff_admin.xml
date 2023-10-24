@@ -2,6 +2,11 @@
 <layout
     xmlns:android="http://schemas.android.com/apk/res/android"
     >
+    <data>
+        <variable
+            name="UserAdminActivity_ModelView"
+            type="ViewModels.Admin.UserAdminActivity_ModelView" />
+    </data>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -48,6 +53,7 @@
                 android:id="@+id/edt_Joined_Date_Layout"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
+                android:text="@={UserAdminActivity_ModelView.date}"
                 android:hint="dd/mm/yy"
                 android:background="@drawable/custom_bg_edt"
                 android:textSize="20dp"

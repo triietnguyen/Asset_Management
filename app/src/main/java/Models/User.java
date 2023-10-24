@@ -193,4 +193,28 @@ public class User {
         }
         return null;
     }
+        public void AddUser(){
+        try {
+            SQLServer connection = new SQLServer();
+            connect = connection.ConnectionSql();
+            if (connect != null) {
+                String query = "INSERT INTO [dbo].[User] ([Email],[Password],[Fullname],[Address],[Date_of_birth],[Gender],[Joined_Date],[Image],[Role_id],[Phone]) " +
+                        "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                PreparedStatement preparedStatement = connect.prepareStatement(query);
+                preparedStatement.setString(1, email);
+                preparedStatement.setString(2, password);
+                preparedStatement.setString(3, name);
+                preparedStatement.setString(4, address);
+                preparedStatement.setString(5, date_of_birth);
+                preparedStatement.setString(6, gender);
+                preparedStatement.setString(7, joined_date);
+                preparedStatement.setString(8, image);
+                preparedStatement.setString(8, role_id);
+                preparedStatement.setString(8, phone);
+                preparedStatement.executeUpdate();
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

@@ -40,7 +40,6 @@ public class NewRequestAdminActivity extends AppCompatActivity {
     Button img_Back_NewRequest;
     EditText edt_Date;
     Button btn_Save;
-
     Spinner spinnerCategoryRequest;
     Spinner spinnerUserRequest;
     Spinner spinnerAssetRequest;
