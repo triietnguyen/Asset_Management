@@ -34,17 +34,22 @@ public class Asset {
             SQLServer connection = new SQLServer();
             connect = connection.ConnectionSql();
             if (connect != null) {
-                String query = "SELECT a.* " +
-                        "FROM [dbo].[Asset] a ";
+                String query = "select [Asset_id],[Asset_Name],[Category_Name],[Quantity],[Status]" +
+                        "from Asset a inner join [dbo].[Category] c on a.[Category_id] = c.Category_id ";
                 Statement st = connect.createStatement();
                 ResultSet rs = st.executeQuery(query);
                 while (rs.next()) {
                     String id = rs.getString("Asset_id");
                     String name = rs.getString("Asset_Name");
-                    String categoryId = rs.getString("Category_id");
+                    String categoryName = rs.getString("Category_Name");
                     String quantity = rs.getString("Quantity");
                     String status = rs.getString("Status");
-                    Asset a = new Asset(id, name, categoryId, quantity, status);
+
+                    if(status.equalsIgnoreCase("0"))
+                        status = "Not Available";
+                    else status = "Available";
+
+                    Asset a = new Asset(id, name, categoryName, quantity, status);
                     listAsset.add((a));
 
                 }

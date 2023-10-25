@@ -153,9 +153,8 @@ public class User {
             SQLServer connection = new SQLServer();
             connect = connection.ConnectionSql();
             if(connect != null){
-                String query = "SELECT u.* " +
-                        "FROM [dbo].[User] u "+
-                        "Where u.Role_id = 2";
+                String query = "select [User_id],[Email],[Password],[Fullname],[Address],[Date_of_birth],[Gender_name],[Joined_Date],[Image],[Role_Name],[Phone]" +
+                        "from [dbo].[User] u join [dbo].[Role] r on u.Role_id = r.Role_id join [dbo].[Gender] g on u.Gender = g.Gender_id ";
                 Statement st = connect.createStatement();
                 ResultSet rs = st.executeQuery(query);
                 while(rs.next()){
@@ -165,11 +164,16 @@ public class User {
                     String fullNameUser = rs.getString("Fullname");
                     String addressUser = rs.getString("Address");
                     String dateUser = rs.getString("Date_of_birth");
-                    String genderUser = rs.getString("Gender");
+                    String genderUser = rs.getString("Gender_name");
                     String dateJoinUser = rs.getString("Joined_Date");
                     String imageUser = rs.getString("Image");
-                    String roleIdUser = rs.getString("Role_id");
+                    String roleIdUser = rs.getString("Role_Name");
                     String phoneUser = rs.getString("Phone");
+
+//                    if(roleIdUser.equalsIgnoreCase("1"))
+//                        roleIdUser = "Admin";
+//                    else
+//                        roleIdUser = "User";
 
                     User u = new User(idUser,
                             emailUser,

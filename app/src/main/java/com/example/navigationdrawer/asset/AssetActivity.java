@@ -26,6 +26,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import Models.Asset;
+import ViewModels.Admin.AssetAdminActivity_ModelView;
 
 public class AssetActivity extends AppCompatActivity {
     DrawerLayout drawer_Layout;
@@ -33,6 +34,7 @@ public class AssetActivity extends AppCompatActivity {
     ActionBarDrawerToggle action_Toggle;
     RecyclerView recyclerView;
     AssetApdapter assetApdapter;
+    AssetAdminActivity_ModelView assetAdminActivityModelView;
     ImageView imageMenu;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -44,9 +46,10 @@ public class AssetActivity extends AppCompatActivity {
     }
 
     private void setRecycleView() {
+        assetAdminActivityModelView = new AssetAdminActivity_ModelView();
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        assetApdapter = new AssetApdapter(this, getList());
+        assetApdapter = new AssetApdapter(this, assetAdminActivityModelView.GetAllAsset());
         recyclerView.setAdapter(assetApdapter);
     }
 

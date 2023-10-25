@@ -70,10 +70,6 @@ public class AssignmentAdminActivity extends AppCompatActivity {
         recycler_view_admin.setAdapter(adapter);
     }
 
-
-
-
-
     void AnhXa(){
         drawerLayout = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.nav_View);

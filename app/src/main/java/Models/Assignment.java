@@ -25,9 +25,6 @@ public class Assignment {
 
     private Connection connect;
 
-
-
-
     public Assignment(String id,String asset_code,String asset_name, String category, String assigned_to, String assigned_by, String assigned_date,String endDate,String description, String status) {
         this.id = id;
         this.asset_name = asset_name;

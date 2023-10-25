@@ -54,10 +54,10 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="end"
+            android:layout_gravity="center"
             android:gravity="center"
-            android:layout_marginTop="20dp"
-            android:orientation="horizontal">
+            android:layout_marginVertical="20dp"
+            android:orientation="vertical">
             <ImageView
                 android:layout_width="50dp"
                 android:layout_height="60dp"
@@ -95,7 +95,7 @@
                             android:layout_weight="0.5"
                             android:layout_marginHorizontal="10dp"
                             android:gravity="center"
-                            android:layout_width="50dp"
+                            android:layout_width="120dp"
                             android:textSize="16dp"
                             android:text="ID"
                             android:textStyle="bold"/>
