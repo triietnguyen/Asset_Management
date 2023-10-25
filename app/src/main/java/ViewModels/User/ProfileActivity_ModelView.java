@@ -101,8 +101,10 @@ public class ProfileActivity_ModelView extends BaseObservable {
         genderDB = userMap.get("Gender");
         phoneDB = userMap.get("Phone");
         imageDB = userMap.get("Image");
+
         if(genderDB.equalsIgnoreCase("1")) genderDB = "Male";
         else genderDB = "Female";
+
         this.setEmail(emailDB);
         this.setFullname(fullnameDb);
         this.setAddress(addressDB);
