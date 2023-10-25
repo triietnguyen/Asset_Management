@@ -5,10 +5,13 @@ import androidx.databinding.Bindable;
 
 import com.example.navigationdrawer.BR;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import Models.Account;
+import Models.Gender;
 import Models.MyApplication;
 
 public class ProfileAdminActivity_ModelView extends BaseObservable {
@@ -101,6 +104,9 @@ public class ProfileAdminActivity_ModelView extends BaseObservable {
         genderDB = userMap.get("Gender");
         phoneDB = userMap.get("Phone");
         imageDB = userMap.get("Image");
+
+        if(genderDB.equalsIgnoreCase("1")) genderDB = "Male";
+        else genderDB = "Female";
 
         this.setEmail(emailDB);
         this.setFullname(fullnameDb);
