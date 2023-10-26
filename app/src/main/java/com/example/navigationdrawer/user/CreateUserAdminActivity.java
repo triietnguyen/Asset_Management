@@ -31,7 +31,7 @@ import Models.Role;
 import ViewModels.Admin.UserAdminActivity_ModelView;
 
 public class CreateUserAdminActivity extends AppCompatActivity {
-    Button img_Cancel_Create;
+    Button img_Cancel_Create,btn_Save_NewRequestPage;
 
     EditText edt_Joined_Date_Layout, edt_Name_Layout, edt_Date_of_birth_Layout, edt_Address_Layout, edt_Phone_Layout, edt_Email_Layout, edt_Password_Layout;
 
@@ -51,7 +51,6 @@ public class CreateUserAdminActivity extends AppCompatActivity {
         ActivityNewStaffAdminBinding _binding = DataBindingUtil.setContentView(this,R.layout.activity_new_staff_admin);
         userAdminActivityModelView = new UserAdminActivity_ModelView();
         _binding.setUserAdminActivityModelView(userAdminActivityModelView);
-
         AnhXa();
         Handle_Component();
         GenderUserAdapter();
@@ -59,6 +58,7 @@ public class CreateUserAdminActivity extends AppCompatActivity {
     }
     void AnhXa(){
 
+        btn_Save_NewRequestPage =(Button) findViewById(R.id.btn_Save_NewRequestPage);
         img_Cancel_Create = (Button) findViewById(R.id.img_Cancel_Layout);
         edt_Joined_Date_Layout = (EditText) findViewById(R.id.edt_Joined_Date_Layout);
         edt_Name_Layout = (EditText) findViewById(R.id.edt_Name_Layout);
@@ -72,6 +72,7 @@ public class CreateUserAdminActivity extends AppCompatActivity {
 
     }
     void Handle_Component(){
+        btn_Save_NewRequestPage.setOnClickListener(view -> userAdminActivityModelView.OnClickSaveButton(this));
         img_Cancel_Create.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -132,7 +133,7 @@ public class CreateUserAdminActivity extends AppCompatActivity {
         List<Gender> listGender = userAdminActivityModelView.GetAllGender();
         listGenderName.clear();
         for(Gender c : listGender){
-            listGenderName.add(c.getName());
+            listGenderName.add(c.getId());
         }
         ArrayAdapter arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, listGenderName);
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -145,9 +146,9 @@ public class CreateUserAdminActivity extends AppCompatActivity {
 
                 Gender c = listGender.get(position);
                 String selectedId = c.getId();
-                String selectedItem = c.getName();
 
-                editor.putString("Gender_id",selectedId);
+
+                editor.putString("Gender",selectedId);
                 editor.commit();
 
                 // Làm gì đó với mục đã chọn
@@ -166,7 +167,7 @@ public class CreateUserAdminActivity extends AppCompatActivity {
         List<Role> listRole = userAdminActivityModelView.GetAllRole();
         listRoleName.clear();
         for(Role c : listRole){
-            listRoleName.add(c.getName());
+            listRoleName.add(c.getId());
         }
         ArrayAdapter arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, listRoleName);
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -179,7 +180,6 @@ public class CreateUserAdminActivity extends AppCompatActivity {
 
                 Role c = listRole.get(position);
                 String selectedId = c.getId();
-                String selectedItem = c.getName();
 
                 editor.putString("Role_id",selectedId);
                 editor.commit();

@@ -140,7 +140,7 @@ public class Assignment {
                     String status = rs.getString("Status");
 
                     switch (status){
-                        case "1":status = "Pending";break;
+                        case "1":status = "Assigned";break;
                         case "2":status = "Returning";break;
                         default:break;
                     }
@@ -256,7 +256,7 @@ public class Assignment {
                     String description = rs.getString("Description");
 
                     switch (status){
-                        case "0":status = "Not Handler";break;
+                        case "0":status = "Pending";break;
                         default:break;
                     }
 

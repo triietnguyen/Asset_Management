@@ -50,9 +50,9 @@ public class Role {
                 ResultSet rs = st.executeQuery(query);
                 while(rs.next()){
                     String idRole = rs.getString("Role_id");
-                    String namelRoler = rs.getString("Role_name");
+                    String nameRoler = rs.getString("Role_name");
                     Role u = new Role(idRole,
-                            namelRoler);
+                            nameRoler);
                     listRole.add(u);
 
                 }
