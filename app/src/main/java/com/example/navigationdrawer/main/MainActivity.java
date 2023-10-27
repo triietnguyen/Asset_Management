@@ -24,6 +24,7 @@ import com.example.navigationdrawer.databinding.DrawarUserHeadLayoutBinding;
 import com.example.navigationdrawer.login.LoginActivity;
 import com.example.navigationdrawer.notification.NotificationActivity;
 import com.example.navigationdrawer.profile.ProfileActivity;
+import com.example.navigationdrawer.request.RequestActivity;
 import com.google.android.material.navigation.NavigationView;
 
 import ViewModels.User.Main_ModelView;
@@ -84,6 +85,12 @@ public class MainActivity extends AppCompatActivity {
                 }
                 else if (itemId == R.id.mAssignment) {
                     Intent intent = new Intent(MainActivity.this, AssignmentActivity.class);
+                    startActivity(intent);
+                    finish();
+                    drawer_Layout.closeDrawers();
+                }
+                else if (itemId == R.id.mRequest) {
+                    Intent intent = new Intent(MainActivity.this, RequestActivity.class);
                     startActivity(intent);
                     finish();
                     drawer_Layout.closeDrawers();

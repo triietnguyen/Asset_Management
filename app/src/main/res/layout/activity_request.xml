@@ -35,7 +35,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
-                android:text="Assignments"
+                android:text="Request List"
                 android:layout_marginLeft="10dp"
                 android:textColor="@color/white"
                 android:textSize="20sp"
@@ -48,82 +48,30 @@
                 android:layout_marginRight="25dp"
                 android:src="@drawable/baseline_notifications_active_24"
                 app:tint="#FFFFFF" />
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:layout_marginVertical="20dp"
-            android:orientation="horizontal">
-            <ImageView
-                android:layout_width="50dp"
-                android:layout_height="60dp"
-                android:src="@drawable/ic_baseline_assignment_24"></ImageView>
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/custom_bg_filter"
-                android:layout_marginHorizontal="5dp"
-                android:paddingHorizontal="10dp"
-                android:orientation="horizontal">
-
-                <EditText
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center"
-                    android:hint="Search..."
-                    android:textSize="20dp"></EditText>
-
-                <ImageButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center"
-                    android:src="@drawable/baseline_search_24">
-                </ImageButton>
-            </LinearLayout>
-            <RelativeLayout
-                android:layout_width="120dp"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="5dp"
-                android:background="@drawable/custom_bg_filter"
-                android:orientation="horizontal"
-                android:paddingHorizontal="5dp">
-
-                <Spinner
-                    android:id="@+id/spinner_filter"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="10dp"
-                    android:textSize="20dp"
-                    android:textStyle="bold"></Spinner>
-
-                <ImageButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"
-                    android:src="@drawable/baseline_filter_list_24"></ImageButton>
-            </RelativeLayout>
 
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="30dp"
-            android:gravity="end">
+            android:gravity="center"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="15dp"
+            android:layout_marginHorizontal="20dp"
+            android:orientation="vertical">
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="60dp"
+                android:src="@drawable/baseline_request_quote_24"></ImageView>
             <Button
                 android:id="@+id/btn_New_Request_AssignmentPage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:backgroundTint="#FB6771"
-                android:text="Creat"
+                android:text="New Request"
                 android:textSize="20dp"
                 >
             </Button>
         </LinearLayout>
-
         <HorizontalScrollView
             android:id="@+id/hsv"
             android:layout_width="fill_parent"
@@ -140,48 +88,40 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginHorizontal="10dp"
-                    android:stretchColumns="1,2,3,4,5,6,7">
+                    android:stretchColumns="1,2,3,4,5,6">>
                     <TableRow
                         android:layout_marginVertical="10dp">
                         <TextView
                             android:layout_weight="0.5"
+                            android:layout_width="120dp"
                             android:layout_marginHorizontal="10dp"
                             android:gravity="center"
-                            android:layout_width="120dp"
                             android:textSize="16dp"
-                            android:text="ID"
-                            android:textStyle="bold"/>
-                        <TextView
-                            android:layout_weight="0.5"
-                            android:layout_marginHorizontal="10dp"
-                            android:layout_width="120dp"
-                            android:gravity="center"
-                            android:textSize="16dp"
-                            android:text="Asset Code"
-                            android:textStyle="bold"/>
-                        <TextView
-                            android:layout_weight="0.5"
-                            android:layout_marginHorizontal="10dp"
-                            android:layout_width="120dp"
-                            android:gravity="center"
-                            android:textSize="16dp"
-                            android:text="Asset"
+                            android:text="Username"
                             android:textStyle="bold"/>
                         <TextView
                             android:layout_weight="0.5"
                             android:layout_width="120dp"
                             android:layout_marginHorizontal="10dp"
+                            android:gravity="center"
+                            android:textSize="16dp"
+                            android:text="Asset_Name"
+                            android:textStyle="bold"/>
+                        <TextView
+                            android:layout_weight="0.5"
+                            android:layout_marginHorizontal="10dp"
+                            android:layout_width="120dp"
                             android:gravity="center"
                             android:textSize="16dp"
                             android:text="Category"
                             android:textStyle="bold"/>
                         <TextView
                             android:layout_weight="0.5"
-                            android:layout_width="120dp"
                             android:layout_marginHorizontal="10dp"
+                            android:layout_width="120dp"
                             android:gravity="center"
                             android:textSize="16dp"
-                            android:text="Assigned To"
+                            android:text="Description"
                             android:textStyle="bold"/>
                         <TextView
                             android:layout_weight="0.5"
@@ -189,7 +129,7 @@
                             android:layout_width="120dp"
                             android:gravity="center"
                             android:textSize="16dp"
-                            android:text="Assigned By"
+                            android:text="Assigned_Date"
                             android:textStyle="bold"/>
                         <TextView
                             android:layout_weight="0.5"
@@ -197,7 +137,7 @@
                             android:layout_width="120dp"
                             android:gravity="center"
                             android:textSize="16dp"
-                            android:text="Assigned Date"
+                            android:text="EndDate"
                             android:textStyle="bold"/>
                         <TextView
                             android:layout_weight="0.5"
@@ -207,9 +147,17 @@
                             android:textSize="16dp"
                             android:text="State"
                             android:textStyle="bold"/>
+                        <TextView
+                            android:layout_weight="0.5"
+                            android:layout_width="50dp"
+                            android:gravity="center"
+                            android:textStyle="bold"/>
+                        <TextView
+                            android:layout_width="50dp"
+                            android:textStyle="bold"/>
                     </TableRow>
                     <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/recycler_view_admin"
+                        android:id="@+id/recycler_view"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
                 </TableLayout>
@@ -223,7 +171,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_gravity="start"
-            app:menu="@menu/navigation_menu_admin"
+            app:menu="@menu/navigation_menu"
             />
     </androidx.drawerlayout.widget.DrawerLayout>
 </layout>

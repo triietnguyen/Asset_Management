@@ -20,6 +20,7 @@ import com.example.navigationdrawer.login.LoginActivity;
 import com.example.navigationdrawer.main.MainActivity;
 import com.example.navigationdrawer.R;
 import com.example.navigationdrawer.profile.ProfileActivity;
+import com.example.navigationdrawer.request.RequestActivity;
 import com.google.android.material.navigation.NavigationView;
 
 import java.util.ArrayList;
@@ -53,29 +54,6 @@ public class AssetActivity extends AppCompatActivity {
         recyclerView.setAdapter(assetApdapter);
     }
 
-    private List<Asset> getList() {
-        List<Asset> assetList = new ArrayList<>();
-        assetList.add(new Asset("a","a","a","1"));
-        assetList.add(new Asset("a","a","a","1"));
-        assetList.add(new Asset("a","a","a","1"));
-        assetList.add(new Asset("a","a","a","1"));
-        assetList.add(new Asset("a","a","a","1"));
-        assetList.add(new Asset("a","a","a","1"));
-        assetList.add(new Asset("a","a","a","1"));
-        assetList.add(new Asset("a","a","a","1"));
-        assetList.add(new Asset("a","a","a","1"));
-        assetList.add(new Asset("a","a","a","1"));
-        assetList.add(new Asset("a","a","a","1"));
-        assetList.add(new Asset("a","a","a","1"));
-        assetList.add(new Asset("a","a","a","1"));
-        assetList.add(new Asset("a","a","a","1"));
-        assetList.add(new Asset("a","a","a","1"));
-        assetList.add(new Asset("a","a","a","1"));
-        assetList.add(new Asset("a","a","a","1"));
-
-        return  assetList;
-    }
-
     void AnhXa(){
         drawer_Layout = findViewById(R.id.drawer_layout);
         navigation_View = findViewById(R.id.nav_View);
@@ -107,6 +85,11 @@ public class AssetActivity extends AppCompatActivity {
                 }
                 else if (itemId == R.id.mAssignment) {
                     Intent intent = new Intent(AssetActivity.this, AssignmentActivity.class);
+                    startActivity(intent);
+                    drawer_Layout.closeDrawers();
+                }
+                else if (itemId == R.id.mRequest) {
+                    Intent intent = new Intent(AssetActivity.this, RequestActivity.class);
                     startActivity(intent);
                     drawer_Layout.closeDrawers();
                 }

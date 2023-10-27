@@ -1,11 +1,16 @@
 package com.example.navigationdrawer.assignment;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -31,7 +36,9 @@ import com.google.android.material.navigation.NavigationView;
 import java.util.ArrayList;
 import java.util.List;
 
+import Models.Asset;
 import Models.Assignment;
+import Models.Category;
 import ViewModels.Admin.AssignmentAdminActivity_ModelView;
 
 
@@ -45,7 +52,10 @@ public class AssignmentAdminActivity extends AppCompatActivity {
     AssignmentAdminAdapter adapter;
     ImageView imageMenu;
     Button btn_New_Request;
+    Spinner spinnerFilter;
     AssignmentAdminActivity_ModelView assignmentAdminActivity_modelView;
+
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,9 +63,32 @@ public class AssignmentAdminActivity extends AppCompatActivity {
         AnhXa();
         Handle_Component();
         setRecycleView();
-
+        AssignmentFilterAdapter();
     }
 
+    public void AssignmentFilterAdapter(){
+
+        List<String> listFilter = new ArrayList<>();
+        listFilter.add("All");
+        listFilter.add("A->Z");
+        listFilter.add("Z->A");
+        ArrayAdapter arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, listFilter);
+        arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerFilter.setAdapter(arrayAdapter);
+        spinnerFilter.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                String choice = parentView.getItemAtPosition(position).toString();
+                // Làm gì đó với mục đã chọn
+                Toast.makeText(getApplicationContext(), choice, Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {
+
+            }
+        });
+    }
     @Override
     protected void onResume() {
         super.onResume();
@@ -76,6 +109,7 @@ public class AssignmentAdminActivity extends AppCompatActivity {
         imageMenu = findViewById(R.id.imageMenu);
         btn_New_Request = (Button)findViewById(R.id.btn_New_Request_AssignmentPage);
         recycler_view_admin = findViewById(R.id.recycler_view_admin);
+        spinnerFilter = findViewById(R.id.spinner_filter);
     }
 
     void Handle_Component(){

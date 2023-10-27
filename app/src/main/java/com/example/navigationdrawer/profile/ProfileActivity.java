@@ -24,6 +24,7 @@ import com.example.navigationdrawer.databinding.ActivityUserProfileBinding;
 import com.example.navigationdrawer.login.LoginActivity;
 import com.example.navigationdrawer.main.MainActivity;
 import com.example.navigationdrawer.R;
+import com.example.navigationdrawer.request.RequestActivity;
 import com.github.dhaval2404.imagepicker.ImagePicker;
 import com.google.android.material.navigation.NavigationView;
 
@@ -83,6 +84,12 @@ public class ProfileActivity extends AppCompatActivity {
                 }
                 else if (itemId == R.id.mAssignment) {
                     Intent intent = new Intent(ProfileActivity.this, AssignmentActivity.class);
+                    startActivity(intent);
+                    finish();
+                    drawer_Layout.closeDrawers();
+                }
+                else if (itemId == R.id.mRequest) {
+                    Intent intent = new Intent(ProfileActivity.this, RequestActivity.class);
                     startActivity(intent);
                     finish();
                     drawer_Layout.closeDrawers();

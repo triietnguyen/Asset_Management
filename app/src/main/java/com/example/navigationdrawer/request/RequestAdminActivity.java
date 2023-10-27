@@ -60,8 +60,6 @@ public class RequestAdminActivity extends AppCompatActivity {
     private List<Assignment> getList() {
         Assignment assign = new Assignment();
         List<Assignment> assignmentList = assign.GetAllAssignment_NotHandler();
-
-
         return  assignmentList;
     }
 

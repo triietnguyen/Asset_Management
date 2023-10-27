@@ -1,15 +1,11 @@
-package com.example.navigationdrawer.assignment;
+package com.example.navigationdrawer.request;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -21,88 +17,69 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.navigationdrawer.asset.AssetActivity;
-import com.example.navigationdrawer.assignment.new_request.NewRequestActivity;
 import com.example.navigationdrawer.R;
+import com.example.navigationdrawer.asset.AssetActivity;
+import com.example.navigationdrawer.asset.AssetAdminActivity;
+import com.example.navigationdrawer.assignment.AssignmentActivity;
+import com.example.navigationdrawer.assignment.AssignmentAdminActivity;
+import com.example.navigationdrawer.assignment.new_request.NewRequestActivity;
+import com.example.navigationdrawer.assignment.new_request.NewRequestAdminActivity;
 import com.example.navigationdrawer.login.LoginActivity;
 import com.example.navigationdrawer.main.MainActivity;
+import com.example.navigationdrawer.main.MainAdminActivity;
+import com.example.navigationdrawer.notification.NotificationActivity;
 import com.example.navigationdrawer.profile.ProfileActivity;
-import com.example.navigationdrawer.request.RequestActivity;
+import com.example.navigationdrawer.profile.ProfileAdminActivity;
+import com.example.navigationdrawer.report.ReportActivity;
+import com.example.navigationdrawer.user.UserAdminActivity;
 import com.google.android.material.navigation.NavigationView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import Models.Assignment;
-import Models.MyApplication;
-import Models.User;
-import ViewModels.User.AssignmentActivity_ModelView;
 
-public class AssignmentActivity extends AppCompatActivity {
+public class RequestActivity extends AppCompatActivity {
     DrawerLayout drawer_Layout;
     NavigationView navigation_View;
     ActionBarDrawerToggle action_Toggle;
 
     RecyclerView recyclerView;
-    AssignmentApdapter assignmentApdapter;
-    ImageView imageMenu;
-    Spinner spinnerFilter;
-    AssignmentActivity_ModelView assignmentActivityModelView;
+    RequestAdminAdapter requestAdminAdapter;
+    ImageView img_Menu, img_Notification;
+    Button btn_New_Request_AssignmentPage;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_assignment);
+        setContentView(R.layout.activity_request);
         AnhXa();
         Handle_Component();
         setRecycleView();
-        AssignmentFilterAdapter();
-    }
-
-    public void AssignmentFilterAdapter(){
-
-        List<String> listFilter = new ArrayList<>();
-        listFilter.add("All");
-        listFilter.add("A->Z");
-        listFilter.add("Z->A");
-        ArrayAdapter arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, listFilter);
-        arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinnerFilter.setAdapter(arrayAdapter);
-        spinnerFilter.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
-                String choice = parentView.getItemAtPosition(position).toString();
-                // Làm gì đó với mục đã chọn
-                Toast.makeText(getApplicationContext(), choice, Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parentView) {
-
-            }
-        });
     }
     private void setRecycleView() {
-        User u = new User();
-        String userID = u.GetNameUserByEmail(MyApplication.getInstance().GetSharedData());
-        assignmentActivityModelView = new AssignmentActivity_ModelView();
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        assignmentApdapter = new AssignmentApdapter(this, assignmentActivityModelView.GetAllAssignment(userID));
-        recyclerView.setAdapter(assignmentApdapter);
+        requestAdminAdapter = new RequestAdminAdapter(this, getList());
+        recyclerView.setAdapter(requestAdminAdapter);
     }
 
+    private List<Assignment> getList() {
+        Assignment assign = new Assignment();
+        List<Assignment> assignmentList = assign.GetAllAssignment_NotHandler();
+        return  assignmentList;
+    }
 
     void AnhXa(){
         drawer_Layout = findViewById(R.id.drawer_layout);
         navigation_View = findViewById(R.id.nav_View);
-        imageMenu = findViewById(R.id.imageMenu);
+        img_Menu = findViewById(R.id.imageMenu);
+        img_Notification = findViewById(R.id.bell);
+        btn_New_Request_AssignmentPage = (Button)findViewById(R.id.btn_New_Request_AssignmentPage);
         recyclerView = findViewById(R.id.recycler_view);
-        spinnerFilter = findViewById(R.id.spinner_filter);
     }
 
     void Handle_Component(){
         // Navigation Drawer------------------------------
-        action_Toggle = new ActionBarDrawerToggle(AssignmentActivity.this, drawer_Layout, R.string.open, R.string.close);
+        action_Toggle = new ActionBarDrawerToggle(RequestActivity.this, drawer_Layout, R.string.open, R.string.close);
         drawer_Layout.addDrawerListener(action_Toggle);
         action_Toggle.syncState();
 
@@ -114,34 +91,34 @@ public class AssignmentActivity extends AppCompatActivity {
                 int itemId = item.getItemId();
 
                 if (itemId == R.id.mHome) {
-                    Intent intent = new Intent(AssignmentActivity.this, MainActivity.class);
+                    Intent intent = new Intent(RequestActivity.this, MainActivity.class);
                     startActivity(intent);
                     finish();
                     drawer_Layout.closeDrawers();
                 }
                 else if (itemId == R.id.mAsset) {
-                    Intent intent = new Intent(AssignmentActivity.this, AssetActivity.class);
+                    Intent intent = new Intent(RequestActivity.this, AssetActivity.class);
                     startActivity(intent);
                     finish();
                     drawer_Layout.closeDrawers();
                 }
                 else if (itemId == R.id.mAssignment) {
-                    drawer_Layout.closeDrawers();
-                }
-                else if (itemId == R.id.mRequest) {
-                    Intent intent = new Intent(AssignmentActivity.this, RequestActivity.class);
+                    Intent intent = new Intent(RequestActivity.this, AssignmentActivity.class);
                     startActivity(intent);
                     finish();
                     drawer_Layout.closeDrawers();
                 }
+                else if (itemId == R.id.mRequest) {
+                    drawer_Layout.closeDrawers();
+                }
                 else if (itemId == R.id.mProfile) {
-                    Intent intent = new Intent(AssignmentActivity.this, ProfileActivity.class);
+                    Intent intent = new Intent(RequestActivity.this, ProfileActivity.class);
                     startActivity(intent);
                     finish();
                     drawer_Layout.closeDrawers();
                 }
                 else if (itemId == R.id.mLogout) {
-                    Intent intent = new Intent(AssignmentActivity.this, LoginActivity.class);
+                    Intent intent = new Intent(RequestActivity.this, LoginActivity.class);
                     startActivity(intent);
                     drawer_Layout.closeDrawers();
                     finish();
@@ -151,12 +128,27 @@ public class AssignmentActivity extends AppCompatActivity {
         });
 
         // App Bar Click Event
-        imageMenu.setOnClickListener(new View.OnClickListener() {
+        img_Menu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 drawer_Layout.openDrawer(GravityCompat.START);
             }
         });
 
+        img_Notification.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(RequestActivity.this, NotificationActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+        btn_New_Request_AssignmentPage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(RequestActivity.this, NewRequestActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 }
