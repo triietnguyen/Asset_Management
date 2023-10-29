@@ -37,7 +37,7 @@ import ViewModels.Admin.UserAdminActivity_ModelView;
 public class CreateUserAdminActivity extends AppCompatActivity {
     Button img_Cancel_Create,btn_Save_NewRequestPage;
 
-    EditText edt_Joined_Date_Layout, edt_Name_Layout, edt_Date_of_birth_Layout, edt_Address_Layout, edt_Phone_Layout, edt_Email_Layout, edt_Password_Layout;
+    EditText edt_Joined_Date_Layout, edt_Date_of_birth_Layout, edt_Address_Layout, edt_Phone_Layout, edt_Email_Layout, edt_Password_Layout;
     String image;
     Spinner gender_spinner, role_spinner;
 
@@ -65,7 +65,6 @@ public class CreateUserAdminActivity extends AppCompatActivity {
         btn_Save_NewRequestPage =(Button) findViewById(R.id.btn_Save_NewRequestPage);
         img_Cancel_Create = (Button) findViewById(R.id.img_Cancel_Layout);
         edt_Joined_Date_Layout = (EditText) findViewById(R.id.edt_Joined_Date_Layout);
-        edt_Name_Layout = (EditText) findViewById(R.id.edt_Name_Layout);
         edt_Date_of_birth_Layout = (EditText) findViewById(R.id.edt_Date_of_birth_Layout);
         edt_Address_Layout = (EditText) findViewById(R.id.edt_Address_Layout);
         edt_Phone_Layout = (EditText) findViewById(R.id.edt_Phone_Layout);
@@ -83,6 +82,7 @@ public class CreateUserAdminActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(CreateUserAdminActivity.this, UserAdminActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
 

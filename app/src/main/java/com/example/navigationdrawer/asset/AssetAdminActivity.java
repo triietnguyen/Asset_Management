@@ -141,6 +141,7 @@ public class AssetAdminActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(AssetAdminActivity.this, CreateAssetAdminActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
     }

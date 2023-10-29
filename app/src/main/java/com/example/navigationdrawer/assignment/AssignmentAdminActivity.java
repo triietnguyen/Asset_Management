@@ -184,6 +184,7 @@ public class AssignmentAdminActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(AssignmentAdminActivity.this, NewRequestAdminActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
     }

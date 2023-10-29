@@ -80,6 +80,7 @@ public class UserAdminActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(UserAdminActivity.this, CreateUserAdminActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
         // Navigation Drawer------------------------------

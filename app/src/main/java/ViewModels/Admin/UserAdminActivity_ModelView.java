@@ -21,7 +21,7 @@ import Models.Role;
 import Models.User;
 
 public class UserAdminActivity_ModelView extends BaseObservable {
-    String date,email,password,fullname,address,birthday,phone;
+    private String date,email,password,fullname,address,birthday,phone;
     @Bindable
     public String getBirthday() {
         return birthday;

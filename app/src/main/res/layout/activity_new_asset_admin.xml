@@ -2,7 +2,11 @@
 <layout
     xmlns:android="http://schemas.android.com/apk/res/android"
     >
-
+    <data>
+        <variable
+            name="AssetAdminActivity_ModelView"
+            type="ViewModels.Admin.AssetAdminActivity_ModelView" />
+    </data>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -40,25 +44,6 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Day of issue"
-                android:textSize="25dp">
-
-            </TextView>
-            <EditText
-                android:id="@+id/edt_Date_NewAssetPage"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:hint="dd/mm/yyy"
-                android:background="@drawable/custom_bg_edt"
-                android:textSize="20dp"
-                android:layout_marginVertical="10dp"
-                android:inputType="date"
-                android:paddingHorizontal="10dp"
-                >
-            </EditText>
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
                 android:text="Category"
                 android:textSize="25dp">
 
@@ -67,7 +52,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
                 <Spinner
-                    android:id="@+id/user_spinner_category"
+                    android:id="@+id/spinnerCategoryRequest"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:background="@drawable/custom_bg_edt"
@@ -93,21 +78,36 @@
                 android:textSize="25dp">
 
             </TextView>
-            <RelativeLayout
+            <EditText
+                android:id="@+id/edt_Name_NewAssetPage"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
-                <EditText
-                    android:id="@+id/edt_Name_NewAssetPage"
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:background="@drawable/custom_bg_edt"
-                    android:textSize="20dp"
-                    android:layout_marginVertical="10dp"
-                    android:inputType="date"
-                    android:paddingHorizontal="10dp"
-                    >
-                </EditText>
-            </RelativeLayout>
+                android:layout_height="50dp"
+                android:text="@={AssetAdminActivity_ModelView.asset_name}"
+                android:background="@drawable/custom_bg_edt"
+                android:textSize="20dp"
+                android:layout_marginVertical="10dp"
+                android:inputType="text"
+                android:paddingHorizontal="10dp"
+                >
+            </EditText>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Quantity"
+                android:textSize="25dp">
+            </TextView>
+            <EditText
+                android:id="@+id/edt_quantity_NewAssetPage"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:text="@={AssetAdminActivity_ModelView.quantity}"
+                android:background="@drawable/custom_bg_edt"
+                android:textSize="20dp"
+                android:layout_marginVertical="10dp"
+                android:inputType="number"
+                android:paddingHorizontal="10dp"
+                >
+            </EditText>
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -119,7 +119,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
                 <Spinner
-                    android:id="@+id/user_spinner_state"
+                    android:id="@+id/asset_spinner_state"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:background="@drawable/custom_bg_edt"
@@ -148,7 +148,7 @@
             android:layout_marginTop="10dp"
             android:orientation="horizontal">
             <Button
-                android:id="@+id/btn_Save_NewRequestPage"
+                android:id="@+id/btn_Save_NewAssetPage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"

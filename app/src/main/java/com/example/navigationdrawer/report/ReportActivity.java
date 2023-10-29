@@ -60,23 +60,10 @@ public class ReportActivity extends AppCompatActivity {
 
     private List<Asset> getList() {
         List<Asset> assetList = new ArrayList<>();
-        assetList.add(new Asset("a","a","a","1"));
-        assetList.add(new Asset("a","a","a","1"));
-        assetList.add(new Asset("a","a","a","1"));
-        assetList.add(new Asset("a","a","a","1"));
-        assetList.add(new Asset("a","a","a","1"));
-        assetList.add(new Asset("a","a","a","1"));
-        assetList.add(new Asset("a","a","a","1"));
-        assetList.add(new Asset("a","a","a","1"));
-        assetList.add(new Asset("a","a","a","1"));
-        assetList.add(new Asset("a","a","a","1"));
-        assetList.add(new Asset("a","a","a","1"));
-        assetList.add(new Asset("a","a","a","1"));
-        assetList.add(new Asset("a","a","a","1"));
-        assetList.add(new Asset("a","a","a","1"));
-        assetList.add(new Asset("a","a","a","1"));
-        assetList.add(new Asset("a","a","a","1"));
-        assetList.add(new Asset("a","a","a","1"));
+        assetList.add(new Asset("a","a","a","1","a"));
+        assetList.add(new Asset("a","a","a","1","a"));
+        assetList.add(new Asset("a","a","a","1","a"));
+        assetList.add(new Asset("a","a","a","1","a"));
 
         return  assetList;
     }
