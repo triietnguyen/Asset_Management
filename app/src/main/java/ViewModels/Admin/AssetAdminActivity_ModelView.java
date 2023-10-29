@@ -16,20 +16,10 @@ import Models.Category;
 
 public class AssetAdminActivity_ModelView extends BaseObservable {
 
-    private Connection connect;
     SharedPreferences sharedPreferences;
 
-    private String asset_id, asset_name , asset_category, quantity, status;
+    private String  asset_name , asset_category, quantity, status;
 
-    @Bindable
-    public String getAsset_id() {
-        return asset_id;
-    }
-
-    public void setAsset_id(String asset_id) {
-        this.asset_id = asset_id;
-        notifyPropertyChanged(BR.asset_id);
-    }
     @Bindable
     public String getAsset_name() {
         return asset_name;
@@ -78,7 +68,7 @@ public class AssetAdminActivity_ModelView extends BaseObservable {
         return c.GetAllCategory();
     }
     public void OnClickSaveButton(Context context) {
-            SharedPreferences sharedPreferences = context.getSharedPreferences("Asset", Context.MODE_PRIVATE);
+            sharedPreferences = context.getSharedPreferences("Asset", Context.MODE_PRIVATE);
             asset_name = sharedPreferences.getString("Asset_Name",getAsset_name());
             asset_category = sharedPreferences.getString("Category_id","");
             quantity = sharedPreferences.getString("Quantity",getQuantity());
