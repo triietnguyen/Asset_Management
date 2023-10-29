@@ -70,17 +70,24 @@ public class CreateAssetAdminActivity extends AppCompatActivity {
         });
     }
     public void StateAsset(){
-        listState.add("0");
-        listState.add("1");
+        listState.add("Not Available");
+        listState.add("Available");
         ArrayAdapter arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, listState);
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         asset_spinner_state.setAdapter(arrayAdapter);
         asset_spinner_state.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                for(int i =0; i<listState.size();i++){
+                    if(listState.get(i).equalsIgnoreCase("Not Available")){
+                        listState.set(i,"0");
+                    }
+                    else{
+                        listState.set(i,"1");
+                    }
+                }
                 // Sự kiện xảy ra khi một mục được chọn
                 SharedPreferences.Editor editor = sharedPreferences.edit();
-
                 String selectedId = listState.get(position);
                 editor.putString("Status",selectedId);
                 editor.commit();
