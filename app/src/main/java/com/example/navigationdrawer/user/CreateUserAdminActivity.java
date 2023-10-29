@@ -21,6 +21,9 @@ import androidx.databinding.DataBindingUtil;
 import com.example.navigationdrawer.R;
 import com.example.navigationdrawer.databinding.ActivityNewStaffAdminBinding;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -28,29 +31,30 @@ import java.util.List;
 
 import Models.Gender;
 import Models.Role;
+import Models.SQLServer.SQLServer;
 import ViewModels.Admin.UserAdminActivity_ModelView;
 
 public class CreateUserAdminActivity extends AppCompatActivity {
     Button img_Cancel_Create,btn_Save_NewRequestPage;
 
     EditText edt_Joined_Date_Layout, edt_Name_Layout, edt_Date_of_birth_Layout, edt_Address_Layout, edt_Phone_Layout, edt_Email_Layout, edt_Password_Layout;
-
+    String image;
     Spinner gender_spinner, role_spinner;
 
-    UserAdminActivity_ModelView userAdminActivityModelView ;
+    private Connection connect;
     List<String> listGenderName = new ArrayList<>();
 
     List<String> listRoleName = new ArrayList<>();
 
     SharedPreferences sharedPreferences;
-
+    UserAdminActivity_ModelView userAdminActivityModelView;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         sharedPreferences = getSharedPreferences("User", Context.MODE_PRIVATE);
-        ActivityNewStaffAdminBinding _binding = DataBindingUtil.setContentView(this,R.layout.activity_new_staff_admin);
+        ActivityNewStaffAdminBinding activityNewStaffAdminBinding = DataBindingUtil.setContentView(this, R.layout.activity_new_staff_admin);
         userAdminActivityModelView = new UserAdminActivity_ModelView();
-        _binding.setUserAdminActivityModelView(userAdminActivityModelView);
+        activityNewStaffAdminBinding.setUserAdminActivityModelView(userAdminActivityModelView);
         AnhXa();
         Handle_Component();
         GenderUserAdapter();
@@ -72,6 +76,7 @@ public class CreateUserAdminActivity extends AppCompatActivity {
 
     }
     void Handle_Component(){
+
         btn_Save_NewRequestPage.setOnClickListener(view -> userAdminActivityModelView.OnClickSaveButton(this));
         img_Cancel_Create.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -112,7 +117,7 @@ public class CreateUserAdminActivity extends AppCompatActivity {
         datePickerDialog.show();
     }
 
-    private void Pick_Date_Birth(){
+    public void Pick_Date_Birth(){
         Calendar calendar = Calendar.getInstance();
         int date = calendar.get(Calendar.DATE);
         int month = calendar.get(Calendar.MONTH);
@@ -133,7 +138,7 @@ public class CreateUserAdminActivity extends AppCompatActivity {
         List<Gender> listGender = userAdminActivityModelView.GetAllGender();
         listGenderName.clear();
         for(Gender c : listGender){
-            listGenderName.add(c.getId());
+            listGenderName.add(c.getName());
         }
         ArrayAdapter arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, listGenderName);
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -167,7 +172,7 @@ public class CreateUserAdminActivity extends AppCompatActivity {
         List<Role> listRole = userAdminActivityModelView.GetAllRole();
         listRoleName.clear();
         for(Role c : listRole){
-            listRoleName.add(c.getId());
+            listRoleName.add(c.getName());
         }
         ArrayAdapter arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, listRoleName);
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);

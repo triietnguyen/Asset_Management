@@ -55,7 +55,6 @@ public class NewRequestAdminActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         sharedPreferences = getSharedPreferences("Assignment", Context.MODE_PRIVATE);
-
         ActivityNewRequestAdminBinding _binding = DataBindingUtil.setContentView(this,R.layout.activity_new_request_admin);
         newRequestAdminActivityModelView = new NewRequestAdminActivity_ModelView();
         _binding.setNewRequestAdminActivityModelView(newRequestAdminActivityModelView);

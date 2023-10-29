@@ -199,7 +199,8 @@ public class User {
         }
         return null;
     }
-        public void AddUser(){
+
+    public void AddUser(){
         try {
             SQLServer connection = new SQLServer();
             connect = connection.ConnectionSql();
@@ -216,11 +217,12 @@ public class User {
                 preparedStatement.setString(7, joined_date);
                 preparedStatement.setString(8, image);
                 preparedStatement.setString(9, role_id);
-                preparedStatement.setString(10, phone);
+                preparedStatement.setString(10,phone);
                 preparedStatement.executeUpdate();
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }
+
 }

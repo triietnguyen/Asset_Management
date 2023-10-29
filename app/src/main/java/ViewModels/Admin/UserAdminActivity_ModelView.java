@@ -3,7 +3,6 @@ package ViewModels.Admin;
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.util.Log;
 import android.widget.Toast;
 
 import androidx.databinding.BaseObservable;
@@ -11,23 +10,28 @@ import androidx.databinding.Bindable;
 
 import com.example.navigationdrawer.BR;
 
-import java.sql.Connection;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
-import Models.Assignment;
-import Models.Category;
 import Models.Gender;
-import Models.MyApplication;
 import Models.Role;
 import Models.User;
 
 public class UserAdminActivity_ModelView extends BaseObservable {
-    String date,email,password,fullname,address,datebirth,phone;
+    String date,email,password,fullname,address,birthday,phone;
+    @Bindable
+    public String getBirthday() {
+        return birthday;
+    }
 
+    public void setBirthday(String birthday) {
+        this.birthday = birthday;
+        notifyPropertyChanged(BR.birthday);
+    }
+    @Bindable
     public String getEmail() {
         return email;
     }
@@ -36,7 +40,7 @@ public class UserAdminActivity_ModelView extends BaseObservable {
         this.email = email;
         notifyPropertyChanged(BR.email);
     }
-
+    @Bindable
     public String getPassword() {
         return password;
     }
@@ -45,7 +49,7 @@ public class UserAdminActivity_ModelView extends BaseObservable {
         this.password = password;
         notifyPropertyChanged(BR.password);
     }
-
+    @Bindable
     public String getFullname() {
         return fullname;
     }
@@ -54,7 +58,7 @@ public class UserAdminActivity_ModelView extends BaseObservable {
         this.fullname = fullname;
         notifyPropertyChanged(BR.fullname);
     }
-
+    @Bindable
     public String getAddress() {
         return address;
     }
@@ -63,7 +67,7 @@ public class UserAdminActivity_ModelView extends BaseObservable {
         this.address = address;
         notifyPropertyChanged(BR.address);
     }
-
+    @Bindable
     public String getPhone() {
         return phone;
     }
@@ -100,20 +104,34 @@ public class UserAdminActivity_ModelView extends BaseObservable {
         return listRole;
 
     }
+    public String Pick_Date_Birth(){
+        if(birthday == null){
+            return "0";
+        }else{
+            Calendar calendar = Calendar.getInstance();
+            int dateCalendar = calendar.get(Calendar.DATE);
+            int monthCalendar = calendar.get(Calendar.MONTH);
+            int yearCalendar = calendar.get(Calendar.YEAR);
+            calendar.set(yearCalendar,monthCalendar,dateCalendar);
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            String currentDate_Str = simpleDateFormat.format(calendar.getTime());
+            birthday = currentDate_Str;
+            return birthday;
+        }
 
+
+    }
     public void OnClickSaveButton(Context context) {
         if(date == null){
             return;
         }
         Calendar calendar = Calendar.getInstance();
-
         int dateCalendar = calendar.get(Calendar.DATE);
         int monthCalendar = calendar.get(Calendar.MONTH);
         int yearCalendar = calendar.get(Calendar.YEAR);
         calendar.set(yearCalendar,monthCalendar,dateCalendar);
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
         String currentDate_Str = simpleDateFormat.format(calendar.getTime());
-
 
         Date currentDate = null;
         try {
@@ -128,29 +146,26 @@ public class UserAdminActivity_ModelView extends BaseObservable {
             throw new RuntimeException(e);
         }
 
-
-        if(dateOfUser.compareTo(currentDate) > 0){
+        if(dateOfUser.compareTo(currentDate) < 0){
             SharedPreferences sharedPreferences = context.getSharedPreferences("User", Context.MODE_PRIVATE);
-            email = sharedPreferences.getString("Email","");
-            password = sharedPreferences.getString("Password","");
-            fullname = sharedPreferences.getString("Fullname","");
-            address = sharedPreferences.getString("Address","");
-            datebirth = sharedPreferences.getString("Date_of_birth","");
+            email = sharedPreferences.getString("Email",getEmail());
+            password = sharedPreferences.getString("Password",getPassword());
+            fullname = sharedPreferences.getString("Fullname",getFullname());
+            address = sharedPreferences.getString("Address",getAddress());
+            birthday = sharedPreferences.getString("Date_of_birth",getBirthday());
             String gender = sharedPreferences.getString("Gender","");
             String image = "content://com.android.providers.media.documents/document/image%3A37";
             String role = sharedPreferences.getString("Role_id","");
-            phone = sharedPreferences.getString("Phone","");
+            phone = sharedPreferences.getString("Phone",getPhone());
 
-            User a = new User(null,email,password,fullname,address,datebirth,gender,date,image,role,phone);
+            birthday = Pick_Date_Birth();
+            
+            User a = new User(null,email,password,fullname,address,birthday,gender,date,image,role,phone);
             a.AddUser();
-
             ((Activity) context).finish();
         }
-        else if(dateOfUser.compareTo(currentDate) < 0){
-            Toast.makeText(context, "Ngay Thang Nam Phai lon hon ngay hien tai ", Toast.LENGTH_SHORT).show();
-            return;
-        }
-        else{
+        else if(dateOfUser.compareTo(currentDate) > 0){
+            Toast.makeText(context, "Ngay Thang Nam Phai be hon hien tai ", Toast.LENGTH_SHORT).show();
             return;
         }
 
