@@ -32,9 +32,9 @@
                 android:textSize="25dp">
             </TextView>
             <ImageView
-                android:id="@+id/img_btn_save"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
+                android:onClick="@{()->ChangePassword_ModelView.OnClickButton(context)}"
                 android:layout_marginStart="30dp"
                 android:layout_gravity="center"
                 android:backgroundTint="@color/white"
@@ -55,7 +55,6 @@
                 android:text="Old Password">
             </TextView>
             <EditText
-                android:id="@+id/oldpass"
                 android:layout_width="match_parent"
                 android:text="@={ChangePassword_ModelView.oldPassword}"
                 android:layout_height="50dp"
@@ -76,7 +75,6 @@
                 android:text="New Password">
             </TextView>
             <EditText
-                android:id="@+id/newpass"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:text="@={ChangePassword_ModelView.newPassword}"
@@ -98,7 +96,6 @@
                 android:text="Re-enter New Password">
             </TextView>
             <EditText
-                android:id="@+id/passwordlogin"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:text="@={ChangePassword_ModelView.newVerifyPassword}"

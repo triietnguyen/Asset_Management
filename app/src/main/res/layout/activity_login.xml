@@ -106,6 +106,7 @@
                 android:backgroundTint="#2B67B3"
                 android:text="Sign in"
                 android:textSize="25dp"
+                android:onClick="@{()->Login_ModelView.OnClickButton(context)}"
                 android:textStyle="bold"
                 android:textColor="@color/white"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"

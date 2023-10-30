@@ -31,7 +31,6 @@ import ViewModels.Login_ModelView;
 
 public class LoginActivity extends AppCompatActivity {
     EditText edt_Email,edt_Password;
-    Button btn_SignIn;
     TextView txt_Forgot;
 
     private Login_ModelView loginModelView = new Login_ModelView();;
@@ -40,12 +39,6 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-
-        ViewDataBinding activityLoginBinding = DataBindingUtil.setContentView(this,R.layout.activity_login);
-        activityLoginBinding.setVariable(BR.Login_ModelView,loginModelView);
-
-
         ViewDataBinding activityMainBinding = DataBindingUtil.setContentView(this, R.layout.activity_login);
         activityMainBinding.setVariable(BR.Login_ModelView, loginModelView);
         AnhXa();
@@ -55,7 +48,6 @@ public class LoginActivity extends AppCompatActivity {
         edt_Email = (EditText)findViewById(R.id.edt_email_LoginPage);
         edt_Password = (EditText)findViewById(R.id.edt_Password_LoginPage);
         txt_Forgot =(TextView)findViewById(R.id.txt_ForgotPassword_LoginPage);
-        btn_SignIn = (Button)findViewById(R.id.btn_SignIn_LoginPage);
     }
     public void Handle_Component(){
         txt_Forgot.setOnClickListener(new View.OnClickListener() {
@@ -65,8 +57,6 @@ public class LoginActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-        btn_SignIn.setOnClickListener(view -> loginModelView.OnClickButton(this));
     }
 
 

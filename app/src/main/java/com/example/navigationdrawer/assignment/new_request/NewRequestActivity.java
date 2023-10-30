@@ -34,8 +34,6 @@ public class NewRequestActivity extends AppCompatActivity {
 
     ImageView img_Back_NewRequest;
     EditText edt_Date;
-    Button btn_Save;
-
     Spinner spinnerCategoryRequest;
     Spinner spinnerAssetRequest;
     NewRequestActivity_ModelView newRequestActivityModelView;
@@ -60,12 +58,10 @@ public class NewRequestActivity extends AppCompatActivity {
     public void AnhXa(){
         img_Back_NewRequest = (ImageView) findViewById(R.id.img_Back_NewRequestPage);
         edt_Date = (EditText)findViewById(R.id.edt_Date_NewRequestPage);
-        btn_Save = (Button)findViewById(R.id.btn_Save_NewRequestPage);
         spinnerCategoryRequest = (Spinner) findViewById(R.id.category_spinner);
         spinnerAssetRequest = (Spinner) findViewById(R.id.asset_spinner);
     }
     public void Handle_Component(){
-        btn_Save.setOnClickListener(view -> newRequestActivityModelView.OnClickSaveButton(this));
         img_Back_NewRequest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

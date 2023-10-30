@@ -27,10 +27,7 @@ import ViewModels.ForgotPassword_ModelView;
 public class ForgotPasswordActivity extends AppCompatActivity {
 
     ImageView img_Back;
-    Button btn_Submit;
     ImageButton imgbtn_Send;
-    EditText edt;
-    private List<Integer> listNumberRandom = new ArrayList<Integer>();
     private ForgotPassword_ModelView forgotPasswordModelView = new ForgotPassword_ModelView();
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -42,14 +39,10 @@ public class ForgotPasswordActivity extends AppCompatActivity {
     }
     void AnhXa(){
         img_Back = (ImageView)findViewById(R.id.back_account);
-        btn_Submit = (Button)findViewById(R.id.btn_Submit_ForgotPass_Layout);
         imgbtn_Send =(ImageButton)findViewById(R.id.img_btn_forgot_layout);
-        edt = (EditText) findViewById(R.id.edt_email_forgot);
     }
 
     void HandleComponent(){
-        btn_Submit.setOnClickListener(view -> forgotPasswordModelView.OnClickButtonOTP(this));
-
         img_Back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -58,8 +51,6 @@ public class ForgotPasswordActivity extends AppCompatActivity {
                 finish();
             }
         });
-        imgbtn_Send.setOnClickListener(view -> forgotPasswordModelView.OnClickButtonEmail(this));
-
     }
 
 

@@ -49,6 +49,7 @@ public class ForgotPassword_ModelView extends BaseObservable {
     public void OnClickButtonEmail(Context context){
         SendMail(context);
     }
+
     public void OnClickButtonOTP(Context context){
         HandleForgotPassword(context);
     }
@@ -63,7 +64,6 @@ public class ForgotPassword_ModelView extends BaseObservable {
             Toast.makeText(context, "OTP is not success, please try again ", Toast.LENGTH_SHORT).show();
         }
     }
-
     public void SendMail(Context context){
         if(TextUtils.isEmpty(email)){
             return;

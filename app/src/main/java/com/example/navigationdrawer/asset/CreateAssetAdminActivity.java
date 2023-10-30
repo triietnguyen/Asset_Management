@@ -35,7 +35,7 @@ import ViewModels.Admin.UserAdminActivity_ModelView;
 public class CreateAssetAdminActivity extends AppCompatActivity {
     Spinner spinnerCategoryRequest,asset_spinner_state ;
     SharedPreferences sharedPreferences;
-    Button img_Cancel_Create,btn_Save_NewAssetPage;
+    Button img_Cancel_Create;
     AssetAdminActivity_ModelView assetAdminActivityModelView;
     List<String> listCategoryName = new ArrayList<>();
     List<String> listState = new ArrayList<>();
@@ -55,11 +55,8 @@ public class CreateAssetAdminActivity extends AppCompatActivity {
         spinnerCategoryRequest = (Spinner) findViewById(R.id.spinnerCategoryRequest);
         asset_spinner_state = (Spinner) findViewById(R.id.asset_spinner_state);
         img_Cancel_Create = (Button) findViewById(R.id.img_Cancel_Create);
-        btn_Save_NewAssetPage = (Button) findViewById(R.id.btn_Save_NewAssetPage);
     }
     void Handle_Component(){
-
-        btn_Save_NewAssetPage.setOnClickListener(view->assetAdminActivityModelView.OnClickSaveButton(this));
         img_Cancel_Create.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

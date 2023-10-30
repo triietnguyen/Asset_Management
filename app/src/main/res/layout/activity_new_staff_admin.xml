@@ -143,7 +143,6 @@
 
             </TextView>
             <EditText
-                android:id="@+id/edt_Address_Layout"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:background="@drawable/custom_bg_edt"
@@ -162,7 +161,6 @@
 
             </TextView>
             <EditText
-                android:id="@+id/edt_Phone_Layout"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:background="@drawable/custom_bg_edt"
@@ -181,7 +179,6 @@
 
             </TextView>
             <EditText
-                android:id="@+id/edt_Email_Layout"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:background="@drawable/custom_bg_edt"
@@ -201,7 +198,6 @@
 
             </TextView>
             <EditText
-                android:id="@+id/edt_Password_Layout"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:background="@drawable/custom_bg_edt"
@@ -255,6 +251,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:text="Save"
+                    android:onClick="@{()->UserAdminActivity_ModelView.OnClickSaveButton(context)}"
                     android:textSize="25dp"
                     android:layout_marginHorizontal="10dp"
                     android:backgroundTint="#FB6771"

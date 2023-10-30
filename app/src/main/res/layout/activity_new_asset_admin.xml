@@ -153,6 +153,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="Save"
+                android:onClick="@{()->AssetAdminActivity_ModelView.OnClickSaveButton(context)}"
                 android:textSize="25dp"
                 android:layout_marginHorizontal="10dp"
                 android:backgroundTint="#FB6771"

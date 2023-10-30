@@ -18,7 +18,6 @@ import ViewModels.ChangePasswordProfile_ModelView;
 public class ChangePasswordProfileActivity extends AppCompatActivity {
 
     ImageView button;
-    ImageView img_Btn_Save;
     ChangePasswordProfile_ModelView changePasswordProfileModelView = new ChangePasswordProfile_ModelView();
     @SuppressLint("MissingInflatedId")
     @Override
@@ -32,7 +31,6 @@ public class ChangePasswordProfileActivity extends AppCompatActivity {
     }
     void AnhXa(){
         button = (ImageView)findViewById(R.id.back_activity);
-        img_Btn_Save =(ImageView)findViewById(R.id.img_btn_save);
     }
     void Handle_Component(){
         button.setOnClickListener(new View.OnClickListener() {
@@ -41,6 +39,5 @@ public class ChangePasswordProfileActivity extends AppCompatActivity {
                 finish();
             }
         });
-        img_Btn_Save.setOnClickListener(view -> changePasswordProfileModelView.OnClickButton(this));
     }
 }

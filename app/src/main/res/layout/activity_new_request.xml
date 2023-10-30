@@ -162,6 +162,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="Save"
+                android:onClick="@{()->NewRequestActivity_ModelView.OnClickSaveButton(context)}"
                 android:textSize="25dp"
                 android:backgroundTint="#FB6771"
                 android:textStyle="bold"
