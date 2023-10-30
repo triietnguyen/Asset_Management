@@ -44,7 +44,7 @@ public class RequestActivity extends AppCompatActivity {
     ActionBarDrawerToggle action_Toggle;
 
     RecyclerView recyclerView;
-    RequestAdminAdapter requestAdminAdapter;
+    RequestAdapter requestAdapter;
     ImageView img_Menu, img_Notification;
     Button btn_New_Request_AssignmentPage;
     @Override
@@ -58,8 +58,8 @@ public class RequestActivity extends AppCompatActivity {
     private void setRecycleView() {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        requestAdminAdapter = new RequestAdminAdapter(this, getList());
-        recyclerView.setAdapter(requestAdminAdapter);
+        requestAdapter = new RequestAdapter(this, getList());
+        recyclerView.setAdapter(requestAdapter);
     }
 
     private List<Assignment> getList() {

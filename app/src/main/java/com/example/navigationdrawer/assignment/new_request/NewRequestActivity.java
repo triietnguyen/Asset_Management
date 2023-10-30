@@ -154,7 +154,6 @@ public class NewRequestActivity extends AppCompatActivity {
                 @Override
                 public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
 
-
                     Asset SelectedItem = listAssetByCategory.get(position);
                     String Assetid = SelectedItem.getAsset_id();
 
@@ -163,7 +162,6 @@ public class NewRequestActivity extends AppCompatActivity {
 
                     Toast.makeText(getApplicationContext(), "Id đã chọn: " + Assetid, Toast.LENGTH_SHORT).show();
                 }
-
                 @Override
                 public void onNothingSelected(AdapterView<?> parentView) {
                     // Sự kiện xảy ra khi không có mục nào được chọn
