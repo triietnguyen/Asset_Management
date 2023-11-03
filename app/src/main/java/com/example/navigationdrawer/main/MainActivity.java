@@ -16,7 +16,6 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.example.navigationdrawer.R;
-import com.example.navigationdrawer.asset.AssetActivity;
 import com.example.navigationdrawer.assignment.AssignmentActivity;
 
 import com.example.navigationdrawer.databinding.ActivityMainBinding;
@@ -75,12 +74,6 @@ public class MainActivity extends AppCompatActivity {
                 int itemId = item.getItemId();
 
                 if (itemId == R.id.mHome) {
-                    drawer_Layout.closeDrawers();
-                }
-                else if (itemId == R.id.mAsset) {
-                    Intent intent = new Intent(MainActivity.this, AssetActivity.class);
-                    startActivity(intent);
-                    finish();
                     drawer_Layout.closeDrawers();
                 }
                 else if (itemId == R.id.mAssignment) {

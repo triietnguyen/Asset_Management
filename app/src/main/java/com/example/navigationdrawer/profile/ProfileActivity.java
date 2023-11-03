@@ -18,7 +18,6 @@ import androidx.core.view.GravityCompat;
 import androidx.databinding.DataBindingUtil;
 import androidx.drawerlayout.widget.DrawerLayout;
 
-import com.example.navigationdrawer.asset.AssetActivity;
 import com.example.navigationdrawer.assignment.AssignmentActivity;
 import com.example.navigationdrawer.databinding.ActivityUserProfileBinding;
 import com.example.navigationdrawer.login.LoginActivity;
@@ -72,12 +71,6 @@ public class ProfileActivity extends AppCompatActivity {
 
                 if (itemId == R.id.mHome) {
                     Intent intent = new Intent(ProfileActivity.this, MainActivity.class);
-                    startActivity(intent);
-                    finish();
-                    drawer_Layout.closeDrawers();
-                }
-                else if (itemId == R.id.mAsset) {
-                    Intent intent = new Intent(ProfileActivity.this, AssetActivity.class);
                     startActivity(intent);
                     finish();
                     drawer_Layout.closeDrawers();

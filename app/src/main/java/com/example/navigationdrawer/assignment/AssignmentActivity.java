@@ -2,12 +2,10 @@ package com.example.navigationdrawer.assignment;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -21,8 +19,6 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.navigationdrawer.asset.AssetActivity;
-import com.example.navigationdrawer.assignment.new_request.NewRequestActivity;
 import com.example.navigationdrawer.R;
 import com.example.navigationdrawer.login.LoginActivity;
 import com.example.navigationdrawer.main.MainActivity;
@@ -33,7 +29,6 @@ import com.google.android.material.navigation.NavigationView;
 import java.util.ArrayList;
 import java.util.List;
 
-import Models.Assignment;
 import Models.MyApplication;
 import Models.User;
 import ViewModels.User.AssignmentActivity_ModelView;
@@ -115,12 +110,6 @@ public class AssignmentActivity extends AppCompatActivity {
 
                 if (itemId == R.id.mHome) {
                     Intent intent = new Intent(AssignmentActivity.this, MainActivity.class);
-                    startActivity(intent);
-                    finish();
-                    drawer_Layout.closeDrawers();
-                }
-                else if (itemId == R.id.mAsset) {
-                    Intent intent = new Intent(AssignmentActivity.this, AssetActivity.class);
                     startActivity(intent);
                     finish();
                     drawer_Layout.closeDrawers();

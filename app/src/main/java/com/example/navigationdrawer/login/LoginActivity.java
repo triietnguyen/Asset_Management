@@ -45,8 +45,6 @@ public class LoginActivity extends AppCompatActivity {
         Handle_Component();
     }
     public void AnhXa(){
-        edt_Email = (EditText)findViewById(R.id.edt_email_LoginPage);
-        edt_Password = (EditText)findViewById(R.id.edt_Password_LoginPage);
         txt_Forgot =(TextView)findViewById(R.id.txt_ForgotPassword_LoginPage);
     }
     public void Handle_Component(){

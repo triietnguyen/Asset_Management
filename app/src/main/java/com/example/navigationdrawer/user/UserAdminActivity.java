@@ -18,25 +18,15 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.navigationdrawer.R;
-import com.example.navigationdrawer.asset.AssetActivity;
 import com.example.navigationdrawer.asset.AssetAdminActivity;
-import com.example.navigationdrawer.assignment.AssignmentActivity;
 import com.example.navigationdrawer.assignment.AssignmentAdminActivity;
 import com.example.navigationdrawer.login.LoginActivity;
-import com.example.navigationdrawer.main.MainActivity;
 import com.example.navigationdrawer.main.MainAdminActivity;
-import com.example.navigationdrawer.profile.ProfileActivity;
 import com.example.navigationdrawer.profile.ProfileAdminActivity;
 import com.example.navigationdrawer.report.ReportActivity;
 import com.example.navigationdrawer.request.RequestAdminActivity;
 import com.google.android.material.navigation.NavigationView;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import Models.Asset;
-import Models.User;
-import ViewModels.Admin.AssignmentAdminActivity_ModelView;
 import ViewModels.Admin.UserAdminActivity_ModelView;
 
 public class UserAdminActivity extends AppCompatActivity {

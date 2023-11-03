@@ -196,7 +196,7 @@ public class Assignment {
                     Log.e("startDate",startDate);
                     Log.e("EndDate",EndDate);
                     switch (status){
-                        case "1":status = "Using";break;
+                        case "1":status = "Assigned";break;
                         case "2":status = "Returning";break;
                         default:break;
                     }

@@ -6,7 +6,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -18,20 +17,12 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.navigationdrawer.R;
-import com.example.navigationdrawer.asset.AssetActivity;
-import com.example.navigationdrawer.asset.AssetAdminActivity;
 import com.example.navigationdrawer.assignment.AssignmentActivity;
-import com.example.navigationdrawer.assignment.AssignmentAdminActivity;
 import com.example.navigationdrawer.assignment.new_request.NewRequestActivity;
-import com.example.navigationdrawer.assignment.new_request.NewRequestAdminActivity;
 import com.example.navigationdrawer.login.LoginActivity;
 import com.example.navigationdrawer.main.MainActivity;
-import com.example.navigationdrawer.main.MainAdminActivity;
 import com.example.navigationdrawer.notification.NotificationActivity;
 import com.example.navigationdrawer.profile.ProfileActivity;
-import com.example.navigationdrawer.profile.ProfileAdminActivity;
-import com.example.navigationdrawer.report.ReportActivity;
-import com.example.navigationdrawer.user.UserAdminActivity;
 import com.google.android.material.navigation.NavigationView;
 
 import java.util.List;
@@ -92,12 +83,6 @@ public class RequestActivity extends AppCompatActivity {
 
                 if (itemId == R.id.mHome) {
                     Intent intent = new Intent(RequestActivity.this, MainActivity.class);
-                    startActivity(intent);
-                    finish();
-                    drawer_Layout.closeDrawers();
-                }
-                else if (itemId == R.id.mAsset) {
-                    Intent intent = new Intent(RequestActivity.this, AssetActivity.class);
                     startActivity(intent);
                     finish();
                     drawer_Layout.closeDrawers();

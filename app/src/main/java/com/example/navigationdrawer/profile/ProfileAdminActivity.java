@@ -22,6 +22,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import com.example.navigationdrawer.asset.AssetAdminActivity;
 import com.example.navigationdrawer.assignment.AssignmentAdminActivity;
 import com.example.navigationdrawer.databinding.ActivityAdminProfileBinding;
+import com.example.navigationdrawer.homepage.HomePageAdminActivity;
 import com.example.navigationdrawer.login.LoginActivity;
 import com.example.navigationdrawer.main.MainAdminActivity;
 import com.example.navigationdrawer.R;
@@ -72,6 +73,8 @@ public class ProfileAdminActivity extends AppCompatActivity {
                 int itemId = item.getItemId();
 
                 if (itemId == R.id.mHome) {
+                    Intent intent = new Intent(ProfileAdminActivity.this, MainAdminActivity.class);
+                    startActivity(intent);
                     drawerLayout.closeDrawers();
                 }
                 else if (itemId == R.id.mAsset) {

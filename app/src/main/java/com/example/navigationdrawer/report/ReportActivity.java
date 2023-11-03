@@ -72,7 +72,6 @@ public class ReportActivity extends AppCompatActivity {
         drawerLayout = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.nav_View);
         imageMenu = findViewById(R.id.imageMenu);
-        recyclerView = findViewById(R.id.recycler_view_asset_layout);
     }
 
     void Handle_Component(){
