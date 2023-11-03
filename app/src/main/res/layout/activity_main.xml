@@ -6,14 +6,14 @@
     <data>
         <variable
             name="MainActivity_ModelView"
-            type="ViewModels.User.Main_ModelView" />
+            type="com.example.navigationdrawer.viewmodel.user.Main_ModelView" />
     </data>
     <androidx.drawerlayout.widget.DrawerLayout
 
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/drawer_layout"
-        tools:context=".main.MainActivity">
+        tools:context=".view.main.MainActivity">
 
         <LinearLayout
             android:layout_width="match_parent"

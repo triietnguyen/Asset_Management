@@ -5,7 +5,7 @@
     <data>
         <variable
             name="ProfileAdminActivity_ModelView"
-            type="ViewModels.Admin.ProfileAdminActivity_ModelView" />
+            type="com.example.navigationdrawer.viewmodel.admin.ProfileAdminActivity_ModelView" />
     </data>
     <androidx.drawerlayout.widget.DrawerLayout
         android:layout_width="match_parent"

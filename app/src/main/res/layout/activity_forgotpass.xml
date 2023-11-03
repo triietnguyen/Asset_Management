@@ -5,7 +5,7 @@
     <data>
         <variable
             name="ForgotPassword"
-            type="ViewModels.ForgotPassword_ModelView" />
+            type="com.example.navigationdrawer.viewmodel.ForgotPassword_ModelView" />
     </data>
     <LinearLayout
         android:layout_width="match_parent"

@@ -19,81 +19,81 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.NavigationDrawer"
         tools:targetApi="31"
-        android:name="Models.MyApplication">
+        android:name=".model.MyApplication">
         <activity
-            android:name=".request.RequestActivity"
+            android:name=".view.request.RequestActivity"
             android:exported="false" />
         <activity
-            android:name=".user.CreateUserAdminActivity"
+            android:name=".view.user.CreateUserAdminActivity"
             android:exported="false" />
         <activity
-            android:name=".asset.CreateAssetAdminActivity"
+            android:name=".view.asset.CreateAssetAdminActivity"
             android:exported="false" />
         <activity
-            android:name=".report.ReportActivity"
+            android:name=".view.report.ReportActivity"
             android:exported="false" />
         <activity
-            android:name=".request.RequestAdminActivity"
+            android:name=".view.request.RequestAdminActivity"
             android:exported="false" />
         <activity
-            android:name=".user.UserAdminActivity"
+            android:name=".view.user.UserAdminActivity"
             android:exported="false" />
         <activity
-            android:name=".assignment.AssignmentActivity"
+            android:name=".view.assignment.AssignmentActivity"
             android:exported="false" />
         <activity
-            android:name=".assignment.new_request.NewRequestAdminActivity"
+            android:name=".view.assignment.new_request.NewRequestAdminActivity"
             android:exported="false" />
         <activity
-            android:name=".assignment.AssignmentAdminActivity"
+            android:name=".view.assignment.AssignmentAdminActivity"
             android:exported="false" />
         <activity
-            android:name=".profile.ProfileAdminActivity"
+            android:name=".view.profile.ProfileAdminActivity"
             android:exported="false" />
         <activity
-            android:name=".notification.NotificationAdminActivity"
+            android:name=".view.notification.NotificationAdminActivity"
             android:exported="false" />
         <activity
-            android:name=".asset.AssetAdminActivity"
+            android:name=".view.asset.AssetAdminActivity"
             android:exported="false" />
         <activity
             android:name=".asset.AssetActivity"
             android:exported="false" />
         <activity
-            android:name=".forgot_password.ChangPasswordForgetActivity"
+            android:name=".view.forgot_password.ChangPasswordForgetActivity"
             android:exported="false" />
         <activity
-            android:name=".main.MainAdminActivity"
+            android:name=".view.main.MainAdminActivity"
             android:exported="false" />
         <activity
-            android:name=".homepage.HomePageAdminActivity"
+            android:name=".view.homepage.HomePageAdminActivity"
             android:exported="false" />
         <activity
-            android:name=".assignment.new_request.NewRequestActivity"
+            android:name=".view.assignment.new_request.NewRequestActivity"
             android:exported="false" />
         <activity
-            android:name=".forgot_password.ForgotPasswordActivity"
+            android:name=".view.forgot_password.ForgotPasswordActivity"
             android:exported="false" />
         <activity
-            android:name=".profile.ChangePasswordProfileActivity"
+            android:name=".view.profile.ChangePasswordProfileActivity"
             android:exported="false" />
         <activity
-            android:name=".profile.ProfileActivity"
+            android:name=".view.profile.ProfileActivity"
             android:exported="false" />
         <activity
-            android:name=".notification.NotificationActivity"
+            android:name=".view.notification.NotificationActivity"
             android:exported="false" />
         <activity
-            android:name=".homepage.HomePageActivity"
+            android:name=".view.homepage.HomePageActivity"
             android:exported="false" />
         <activity
-            android:name=".main.MainActivity"
+            android:name=".view.main.MainActivity"
             android:exported="false" />
         <activity
-            android:name=".login.LoginActivity"
+            android:name=".view.login.LoginActivity"
             android:exported="false" />
         <activity
-            android:name=".SplashActivity"
+            android:name=".view.SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
