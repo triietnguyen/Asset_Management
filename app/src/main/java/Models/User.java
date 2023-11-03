@@ -153,8 +153,10 @@ public class User {
             SQLServer connection = new SQLServer();
             connect = connection.ConnectionSql();
             if(connect != null){
-                String query = "select [User_id],[Email],[Password],[Fullname],[Address],[Date_of_birth],[Gender_name],[Joined_Date],[Image],[Role_Name],[Phone]" +
-                        "from [dbo].[User] u join [dbo].[Role] r on u.Role_id = r.Role_id join [dbo].[Gender] g on u.Gender = g.Gender_id ";
+//                String query = "select [User_id],[Email],[Password],[Fullname],[Address],[Date_of_birth],[Gender_name],[Joined_Date],[Image],[Role_Name],[Phone]" +
+//                        "from [dbo].[User] u join [dbo].[Role] r on u.Role_id = r.Role_id join [dbo].[Gender] g on u.Gender = g.Gender_id ";
+                String query ="Select *\n" +
+                        "From [dbo].[User]";
                 Statement st = connect.createStatement();
                 ResultSet rs = st.executeQuery(query);
                 while(rs.next()){
@@ -164,16 +166,16 @@ public class User {
                     String fullNameUser = rs.getString("Fullname");
                     String addressUser = rs.getString("Address");
                     String dateUser = rs.getString("Date_of_birth");
-                    String genderUser = rs.getString("Gender_name");
+                    String genderUser = rs.getString("Gender");
                     String dateJoinUser = rs.getString("Joined_Date");
                     String imageUser = rs.getString("Image");
-                    String roleIdUser = rs.getString("Role_Name");
+                    String roleIdUser = rs.getString("Role_id");
                     String phoneUser = rs.getString("Phone");
 
-//                    if(roleIdUser.equalsIgnoreCase("1"))
-//                        roleIdUser = "Admin";
-//                    else
-//                        roleIdUser = "User";
+                    if(roleIdUser.equalsIgnoreCase("1"))
+                        roleIdUser = "Admin";
+                    else
+                        roleIdUser = "User";
 
                     User u = new User(idUser,
                             emailUser,
@@ -202,7 +204,7 @@ public class User {
             SQLServer connection = new SQLServer();
             connect = connection.ConnectionSql();
             if (connect != null) {
-                String query = "INSERT INTO [dbo].[User] ([Email],[Password],[Fullname],[Address],[Date_of_birth],[Gender],[Joined_Date],[Image],[Role_id],[Phone]) " +
+                String query = "INSERT INTO [dbo].[User] ([Email],[Password],[Fullname],[Address],[Date_of_birth],[Gender],[Joined_Date],[Image],[Role_id],[Phone])" +
                         "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
                 PreparedStatement preparedStatement = connect.prepareStatement(query);
                 preparedStatement.setString(1, email);
@@ -213,8 +215,8 @@ public class User {
                 preparedStatement.setString(6, gender);
                 preparedStatement.setString(7, joined_date);
                 preparedStatement.setString(8, image);
-                preparedStatement.setString(8, role_id);
-                preparedStatement.setString(8, phone);
+                preparedStatement.setString(9, role_id);
+                preparedStatement.setString(10, phone);
                 preparedStatement.executeUpdate();
             }
         } catch (SQLException e) {
