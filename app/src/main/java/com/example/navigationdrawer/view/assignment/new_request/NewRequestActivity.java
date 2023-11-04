@@ -112,10 +112,6 @@ public class NewRequestActivity extends AppCompatActivity {
                 Category c = listCategory.get(position);
                 String selectedId = c.GetID();
                 String selectedItem = c.GetName();
-
-                List<Asset> listAssetByCategoryName = newRequestActivityModelView.GetAllAssetByCategory(selectedItem);
-                AssetRequestAdapter(listAssetByCategoryName);
-
                 editor.putString("Category_id",selectedId);
                 editor.commit();
 
@@ -128,45 +124,5 @@ public class NewRequestActivity extends AppCompatActivity {
                 // Sự kiện xảy ra khi không có mục nào được chọn
             }
         });
-    }
-
-
-    public void AssetRequestAdapter(List<Asset> listAssetByCategory){
-        listAssetName.clear();
-        for(Asset a : listAssetByCategory){
-            listAssetName.add(a.getAsset_name());
-        }
-
-        ArrayAdapter arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, listAssetName);
-        arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinnerAssetRequest.setAdapter(arrayAdapter);
-
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-
-        if(listAssetName.size() == 0){
-            editor.putString("Asset_id","");
-            editor.commit();
-            return;
-        }
-        else{
-            spinnerAssetRequest.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                @Override
-                public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
-
-                    Asset SelectedItem = listAssetByCategory.get(position);
-                    String Assetid = SelectedItem.getAsset_id();
-
-                    editor.putString("Asset_id",Assetid);
-                    editor.commit();
-
-                    Toast.makeText(getApplicationContext(), "Id đã chọn: " + Assetid, Toast.LENGTH_SHORT).show();
-                }
-                @Override
-                public void onNothingSelected(AdapterView<?> parentView) {
-                    // Sự kiện xảy ra khi không có mục nào được chọn
-                }
-            });
-        }
-
     }
 }

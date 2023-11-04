@@ -28,7 +28,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:textStyle="bold"
-                android:text="Create New Assignment"
+                android:text="New Assignment"
                 android:textSize="30dp">
             </TextView>
         </LinearLayout>
