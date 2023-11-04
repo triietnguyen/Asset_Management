@@ -97,15 +97,7 @@
                             android:layout_marginHorizontal="10dp"
                             android:gravity="center"
                             android:textSize="16dp"
-                            android:text="Asset_code"
-                            android:textStyle="bold"/>
-                        <TextView
-                            android:layout_weight="0.5"
-                            android:layout_width="120dp"
-                            android:layout_marginHorizontal="10dp"
-                            android:gravity="center"
-                            android:textSize="16dp"
-                            android:text="Asset_Name"
+                            android:text="Code"
                             android:textStyle="bold"/>
                         <TextView
                             android:layout_weight="0.5"

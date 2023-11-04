@@ -42,11 +42,10 @@ public class RequestAdapter extends RecyclerView.Adapter<RequestAdapter.ViewHold
         Assignment assign = new Assignment();
         if(assignment_list !=null && assignment_list.size()>0){
             Assignment assignment = assignment_list.get(position);
-            holder.txt_request_asset_name.setText(assignment.getAsset_name());
             holder.txt_request_asset_category.setText(assignment.getCategory());
             holder.txt_request_asset_date.setText(assignment.getAssigned_date());
             holder.txt_request_status.setText(assignment.getStatus());
-            holder.txt_request_asset_code.setText(assignment.getAsset_code());
+            holder.txt_request_asset_code.setText(assignment.getAssignmentID());
             holder.txt_request_endDate.setText(assignment.getEndDate());
             holder.img_Check.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -78,14 +77,13 @@ public class RequestAdapter extends RecyclerView.Adapter<RequestAdapter.ViewHold
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        TextView txt_request_asset_name, txt_request_asset_category, txt_request_asset_date, txt_request_status, txt_request_asset_code,txt_request_endDate;
+        TextView txt_request_asset_category, txt_request_asset_date, txt_request_status, txt_request_asset_code,txt_request_endDate;
 
         ImageView img_Check,img_Cancel;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             txt_request_endDate = itemView.findViewById(R.id.txt_request_end_date_layout);
             txt_request_asset_code = itemView.findViewById(R.id.txt_request_asset_code_layout);
-            txt_request_asset_name = itemView.findViewById(R.id.txt_request_asset_name_layout);
             txt_request_asset_category = itemView.findViewById(R.id.txt_request_asset_category_layout);
             txt_request_asset_date = itemView.findViewById(R.id.txt_request_asset_date_layout);
             txt_request_status = itemView.findViewById(R.id.txt_request_status_layout);
