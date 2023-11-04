@@ -3,7 +3,7 @@
     <data>
         <variable
             name="Drawer_ModelView"
-            type="ViewModels.Admin.MainAdmin_ModelView" />
+            type="com.example.navigationdrawer.viewmodel.admin.MainAdmin_ModelView" />
     </data>
     <RelativeLayout
         android:layout_width="match_parent"

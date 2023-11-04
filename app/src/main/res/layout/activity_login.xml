@@ -5,13 +5,14 @@
     <data>
         <variable
             name="Login_ModelView"
-            type="ViewModels.Login_ModelView" />
+            type="com.example.navigationdrawer.viewmodel.Login_ModelView" />
     </data>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        tools:context=".login.LoginActivity"
+        tools:context=".view.login.LoginActivity"
         android:background="#DEE1FE">
         <LinearLayout
             android:layout_width="wrap_content"
@@ -59,7 +60,6 @@
             android:orientation="vertical"
             >
             <EditText
-                android:id="@+id/edt_email_LoginPage"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:text="@={Login_ModelView.email}"
@@ -73,7 +73,6 @@
                 >
             </EditText>
             <EditText
-                android:id="@+id/edt_Password_LoginPage"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:text="@={Login_ModelView.password}"
@@ -106,6 +105,7 @@
                 android:backgroundTint="#2B67B3"
                 android:text="Sign in"
                 android:textSize="25dp"
+                android:onClick="@{()->Login_ModelView.OnClickButton(context)}"
                 android:textStyle="bold"
                 android:textColor="@color/white"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"

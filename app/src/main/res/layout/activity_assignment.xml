@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="AssignmentActivity_ModelView"
+            type="com.example.navigationdrawer.viewmodel.user.AssignmentActivity_ModelView" />
+    </data>
     <androidx.drawerlayout.widget.DrawerLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -75,58 +80,49 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/custom_bg_filter"
                 android:layout_marginHorizontal="5dp"
-                android:paddingHorizontal="20dp"
+                android:paddingHorizontal="10dp"
                 android:orientation="horizontal">
-                <TextView
+
+                <EditText
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_gravity="center"
-                    android:textStyle="bold"
-                    android:textSize="20dp"
-                    android:text="Search...">
-                </TextView>
+                    android:hint="Search..."
+                    android:text="@={AssignmentActivity_ModelView.search}"
+                    android:textSize="20dp"></EditText>
+
                 <ImageButton
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
+                    android:id="@+id/imgBtn_Search_Assignment_Page"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
                     android:src="@drawable/baseline_search_24">
                 </ImageButton>
             </LinearLayout>
-            <LinearLayout
-                android:layout_width="94dp"
+            <RelativeLayout
+                android:layout_width="120dp"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="5dp"
                 android:background="@drawable/custom_bg_filter"
                 android:orientation="horizontal"
                 android:paddingHorizontal="5dp">
 
-                <TextView
-                    android:layout_width="wrap_content"
+                <Spinner
+                    android:id="@+id/spinner_filter"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:text="Filter"
+                    android:layout_marginTop="10dp"
                     android:textSize="20dp"
-                    android:textStyle="bold"></TextView>
+                    android:textStyle="bold"></Spinner>
 
                 <ImageButton
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
                     android:src="@drawable/baseline_filter_list_24"></ImageButton>
-            </LinearLayout>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="40dp"
-            android:gravity="end">
-            <Button
-                android:id="@+id/btn_New_Request_AssignmentPage"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:backgroundTint="#FB6771"
-                android:text="New Request"
-                android:textSize="20dp"
-                >
-            </Button>
+            </RelativeLayout>
         </LinearLayout>
         <HorizontalScrollView
             android:id="@+id/hsv"
