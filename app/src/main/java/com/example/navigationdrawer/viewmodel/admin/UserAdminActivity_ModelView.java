@@ -1,7 +1,10 @@
 package com.example.navigationdrawer.viewmodel.admin;
 
+import static android.app.Activity.RESULT_OK;
+
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.widget.Toast;
 
@@ -162,7 +165,9 @@ public class UserAdminActivity_ModelView extends BaseObservable {
             
             User a = new User(null,email,password,fullname,address,birthday,gender,date,image,role,phone);
             a.AddUser();
-            ((Activity) context).finish();
+            Intent returnIntent = new Intent();
+            ((Activity)context).setResult(RESULT_OK, returnIntent);
+            ((Activity)context).finish();
         }
         else if(dateOfUser.compareTo(currentDate) > 0){
             Toast.makeText(context, "Ngay Thang Nam Phai be hon hien tai ", Toast.LENGTH_SHORT).show();

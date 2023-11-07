@@ -382,12 +382,11 @@ public class Assignment {
             SQLServer connection = new SQLServer();
             connect = connection.ConnectionSql();
             if(connect != null){
-                String query = "SELECT assign.[Assignment_id], a.[Asset_id], a.[Asset_Name], assign.[EndDate],assign.[Description], c.[Category_Name], " +
+                String query = "SELECT assign.[Assignment_id], assign.[EndDate],assign.[Description], c.[Category_Name], " +
                         "u_user.Fullname AS UserFullName, u_admin.Fullname AS AdminFullName, assign.[Status], assign.[StartDate] " +
                         "FROM Assignment assign " +
                         "LEFT JOIN [User] u_admin ON assign.[Admin_id] = u_admin.[User_id] AND u_admin.[Role_id] = 1 " +
                         "LEFT JOIN [User] u_user ON assign.[User_id] = u_user.[User_id] AND u_user.[Role_id] = 2 " +
-                        "INNER JOIN [Asset] a ON assign.[Asset_id] = a.[Asset_id] " +
                         "INNER JOIN [Category] c ON assign.[Category_id] = c.[Category_id] "+
                         "where assign.[Status] = 0";
                 Statement st = connect.createStatement();
@@ -395,14 +394,11 @@ public class Assignment {
                 ResultSetMetaData metaData = rs.getMetaData();
                 int columnCount = metaData.getColumnCount();
                 while(rs.next()){
-                    String assetID = rs.getString("Asset_id");
                     String assignmentId = rs.getString("Assignment_id");
-                    String assetName = rs.getString("Asset_Name");
                     String categoryName = rs.getString("Category_Name");
                     String user = rs.getString("UserFullName");
                     String admin = rs.getString("AdminFullName");
                     String startDate = rs.getString("StartDate");
-                    String EndDate = rs.getString("EndDate");
                     String status = rs.getString("Status");
                     String description = rs.getString("Description");
 
@@ -413,13 +409,13 @@ public class Assignment {
 
                     Assignment assignment = new Assignment(
                             assignmentId,
-                            assetID,
-                            assetName,
+                            null,
+                            null,
                             categoryName,
                             user,
                             admin,
                             startDate,
-                            EndDate,
+                            null,
                             description,
                             status);
 

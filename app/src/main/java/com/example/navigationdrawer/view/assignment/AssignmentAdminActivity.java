@@ -77,6 +77,20 @@ public class AssignmentAdminActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 1) {
+            if (resultCode == RESULT_OK) {
+                setRecycleView();
+            }
+            if (resultCode == RESULT_CANCELED) {
+                //Write your code if there's no result
+            }
+        }
+    }//onActivityResult
+
     public void AssignmentFilterAdapter(){
 
         List<String> listFilter = new ArrayList<>();
@@ -108,11 +122,6 @@ public class AssignmentAdminActivity extends AppCompatActivity {
             }
         });
 
-    }
-    @Override
-    protected void onResume() {
-        super.onResume();
-        setRecycleView();
     }
 
 
@@ -211,8 +220,7 @@ public class AssignmentAdminActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(AssignmentAdminActivity.this, NewRequestAdminActivity.class);
-                startActivity(intent);
-                finish();
+                startActivityForResult(intent, 1);
             }
         });
 

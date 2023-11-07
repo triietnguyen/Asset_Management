@@ -152,10 +152,9 @@ public class User {
             SQLServer connection = new SQLServer();
             connect = connection.ConnectionSql();
             if(connect != null){
-//                String query = "select [User_id],[Email],[Password],[Fullname],[Address],[Date_of_birth],[Gender_name],[Joined_Date],[Image],[Role_Name],[Phone]" +
-//                        "from [dbo].[User] u join [dbo].[Role] r on u.Role_id = r.Role_id join [dbo].[Gender] g on u.Gender = g.Gender_id ";
+
                 String query ="Select *\n" +
-                        "From [dbo].[User]";
+                        "From [dbo].[User] where Role_id = 2";
                 Statement st = connect.createStatement();
                 ResultSet rs = st.executeQuery(query);
                 while(rs.next()){

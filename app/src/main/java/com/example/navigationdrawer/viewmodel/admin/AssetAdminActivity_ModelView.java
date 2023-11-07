@@ -1,6 +1,9 @@
 package com.example.navigationdrawer.viewmodel.admin;
+import static android.app.Activity.RESULT_OK;
+
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 
 import androidx.databinding.BaseObservable;
@@ -75,7 +78,10 @@ public class AssetAdminActivity_ModelView extends BaseObservable {
 
             Asset a = new Asset(null,getAsset_name().toString(),getAsset_category().toString(),getQuantity().toString(),getStatus().toString());
             a.AddAsset();
-            ((Activity) context).finish();
+            Intent returnIntent = new Intent();
+            ((Activity)context).setResult(RESULT_OK, returnIntent);
+            ((Activity)context).finish();
+
         }
     }
 

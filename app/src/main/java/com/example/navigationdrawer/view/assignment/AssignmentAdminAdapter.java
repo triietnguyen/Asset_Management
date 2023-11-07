@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -14,6 +15,7 @@ import com.example.navigationdrawer.R;
 import java.util.List;
 
 import com.example.navigationdrawer.model.Assignment;
+import com.example.navigationdrawer.model.MyApplication;
 
 public class AssignmentAdminAdapter extends RecyclerView.Adapter<AssignmentAdminAdapter.ViewHolder> {
 
@@ -43,7 +45,15 @@ public class AssignmentAdminAdapter extends RecyclerView.Adapter<AssignmentAdmin
             holder.txt_assigned_to_admin.setText(assignment.getAssigned_to());
             holder.txt_assigned_by_admin.setText(assignment.getAssigned_by());
             holder.txt_assigned_date_admin.setText(assignment.getAssigned_date());
+            holder.txt_endDate_admin.setText(assignment.getEndDate());
             holder.txt_state_admin.setText(assignment.getStatus());
+
+//            holder.img_request_update.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//
+//                }
+//            });
         }else{
             return;
         }
@@ -56,7 +66,8 @@ public class AssignmentAdminAdapter extends RecyclerView.Adapter<AssignmentAdmin
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView txt_id_admin, txt_asset_id_admin, txt_asset_name_admin, txt_assigned_to_admin, txt_assigned_by_admin, txt_assigned_date_admin,txt_state_admin;
-        TextView txt_category_name_admin;
+        TextView txt_category_name_admin,txt_endDate_admin;
+        ImageView img_request_update;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             txt_id_admin = itemView.findViewById(R.id.txt_id_admin);
@@ -66,7 +77,11 @@ public class AssignmentAdminAdapter extends RecyclerView.Adapter<AssignmentAdmin
             txt_assigned_to_admin = itemView.findViewById(R.id.txt_assigned_to_admin);
             txt_assigned_by_admin = itemView.findViewById(R.id.txt_assigned_by_admin);
             txt_assigned_date_admin = itemView.findViewById(R.id.txt_assigned_date_admin);
+            txt_endDate_admin = itemView.findViewById(R.id.txt_end_date_admin);
             txt_state_admin = itemView.findViewById(R.id.txt_state_admin);
+
+
+            img_request_update = itemView.findViewById(R.id.img_request_check_layout);
         }
     }
 }

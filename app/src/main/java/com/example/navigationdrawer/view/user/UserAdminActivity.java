@@ -48,6 +48,20 @@ public class UserAdminActivity extends AppCompatActivity {
         setRecycleView();
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 1) {
+            if (resultCode == RESULT_OK) {
+                setRecycleView();
+            }
+            if (resultCode == RESULT_CANCELED) {
+                //Write your code if there's no result
+            }
+        }
+    }//onActivityResult
+
     private void setRecycleView() {
         userAdminActivityModelView = new UserAdminActivity_ModelView();
         recyclerView.setHasFixedSize(true);
@@ -69,8 +83,7 @@ public class UserAdminActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(UserAdminActivity.this, CreateUserAdminActivity.class);
-                startActivity(intent);
-                finish();
+                startActivityForResult(intent,1);
             }
         });
         // Navigation Drawer------------------------------

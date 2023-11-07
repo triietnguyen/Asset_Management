@@ -44,50 +44,6 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Date of issue"
-                android:textSize="25dp">
-
-            </TextView>
-            <EditText
-                android:id="@+id/edt_Date_NewRequestPage"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:text="@={NewRequestAdminActivity_ModelView.date}"
-                android:hint="yyyy/mm/dd"
-                android:background="@drawable/custom_bg_edt"
-                android:textSize="20dp"
-                android:focusable="false"
-                android:focusableInTouchMode="false"
-                android:layout_marginVertical="10dp"
-                android:inputType="date"
-                android:paddingHorizontal="10dp"
-                >
-            </EditText>
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Date of Retunring"
-                android:textSize="25dp">
-
-            </TextView>
-            <EditText
-                android:id="@+id/edt_Date_ReturnPage"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:text="@={NewRequestAdminActivity_ModelView.date}"
-                android:hint="yyyy/mm/dd"
-                android:background="@drawable/custom_bg_edt"
-                android:textSize="20dp"
-                android:focusable="false"
-                android:focusableInTouchMode="false"
-                android:layout_marginVertical="10dp"
-                android:inputType="date"
-                android:paddingHorizontal="10dp"
-                >
-            </EditText>
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
                 android:text="Assigned To"
                 android:textSize="25dp">
 
