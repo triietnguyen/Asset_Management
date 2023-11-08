@@ -49,16 +49,16 @@ public class RequestAdminAdapter extends RecyclerView.Adapter<RequestAdminAdapte
             holder.txt_request_username.setText(assignment.getAssigned_to());
             holder.txt_request_description.setText(assignment.getDescription());
             holder.txt_request_endDate.setText(assignment.getEndDate());
-            holder.img_Check.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    assignment_list.remove(assignment);
-                    notifyItemRemoved(holder.getAdapterPosition());
-
-                    String adminID = u.GetNameUserByEmail(MyApplication.getInstance().GetSharedData());
-                    assign.HandlerAssignment(adminID,assignment.getAssignmentID());
-                }
-            });
+//            holder.img_Check.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    assignment_list.remove(assignment);
+//                    notifyItemRemoved(holder.getAdapterPosition());
+//
+//                    String adminID = u.GetNameUserByEmail(MyApplication.getInstance().GetSharedData());
+//                    assign.HandlerAssignment(adminID,assignment.getAssignmentID());
+//                }
+//            });
             holder.img_Cancel.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -84,7 +84,7 @@ public class RequestAdminAdapter extends RecyclerView.Adapter<RequestAdminAdapte
         txt_request_description,
         txt_request_endDate;
 
-        ImageView img_Check,img_Cancel;
+        ImageView img_Cancel;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             txt_request_endDate = itemView.findViewById(R.id.txt_request_end_date_layout);
@@ -95,7 +95,7 @@ public class RequestAdminAdapter extends RecyclerView.Adapter<RequestAdminAdapte
             txt_request_asset_date_layout = itemView.findViewById(R.id.txt_request_asset_date_layout);
             txt_request_status_layout = itemView.findViewById(R.id.txt_request_status_layout);
 
-            img_Check = itemView.findViewById(R.id.img_request_check_layout);
+//            img_Check = itemView.findViewById(R.id.img_request_check_layout);
             img_Cancel = itemView.findViewById(R.id.img_request_cancel_layout);
         }
     }

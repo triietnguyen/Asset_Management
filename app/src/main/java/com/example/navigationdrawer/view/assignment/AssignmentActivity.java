@@ -65,6 +65,19 @@ public class AssignmentActivity extends AppCompatActivity {
         setRecycleView();
         AssignmentFilterAdapter();
     }
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.e("test","test");
+        setRecycleView();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        Log.e("test","test");
+        setRecycleView();
+    }
 
     public void AssignmentFilterAdapter(){
 
@@ -98,11 +111,7 @@ public class AssignmentActivity extends AppCompatActivity {
 
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        setRecycleView();
-    }
+
     private void setRecycleView() {
         User u = new User();
         String userID = u.GetNameUserByEmail(MyApplication.getInstance().GetSharedData());

@@ -1,7 +1,10 @@
 package com.example.navigationdrawer.viewmodel.admin;
 
+import static android.app.Activity.RESULT_OK;
+
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.util.Log;
 import android.widget.Toast;
@@ -50,9 +53,6 @@ public class NewRequestAdminActivity_ModelView extends BaseObservable {
     }
 
     public void OnClickSaveButton(Context context) {
-        if(date == null){
-            return;
-        }
         Calendar calendar = Calendar.getInstance();
 
         int dateCalendar = calendar.get(Calendar.DATE);
@@ -63,45 +63,23 @@ public class NewRequestAdminActivity_ModelView extends BaseObservable {
         String currentDate_Str = simpleDateFormat.format(calendar.getTime());
 
 
-        Date currentDate = null;
-        try {
-            currentDate = simpleDateFormat.parse(currentDate_Str);
-        } catch (ParseException e) {
-            throw new RuntimeException(e);
-        }
-        Date dateOfUser = null;
-        try {
-            dateOfUser = simpleDateFormat.parse(date);
-        } catch (ParseException e) {
-            throw new RuntimeException(e);
-        }
-
-
-        if(dateOfUser.compareTo(currentDate) > 0){
-            SharedPreferences sharedPreferences = context.getSharedPreferences("Assignment", Context.MODE_PRIVATE);
-            String categoryID = sharedPreferences.getString("Category_id","");
-            String userID = sharedPreferences.getString("User_id","");
-            String assetID = sharedPreferences.getString("Asset_id","");
-            Log.e("assetID",assetID);
-            if (assetID.equalsIgnoreCase("")) {
-                return;
-            }
-
-            User u = new User();
-            String adminID = u.GetNameUserByEmail(MyApplication.getInstance().GetSharedData());
-
-            Assignment a = new Assignment(null,assetID,null,categoryID,userID,adminID,currentDate_Str,date,"","1");
-            a.AddAssignment();
-
-            ((Activity) context).finish();
-        }
-        else if(dateOfUser.compareTo(currentDate) < 0){
-            Toast.makeText(context, "Ngay Thang Nam Phai lon hon ngay hien tai ", Toast.LENGTH_SHORT).show();
+        SharedPreferences sharedPreferences = context.getSharedPreferences("Assignment", Context.MODE_PRIVATE);
+        String categoryID = sharedPreferences.getString("Category_id","");
+        String userID = sharedPreferences.getString("User_id","");
+        String assetID = sharedPreferences.getString("Asset_id","");
+        Log.e("assetID",assetID);
+        if (assetID.equalsIgnoreCase("")) {
+            Toast.makeText(context, "Please choice asset", Toast.LENGTH_SHORT).show();
             return;
         }
-        else{
-            return;
-        }
+        User u = new User();
+        String adminID = u.GetNameUserByEmail(MyApplication.getInstance().GetSharedData());
+        Assignment a = new Assignment(null,assetID,null,categoryID,userID,adminID,currentDate_Str,null,"","1");
+        a.AddAssignment();
+        Intent returnIntent = new Intent();
+        ((Activity)context).setResult(RESULT_OK, returnIntent);
+        ((Activity)context).finish();
+
 
     }
 }

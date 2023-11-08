@@ -44,6 +44,7 @@ public class RequestAdapter extends RecyclerView.Adapter<RequestAdapter.ViewHold
             Assignment assignment = assignment_list.get(position);
             holder.txt_request_asset_category.setText(assignment.getCategory());
             holder.txt_request_asset_date.setText(assignment.getAssigned_date());
+            holder.txt_request_status_description.setText(assignment.getDescription());
             holder.txt_request_status.setText(assignment.getStatus());
             holder.img_Cancel.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -65,13 +66,14 @@ public class RequestAdapter extends RecyclerView.Adapter<RequestAdapter.ViewHold
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        TextView txt_request_asset_category, txt_request_asset_date, txt_request_status;
+        TextView txt_request_asset_category, txt_request_asset_date, txt_request_status, txt_request_status_description;
 
         ImageView img_Cancel;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             txt_request_asset_category = itemView.findViewById(R.id.txt_request_asset_category_layout);
             txt_request_asset_date = itemView.findViewById(R.id.txt_request_asset_date_layout);
+            txt_request_status_description = itemView.findViewById(R.id.txt_request_asset_decription_layout);
             txt_request_status = itemView.findViewById(R.id.txt_request_status_layout);
             img_Cancel = itemView.findViewById(R.id.img_request_cancel_layout);
         }

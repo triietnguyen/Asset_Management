@@ -50,6 +50,20 @@ public class AssetAdminActivity extends AppCompatActivity {
         setRecycleView();
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 1) {
+            if (resultCode == RESULT_OK) {
+                setRecycleView();
+            }
+            if (resultCode == RESULT_CANCELED) {
+                //Write your code if there's no result
+            }
+        }
+    }//onActivityResult
+
     private void setRecycleView() {
         assetAdminActivityModelView = new AssetAdminActivity_ModelView();
         recyclerView.setHasFixedSize(true);
@@ -135,8 +149,7 @@ public class AssetAdminActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(AssetAdminActivity.this, CreateAssetAdminActivity.class);
-                startActivity(intent);
-                finish();
+                startActivityForResult(intent,1);
             }
         });
     }

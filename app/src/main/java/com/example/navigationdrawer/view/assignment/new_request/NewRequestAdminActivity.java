@@ -36,7 +36,6 @@ import java.util.Calendar;
 public class NewRequestAdminActivity extends AppCompatActivity {
 
     Button img_Back_NewRequest;
-    EditText edt_Date;
     Spinner spinnerCategoryRequest;
     Spinner spinnerUserRequest;
     Spinner spinnerAssetRequest;
@@ -64,7 +63,6 @@ public class NewRequestAdminActivity extends AppCompatActivity {
     }
     public void AnhXa(){
         img_Back_NewRequest = (Button) findViewById(R.id.img_Back_NewRequestPage);
-        edt_Date = (EditText)findViewById(R.id.edt_Date_NewRequestPage);
         spinnerCategoryRequest = (Spinner) findViewById(R.id.category_spinner);
         spinnerAssetRequest = (Spinner) findViewById(R.id.asset_spinner);
         spinnerUserRequest = (Spinner) findViewById(R.id.user_spinner);
@@ -76,30 +74,9 @@ public class NewRequestAdminActivity extends AppCompatActivity {
                 finish();
             }
         });
-
-        edt_Date.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Pick_Date();
-            }
-        });
     }
 
-    private void Pick_Date(){
-        Calendar calendar = Calendar.getInstance();
-        int date = calendar.get(Calendar.DATE);
-        int month = calendar.get(Calendar.MONTH);
-        int year = calendar.get(Calendar.YEAR);
-        DatePickerDialog datePickerDialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
-            @Override
-            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                calendar.set(year,month,dayOfMonth);
-                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-                edt_Date.setText(simpleDateFormat.format(calendar.getTime()));
-            }
-        }, year,month,date);
-        datePickerDialog.show();
-    }
+
 
     public void CategoryRequestAdapter(){
 

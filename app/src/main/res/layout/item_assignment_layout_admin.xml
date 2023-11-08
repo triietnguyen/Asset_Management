@@ -61,6 +61,13 @@
                 android:layout_weight="0.5"
                 android:gravity="center" />
             <TextView
+                android:id="@+id/txt_end_date_admin"
+                android:layout_marginHorizontal="10dp"
+                android:layout_width="120dp"
+                android:textSize="16dp"
+                android:layout_weight="0.5"
+                android:gravity="center" />
+            <TextView
                 android:id="@+id/txt_state_admin"
                 android:layout_marginHorizontal="10dp"
                 android:layout_width="120dp"
@@ -68,13 +75,13 @@
                 android:layout_weight="0.5"
                 android:gravity="center" />
             <ImageView
-                android:id="@+id/img_request_check_layout"
+                android:id="@+id/img_request_update_layout"
                 android:layout_width="50dp"
                 android:layout_weight="0.5"
                 android:gravity="center"
                 android:src="@drawable/baseline_edit_24"
-                >
-            </ImageView>
+                ></ImageView>
+
         </TableRow>
     </TableLayout>
 </layout>

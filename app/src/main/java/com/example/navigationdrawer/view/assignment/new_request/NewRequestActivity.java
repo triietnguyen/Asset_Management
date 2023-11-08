@@ -2,6 +2,7 @@ package com.example.navigationdrawer.view.assignment.new_request;
 
 import android.app.DatePickerDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
@@ -32,7 +33,6 @@ import java.util.Calendar;
 public class NewRequestActivity extends AppCompatActivity {
 
     ImageView img_Back_NewRequest;
-    EditText edt_Date;
     Spinner spinnerCategoryRequest;
     Spinner spinnerAssetRequest;
     NewRequestActivity_ModelView newRequestActivityModelView;
@@ -54,9 +54,11 @@ public class NewRequestActivity extends AppCompatActivity {
         CategoryRequestAdapter();
 
     }
+
+
+
     public void AnhXa(){
         img_Back_NewRequest = (ImageView) findViewById(R.id.img_Back_NewRequestPage);
-        edt_Date = (EditText)findViewById(R.id.edt_Date_NewRequestPage);
         spinnerCategoryRequest = (Spinner) findViewById(R.id.category_spinner);
         spinnerAssetRequest = (Spinner) findViewById(R.id.asset_spinner);
     }
@@ -69,21 +71,6 @@ public class NewRequestActivity extends AppCompatActivity {
         });
     }
 
-    private void Pick_Date(){
-        Calendar calendar = Calendar.getInstance();
-        int date = calendar.get(Calendar.DATE);
-        int month = calendar.get(Calendar.MONTH);
-        int year = calendar.get(Calendar.YEAR);
-        DatePickerDialog datePickerDialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
-            @Override
-            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                calendar.set(year,month,dayOfMonth);
-                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-                edt_Date.setText(simpleDateFormat.format(calendar.getTime()));
-            }
-        }, year,month,date);
-        datePickerDialog.show();
-    }
 
     public void CategoryRequestAdapter(){
 
