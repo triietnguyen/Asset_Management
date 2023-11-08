@@ -127,6 +127,7 @@ public class ProfileActivity extends AppCompatActivity {
         });
         if(profileActivityModelView.getImage() != null){
             Uri uri = Uri.parse(profileActivityModelView.getImage());
+            
             img_User.setImageURI(uri);
         }
 

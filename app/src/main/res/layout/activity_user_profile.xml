@@ -74,14 +74,6 @@
                 android:src="@drawable/logo_profile_1"
                 app:civ_border_width="2dp"
                 app:civ_border_color="#FF000000"/>
-<!--            <ImageView-->
-<!--                android:id="@+id/imgUser_ProfilePage"-->
-<!--                android:layout_width="30dp"-->
-<!--                android:layout_height="30dp"-->
-<!--                android:layout_weight="1"-->
-<!--                android:layout_marginLeft="-30dp"-->
-<!--                android:src="@drawable/baseline_photo_camera_24">-->
-<!--        </ImageView>-->
         </LinearLayout>
 
         <LinearLayout

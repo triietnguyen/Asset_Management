@@ -2,10 +2,12 @@ package com.example.navigationdrawer.view.assignment;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -15,15 +17,20 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
+import androidx.databinding.DataBindingUtil;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.navigationdrawer.R;
+import com.example.navigationdrawer.databinding.ActivityAssignmentAdminBinding;
+import com.example.navigationdrawer.databinding.ActivityAssignmentBinding;
+import com.example.navigationdrawer.model.Assignment;
 import com.example.navigationdrawer.view.login.LoginActivity;
 import com.example.navigationdrawer.view.main.MainActivity;
 import com.example.navigationdrawer.view.profile.ProfileActivity;
 import com.example.navigationdrawer.view.request.RequestActivity;
+import com.example.navigationdrawer.viewmodel.admin.AssignmentAdminActivity_ModelView;
 import com.google.android.material.navigation.NavigationView;
 
 import java.util.ArrayList;
@@ -43,10 +50,16 @@ public class AssignmentActivity extends AppCompatActivity {
     ImageView imageMenu;
     Spinner spinnerFilter;
     AssignmentActivity_ModelView assignmentActivityModelView;
+    String choiceFilter ="all";
+    String search = "";
+    ImageButton imgBtn_Search;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_assignment);
+        ActivityAssignmentBinding _binding = DataBindingUtil.setContentView(this,R.layout.activity_assignment);
+        assignmentActivityModelView = new AssignmentActivity_ModelView();
+        _binding.setAssignmentActivityModelView(assignmentActivityModelView);
+
         AnhXa();
         Handle_Component();
         setRecycleView();
@@ -57,17 +70,24 @@ public class AssignmentActivity extends AppCompatActivity {
 
         List<String> listFilter = new ArrayList<>();
         listFilter.add("All");
-        listFilter.add("A->Z");
-        listFilter.add("Z->A");
+        listFilter.add("ID");
+        listFilter.add("Asset Code");
+        listFilter.add("Asset Name");
+        listFilter.add("Category");
+        listFilter.add("Assigned To");
+        listFilter.add("Assigned By");
+        listFilter.add("Assigned Date");
+        listFilter.add("State");
+
         ArrayAdapter arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, listFilter);
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerFilter.setAdapter(arrayAdapter);
         spinnerFilter.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
-                String choice = parentView.getItemAtPosition(position).toString();
+                choiceFilter = parentView.getItemAtPosition(position).toString();
                 // Làm gì đó với mục đã chọn
-                Toast.makeText(getApplicationContext(), choice, Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), choiceFilter, Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -75,14 +95,26 @@ public class AssignmentActivity extends AppCompatActivity {
 
             }
         });
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        setRecycleView();
     }
     private void setRecycleView() {
         User u = new User();
         String userID = u.GetNameUserByEmail(MyApplication.getInstance().GetSharedData());
-        assignmentActivityModelView = new AssignmentActivity_ModelView();
+
+        if(assignmentActivityModelView.getSearch() != null) {
+            search = assignmentActivityModelView.getSearch();
+        }
+        List<Assignment> listAssign = assignmentActivityModelView.GetAssignmentBySearch(search,choiceFilter,userID);
+        if(listAssign == null) return;
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        assignmentApdapter = new AssignmentApdapter(this, assignmentActivityModelView.GetAllAssignment(userID));
+        assignmentApdapter = new AssignmentApdapter(this, listAssign);
         recyclerView.setAdapter(assignmentApdapter);
     }
 
@@ -93,6 +125,7 @@ public class AssignmentActivity extends AppCompatActivity {
         imageMenu = findViewById(R.id.imageMenu);
         recyclerView = findViewById(R.id.recycler_view);
         spinnerFilter = findViewById(R.id.spinner_filter);
+        imgBtn_Search = (ImageButton) findViewById(R.id.imgBtn_Search_Assignment_Page);
     }
 
     void Handle_Component(){
@@ -144,6 +177,13 @@ public class AssignmentActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 drawer_Layout.openDrawer(GravityCompat.START);
+            }
+        });
+
+        imgBtn_Search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setRecycleView();
             }
         });
 

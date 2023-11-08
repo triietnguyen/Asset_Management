@@ -7,6 +7,8 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -16,10 +18,13 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
+import androidx.databinding.DataBindingUtil;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.navigationdrawer.databinding.ActivityAssignmentAdminBinding;
+import com.example.navigationdrawer.model.Assignment;
 import com.example.navigationdrawer.view.asset.AssetAdminActivity;
 import com.example.navigationdrawer.view.assignment.new_request.NewRequestAdminActivity;
 import com.example.navigationdrawer.R;
@@ -29,6 +34,7 @@ import com.example.navigationdrawer.view.profile.ProfileAdminActivity;
 import com.example.navigationdrawer.view.report.ReportActivity;
 import com.example.navigationdrawer.view.request.RequestAdminActivity;
 import com.example.navigationdrawer.view.user.UserAdminActivity;
+import com.example.navigationdrawer.viewmodel.user.AssignmentActivity_ModelView;
 import com.google.android.material.navigation.NavigationView;
 
 import java.util.ArrayList;
@@ -47,35 +53,53 @@ public class AssignmentAdminActivity extends AppCompatActivity {
     AssignmentAdminAdapter adapter;
     ImageView imageMenu;
     Button btn_New_Request;
+    ImageButton imgBtn_Search;
     Spinner spinnerFilter;
+    EditText edt_Search;
     AssignmentAdminActivity_ModelView assignmentAdminActivity_modelView;
+
+    String choiceFilter ="all";
+    String search = "";
 
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_assignment_admin);
+
+        ActivityAssignmentAdminBinding _binding = DataBindingUtil.setContentView(this,R.layout.activity_assignment_admin);
+        assignmentAdminActivity_modelView = new AssignmentAdminActivity_ModelView();
+        _binding.setAssignmentAdminActivityModelView(assignmentAdminActivity_modelView);
+
         AnhXa();
         Handle_Component();
         setRecycleView();
         AssignmentFilterAdapter();
+
     }
 
     public void AssignmentFilterAdapter(){
 
         List<String> listFilter = new ArrayList<>();
         listFilter.add("All");
-        listFilter.add("A->Z");
-        listFilter.add("Z->A");
+        listFilter.add("ID");
+        listFilter.add("Asset Code");
+        listFilter.add("Asset Name");
+        listFilter.add("Category");
+        listFilter.add("Assigned To");
+        listFilter.add("Assigned By");
+        listFilter.add("Assigned Date");
+        listFilter.add("State");
+
         ArrayAdapter arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, listFilter);
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
         spinnerFilter.setAdapter(arrayAdapter);
         spinnerFilter.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
-                String choice = parentView.getItemAtPosition(position).toString();
+                choiceFilter = parentView.getItemAtPosition(position).toString();
                 // Làm gì đó với mục đã chọn
-                Toast.makeText(getApplicationContext(), choice, Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), choiceFilter, Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -83,6 +107,7 @@ public class AssignmentAdminActivity extends AppCompatActivity {
 
             }
         });
+
     }
     @Override
     protected void onResume() {
@@ -90,11 +115,16 @@ public class AssignmentAdminActivity extends AppCompatActivity {
         setRecycleView();
     }
 
+
     private void setRecycleView() {
-        assignmentAdminActivity_modelView = new AssignmentAdminActivity_ModelView();
+        if(assignmentAdminActivity_modelView.getSearchStr() != null) {
+            search = assignmentAdminActivity_modelView.getSearchStr();
+        }
+        List<Assignment> listAssign = assignmentAdminActivity_modelView.GetAssignmentBySearch(search,choiceFilter);
+        if(listAssign == null) return;
         recycler_view_admin.setHasFixedSize(true);
         recycler_view_admin.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new AssignmentAdminAdapter(this, assignmentAdminActivity_modelView.GetAllAssignment());
+        adapter = new AssignmentAdminAdapter(this,listAssign);
         recycler_view_admin.setAdapter(adapter);
     }
 
@@ -105,6 +135,8 @@ public class AssignmentAdminActivity extends AppCompatActivity {
         btn_New_Request = (Button)findViewById(R.id.btn_New_Request_AssignmentPage);
         recycler_view_admin = findViewById(R.id.recycler_view_admin);
         spinnerFilter = findViewById(R.id.spinner_filter);
+        edt_Search = (EditText) findViewById(R.id.edt_Search_AssigmentPage);
+        imgBtn_Search = (ImageButton) findViewById(R.id.imgBtn_Search_AssigmentAdmin_Page);
     }
 
     void Handle_Component(){
@@ -174,6 +206,7 @@ public class AssignmentAdminActivity extends AppCompatActivity {
             }
         });
 
+
         btn_New_Request.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -182,5 +215,13 @@ public class AssignmentAdminActivity extends AppCompatActivity {
                 finish();
             }
         });
+
+        imgBtn_Search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setRecycleView();
+            }
+        });
+
     }
 }

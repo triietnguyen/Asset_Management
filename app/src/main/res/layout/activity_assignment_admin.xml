@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="AssignmentAdminActivity_ModelView"
+            type="com.example.navigationdrawer.viewmodel.admin.AssignmentAdminActivity_ModelView" />
+    </data>
     <androidx.drawerlayout.widget.DrawerLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -69,13 +74,16 @@
                 android:orientation="horizontal">
 
                 <EditText
+                    android:id="@+id/edt_Search_AssigmentPage"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_gravity="center"
+                    android:text="@={AssignmentAdminActivity_ModelView.searchStr}"
                     android:hint="Search..."
                     android:textSize="20dp"></EditText>
 
                 <ImageButton
+                    android:id="@+id/imgBtn_Search_AssigmentAdmin_Page"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_gravity="center"
@@ -206,11 +214,6 @@
                             android:gravity="center"
                             android:textSize="16dp"
                             android:text="State"
-                            android:textStyle="bold"/>
-                        <TextView
-                            android:layout_weight="0.5"
-                            android:layout_width="50dp"
-                            android:gravity="center"
                             android:textStyle="bold"/>
                         <TextView
                             android:layout_width="50dp"

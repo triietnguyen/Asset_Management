@@ -169,6 +169,157 @@ public class Assignment {
 
     }
 
+    public List<Assignment> GetAssignmentsUserBySearch(String search, String filter,String userID){
+        Log.e("search",search);
+        Log.e("filter",filter);
+        Log.e("userID",userID);
+        List<Assignment> listAssignment = new ArrayList<>();
+        try{
+            String filterCondition = "";
+            if (!"All".equals(filter)) {
+                filterCondition = " AND "+ filter + " LIKE '%" + search + "%'";
+            }
+            else{
+                filterCondition = " AND " +
+                        "(a.[Asset_id] LIKE '%" + search + "%' OR " +
+                        "a.[Asset_Name] LIKE '%" + search + "%' OR " +
+                        "c.[Category_Name] LIKE '%" + search + "%' OR " +
+                        "u_user.Fullname LIKE '%" + search + "%' OR " +
+                        "u_admin.Fullname LIKE '%" + search + "%' OR " +
+                        "assign.[Status] LIKE '%" + search + "%' OR " +
+                        "assign.[StartDate] LIKE '%" + search + "%' OR " +
+                        "assign.[EndDate] LIKE '%" + search + "%' OR " +
+                        "assign.[Assignment_id] LIKE '%" + search + "%')";
+            }
+            SQLServer connection = new SQLServer();
+            connect = connection.ConnectionSql();
+            if(connect != null){
+                String query = "SELECT assign.[Assignment_id], a.[Asset_id], a.[Asset_Name], assign.[EndDate], c.[Category_Name], " +
+                        "u_user.Fullname AS UserFullName, u_admin.Fullname AS AdminFullName, assign.[Status], assign.[StartDate] " +
+                        "FROM Assignment assign " +
+                        "LEFT JOIN [User] u_admin ON assign.[Admin_id] = u_admin.[User_id] AND u_admin.[Role_id] = 1 " +
+                        "LEFT JOIN [User] u_user ON assign.[User_id] = u_user.[User_id] AND u_user.[Role_id] = 2 " +
+                        "INNER JOIN [Asset] a ON assign.[Asset_id] = a.[Asset_id] " +
+                        "INNER JOIN [Category] c ON assign.[Category_id] = c.[Category_id] " +
+                        "WHERE assign.[Status] > 0 AND assign.[User_id] = ?" + filterCondition;
+                PreparedStatement preparedStatement = connect.prepareStatement(query);
+                preparedStatement.setString(1, userID);
+                ResultSet rs = preparedStatement.executeQuery();
+
+                while(rs.next()){
+                    String assetID = rs.getString("Asset_id");
+                    String assignmentId = rs.getString("Assignment_id");
+                    String assetName = rs.getString("Asset_Name");
+                    String categoryName = rs.getString("Category_Name");
+                    String user = rs.getString("UserFullName");
+                    String admin = rs.getString("AdminFullName");
+                    String startDate = rs.getString("StartDate");
+                    String EndDate = rs.getString("EndDate");
+                    String status = rs.getString("Status");
+
+                    switch (status){
+                        case "1":status = "Assigned";break;
+                        case "2":status = "Returning";break;
+                        default:break;
+                    }
+
+                    Assignment assignment = new Assignment(
+                            assignmentId,
+                            assetID,
+                            assetName,
+                            categoryName,
+                            user,
+                            admin,
+                            startDate,
+                            EndDate,
+                            null,
+                            status);
+
+                    listAssignment.add(assignment);
+                }
+                return listAssignment;
+
+            }
+        }catch(Exception e){
+            Log.e(e.getMessage(),"Log error");
+        }
+        return null;
+    }
+
+    public List<Assignment> GetAssignmentsAdminBySearch(String search, String filter){
+        Log.e("search",search);
+        List<Assignment> listAssignment = new ArrayList<>();
+        try{
+            String filterCondition = "";
+            if (!"All".equals(filter)) {
+                filterCondition = " AND "+ filter + " LIKE '%" + search + "%'";
+            }
+            else{
+                filterCondition = " AND " +
+                "(a.[Asset_id] LIKE '%" + search + "%' OR " +
+                        "a.[Asset_Name] LIKE '%" + search + "%' OR " +
+                        "c.[Category_Name] LIKE '%" + search + "%' OR " +
+                        "u_user.Fullname LIKE '%" + search + "%' OR " +
+                        "u_admin.Fullname LIKE '%" + search + "%' OR " +
+                        "assign.[Status] LIKE '%" + search + "%' OR " +
+                        "assign.[StartDate] LIKE '%" + search + "%' OR " +
+                        "assign.[EndDate] LIKE '%" + search + "%' OR " +
+                        "assign.[Assignment_id] LIKE '%" + search + "%')";
+            }
+            SQLServer connection = new SQLServer();
+            connect = connection.ConnectionSql();
+            if(connect != null){
+                String query = "SELECT assign.[Assignment_id], a.[Asset_id], a.[Asset_Name], assign.[EndDate], c.[Category_Name], " +
+                        "u_user.Fullname AS UserFullName, u_admin.Fullname AS AdminFullName, assign.[Status], assign.[StartDate] " +
+                        "FROM Assignment assign " +
+                        "LEFT JOIN [User] u_admin ON assign.[Admin_id] = u_admin.[User_id] AND u_admin.[Role_id] = 1 " +
+                        "LEFT JOIN [User] u_user ON assign.[User_id] = u_user.[User_id] AND u_user.[Role_id] = 2 " +
+                        "INNER JOIN [Asset] a ON assign.[Asset_id] = a.[Asset_id] " +
+                        "INNER JOIN [Category] c ON assign.[Category_id] = c.[Category_id] " +
+                        "WHERE assign.[Status] > 0" + filterCondition;
+                Statement st = connect.createStatement();
+                ResultSet rs = st.executeQuery(query);
+
+                while(rs.next()){
+                    String assetID = rs.getString("Asset_id");
+                    String assignmentId = rs.getString("Assignment_id");
+                    String assetName = rs.getString("Asset_Name");
+                    String categoryName = rs.getString("Category_Name");
+                    String user = rs.getString("UserFullName");
+                    String admin = rs.getString("AdminFullName");
+                    String startDate = rs.getString("StartDate");
+                    String EndDate = rs.getString("EndDate");
+                    String status = rs.getString("Status");
+
+                    switch (status){
+                        case "1":status = "Assigned";break;
+                        case "2":status = "Returning";break;
+                        default:break;
+                    }
+
+                    Assignment assignment = new Assignment(
+                            assignmentId,
+                            assetID,
+                            assetName,
+                            categoryName,
+                            user,
+                            admin,
+                            startDate,
+                            EndDate,
+                            null,
+                            status);
+
+                    listAssignment.add(assignment);
+                }
+                return listAssignment;
+
+            }
+        }catch(Exception e){
+            Log.e(e.getMessage(),"Log error");
+        }
+        return null;
+    }
+
     public List<Assignment> GetAllAssignmentByUser(String IdUser){
         List<Assignment> listAssignment = new ArrayList<>();
         try{

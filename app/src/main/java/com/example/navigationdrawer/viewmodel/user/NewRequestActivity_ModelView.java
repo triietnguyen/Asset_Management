@@ -23,16 +23,7 @@ import com.example.navigationdrawer.model.MyApplication;
 import com.example.navigationdrawer.model.User;
 
 public class NewRequestActivity_ModelView extends BaseObservable {
-    String date,description;
-
-    @Bindable
-    public String getDate() {
-        return date;
-    }
-    public void setDate(String date) {
-        this.date = date;
-        notifyPropertyChanged(BR.date);
-    }
+    String description;
 
     @Bindable
     public String getDescription() {
@@ -53,9 +44,6 @@ public class NewRequestActivity_ModelView extends BaseObservable {
     }
 
     public void OnClickSaveButton(Context context) {
-        if(date == null){
-            return;
-        }
         Calendar calendar = Calendar.getInstance();
 
         int dateCalendar = calendar.get(Calendar.DATE);
@@ -66,21 +54,7 @@ public class NewRequestActivity_ModelView extends BaseObservable {
         String currentDate_Str = simpleDateFormat.format(calendar.getTime());
 
 
-        Date currentDate = null;
-        try {
-            currentDate = simpleDateFormat.parse(currentDate_Str);
-        } catch (ParseException e) {
-            throw new RuntimeException(e);
-        }
-        Date dateOfUser = null;
-        try {
-            dateOfUser = simpleDateFormat.parse(date);
-        } catch (ParseException e) {
-            throw new RuntimeException(e);
-        }
 
-
-        if(dateOfUser.compareTo(currentDate) > 0){
             SharedPreferences sharedPreferences = context.getSharedPreferences("Assignment", Context.MODE_PRIVATE);
             String categoryID = sharedPreferences.getString("Category_id","");
             String assetID = sharedPreferences.getString("Asset_id","");
@@ -92,18 +66,10 @@ public class NewRequestActivity_ModelView extends BaseObservable {
             User u = new User();
             String userID = u.GetNameUserByEmail(MyApplication.getInstance().GetSharedData());
 
-            Assignment a = new Assignment(null,assetID,null,categoryID,userID,null,currentDate_Str,date,description,"0");
+            Assignment a = new Assignment(null,assetID,null,categoryID,userID,null,currentDate_Str,null,description,"0");
             a.AddAssignment();
 
             ((Activity) context).finish();
-        }
-        else if(dateOfUser.compareTo(currentDate) < 0){
-            Toast.makeText(context, "Ngay Thang Nam Phai lon hon ngay hien tai ", Toast.LENGTH_SHORT).show();
-            return;
-        }
-        else{
-            return;
-        }
 
     }
 }

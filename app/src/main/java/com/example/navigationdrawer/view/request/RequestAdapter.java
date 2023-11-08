@@ -45,17 +45,6 @@ public class RequestAdapter extends RecyclerView.Adapter<RequestAdapter.ViewHold
             holder.txt_request_asset_category.setText(assignment.getCategory());
             holder.txt_request_asset_date.setText(assignment.getAssigned_date());
             holder.txt_request_status.setText(assignment.getStatus());
-            holder.txt_request_endDate.setText(assignment.getEndDate());
-            holder.img_Check.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    assignment_list.remove(assignment);
-                    notifyItemRemoved(holder.getAdapterPosition());
-
-                    String adminID = u.GetNameUserByEmail(MyApplication.getInstance().GetSharedData());
-                    assign.HandlerAssignment(adminID,assignment.getAssignmentID());
-                }
-            });
             holder.img_Cancel.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -76,17 +65,14 @@ public class RequestAdapter extends RecyclerView.Adapter<RequestAdapter.ViewHold
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        TextView txt_request_asset_category, txt_request_asset_date, txt_request_status,txt_request_endDate;
+        TextView txt_request_asset_category, txt_request_asset_date, txt_request_status;
 
-        ImageView img_Check,img_Cancel;
+        ImageView img_Cancel;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            txt_request_endDate = itemView.findViewById(R.id.txt_request_end_date_layout);
             txt_request_asset_category = itemView.findViewById(R.id.txt_request_asset_category_layout);
             txt_request_asset_date = itemView.findViewById(R.id.txt_request_asset_date_layout);
             txt_request_status = itemView.findViewById(R.id.txt_request_status_layout);
-
-            img_Check = itemView.findViewById(R.id.img_request_check_layout);
             img_Cancel = itemView.findViewById(R.id.img_request_cancel_layout);
         }
     }

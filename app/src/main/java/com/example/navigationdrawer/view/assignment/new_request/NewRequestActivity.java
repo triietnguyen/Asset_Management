@@ -67,12 +67,6 @@ public class NewRequestActivity extends AppCompatActivity {
                 finish();
             }
         });
-        edt_Date.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Pick_Date();
-            }
-        });
     }
 
     private void Pick_Date(){

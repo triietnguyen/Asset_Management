@@ -40,7 +40,6 @@ public class Login_ModelView extends BaseObservable {
         int roleUser = 2;
         Account account = new Account(email,password);
         if(account.IsValidEmail() && account.IsValidPassword()){
-//            Log.e("Login",account.GetEmail() + account.GetPassword());
             if(account.IsCheckValidAccount() && account.GetRoleId() == roleUser){
                 Intent intent = new Intent(context, MainActivity.class);
                 context.startActivity(intent);
