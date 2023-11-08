@@ -26,7 +26,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.navigationdrawer.databinding.ActivityAssignmentAdminBinding;
 import com.example.navigationdrawer.model.Assignment;
 import com.example.navigationdrawer.view.asset.AssetAdminActivity;
-import com.example.navigationdrawer.view.assignment.new_request.NewRequestAdminActivity;
+import com.example.navigationdrawer.view.assignment.new_request.NewAssignmentAdminActivity;
 import com.example.navigationdrawer.R;
 import com.example.navigationdrawer.view.login.LoginActivity;
 import com.example.navigationdrawer.view.main.MainAdminActivity;
@@ -34,7 +34,6 @@ import com.example.navigationdrawer.view.profile.ProfileAdminActivity;
 import com.example.navigationdrawer.view.report.ReportActivity;
 import com.example.navigationdrawer.view.request.RequestAdminActivity;
 import com.example.navigationdrawer.view.user.UserAdminActivity;
-import com.example.navigationdrawer.viewmodel.user.AssignmentActivity_ModelView;
 import com.google.android.material.navigation.NavigationView;
 
 import java.util.ArrayList;
@@ -219,7 +218,7 @@ public class AssignmentAdminActivity extends AppCompatActivity {
         btn_New_Request.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(AssignmentAdminActivity.this, NewRequestAdminActivity.class);
+                Intent intent = new Intent(AssignmentAdminActivity.this, NewAssignmentAdminActivity.class);
                 startActivityForResult(intent, 1);
             }
         });

@@ -1,6 +1,7 @@
 package com.example.navigationdrawer.view.assignment;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +17,9 @@ import java.util.List;
 
 import com.example.navigationdrawer.model.Assignment;
 import com.example.navigationdrawer.model.MyApplication;
+import com.example.navigationdrawer.view.SplashActivity;
+import com.example.navigationdrawer.view.assignment.edit.EditAssignmentActivity;
+import com.example.navigationdrawer.view.login.LoginActivity;
 
 public class AssignmentAdminAdapter extends RecyclerView.Adapter<AssignmentAdminAdapter.ViewHolder> {
 
@@ -48,12 +52,13 @@ public class AssignmentAdminAdapter extends RecyclerView.Adapter<AssignmentAdmin
             holder.txt_endDate_admin.setText(assignment.getEndDate());
             holder.txt_state_admin.setText(assignment.getStatus());
 
-//            holder.img_request_update.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//
-//                }
-//            });
+            holder.img_assignment_update_layout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(context, EditAssignmentActivity.class);
+                    context.startActivity(intent);
+                }
+            });
         }else{
             return;
         }
@@ -67,7 +72,7 @@ public class AssignmentAdminAdapter extends RecyclerView.Adapter<AssignmentAdmin
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView txt_id_admin, txt_asset_id_admin, txt_asset_name_admin, txt_assigned_to_admin, txt_assigned_by_admin, txt_assigned_date_admin,txt_state_admin;
         TextView txt_category_name_admin,txt_endDate_admin;
-        ImageView img_request_update;
+        ImageView img_assignment_update_layout;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             txt_id_admin = itemView.findViewById(R.id.txt_id_admin);
@@ -80,8 +85,7 @@ public class AssignmentAdminAdapter extends RecyclerView.Adapter<AssignmentAdmin
             txt_endDate_admin = itemView.findViewById(R.id.txt_end_date_admin);
             txt_state_admin = itemView.findViewById(R.id.txt_state_admin);
 
-
-//            img_request_update = itemView.findViewById(R.id.img_request_check_layout);
+            img_assignment_update_layout = itemView.findViewById(R.id.img_assignment_update_layout);
         }
     }
 }

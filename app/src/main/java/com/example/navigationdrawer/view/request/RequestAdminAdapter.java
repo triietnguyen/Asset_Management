@@ -1,6 +1,7 @@
 package com.example.navigationdrawer.view.request;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +18,8 @@ import java.util.List;
 import com.example.navigationdrawer.model.Assignment;
 import com.example.navigationdrawer.model.MyApplication;
 import com.example.navigationdrawer.model.User;
+import com.example.navigationdrawer.view.assignment.edit.EditAssignmentActivity;
+import com.example.navigationdrawer.view.request.edit.EditRequestAdminActivity;
 
 public class RequestAdminAdapter extends RecyclerView.Adapter<RequestAdminAdapter.ViewHolder> {
 
@@ -49,16 +52,13 @@ public class RequestAdminAdapter extends RecyclerView.Adapter<RequestAdminAdapte
             holder.txt_request_username.setText(assignment.getAssigned_to());
             holder.txt_request_description.setText(assignment.getDescription());
             holder.txt_request_endDate.setText(assignment.getEndDate());
-//            holder.img_Check.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    assignment_list.remove(assignment);
-//                    notifyItemRemoved(holder.getAdapterPosition());
-//
-//                    String adminID = u.GetNameUserByEmail(MyApplication.getInstance().GetSharedData());
-//                    assign.HandlerAssignment(adminID,assignment.getAssignmentID());
-//                }
-//            });
+            holder.img_request_edit_layout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(context, EditRequestAdminActivity.class);
+                    context.startActivity(intent);
+                }
+            });
             holder.img_Cancel.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -84,7 +84,7 @@ public class RequestAdminAdapter extends RecyclerView.Adapter<RequestAdminAdapte
         txt_request_description,
         txt_request_endDate;
 
-        ImageView img_Cancel;
+        ImageView img_request_edit_layout,img_Cancel;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             txt_request_endDate = itemView.findViewById(R.id.txt_request_end_date_layout);
@@ -95,7 +95,7 @@ public class RequestAdminAdapter extends RecyclerView.Adapter<RequestAdminAdapte
             txt_request_asset_date_layout = itemView.findViewById(R.id.txt_request_asset_date_layout);
             txt_request_status_layout = itemView.findViewById(R.id.txt_request_status_layout);
 
-//            img_Check = itemView.findViewById(R.id.img_request_check_layout);
+            img_request_edit_layout = itemView.findViewById(R.id.img_request_edit_layout);
             img_Cancel = itemView.findViewById(R.id.img_request_cancel_layout);
         }
     }
