@@ -1,7 +1,9 @@
 package com.example.navigationdrawer.view.request;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -55,8 +57,16 @@ public class RequestAdminAdapter extends RecyclerView.Adapter<RequestAdminAdapte
             holder.img_request_edit_layout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    Bundle dataBundle = new Bundle();
+                    dataBundle.putString("categoryName", assignment.getCategory());
+                    dataBundle.putString("state", assignment.getStatus());
+                    dataBundle.putString("id", assignment.getId());
+
                     Intent intent = new Intent(context, EditRequestAdminActivity.class);
-                    context.startActivity(intent);
+
+                    intent.putExtras(dataBundle);
+
+                    ((Activity) context).startActivityForResult(intent, 1);
                 }
             });
             holder.img_Cancel.setOnClickListener(new View.OnClickListener() {
@@ -99,4 +109,6 @@ public class RequestAdminAdapter extends RecyclerView.Adapter<RequestAdminAdapte
             img_Cancel = itemView.findViewById(R.id.img_request_cancel_layout);
         }
     }
+
+
 }

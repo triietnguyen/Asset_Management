@@ -1,7 +1,9 @@
 package com.example.navigationdrawer.view.assignment;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +22,7 @@ import com.example.navigationdrawer.model.MyApplication;
 import com.example.navigationdrawer.view.SplashActivity;
 import com.example.navigationdrawer.view.assignment.edit.EditAssignmentActivity;
 import com.example.navigationdrawer.view.login.LoginActivity;
+import com.example.navigationdrawer.view.request.edit.EditRequestAdminActivity;
 
 public class AssignmentAdminAdapter extends RecyclerView.Adapter<AssignmentAdminAdapter.ViewHolder> {
 
@@ -55,8 +58,20 @@ public class AssignmentAdminAdapter extends RecyclerView.Adapter<AssignmentAdmin
             holder.img_assignment_update_layout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    Bundle dataBundle = new Bundle();
+
+                    dataBundle.putString("endDate", assignment.getEndDate());
+                    dataBundle.putString("startDate", assignment.getAssigned_date());
+                    dataBundle.putString("categoryName", assignment.getCategory());
+                    dataBundle.putString("assetName", assignment.getAsset_name());
+                    dataBundle.putString("state", assignment.getStatus());
+                    dataBundle.putString("id", assignment.getId());
                     Intent intent = new Intent(context, EditAssignmentActivity.class);
-                    context.startActivity(intent);
+
+
+                    intent.putExtras(dataBundle);
+
+                    ((Activity) context).startActivityForResult(intent, 1);
                 }
             });
         }else{

@@ -60,11 +60,6 @@ public class NewRequestActivity_ModelView extends BaseObservable {
 
         SharedPreferences sharedPreferences = context.getSharedPreferences("Assignment", Context.MODE_PRIVATE);
         String categoryID = sharedPreferences.getString("Category_id","");
-            String assetID = sharedPreferences.getString("Asset_id","");
-
-            if (assetID.equalsIgnoreCase("")) {
-                return;
-            }
 
         User u = new User();
         String userID = u.GetNameUserByEmail(MyApplication.getInstance().GetSharedData());

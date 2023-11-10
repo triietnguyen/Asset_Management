@@ -141,7 +141,8 @@ public class Assignment {
 
                     switch (status){
                         case "1":status = "Assigned";break;
-                        case "2":status = "Returning";break;
+                        case "2":status = "Recovered";break;
+                        case "3":status = "Recovering";break;
                         default:break;
                     }
 
@@ -177,19 +178,19 @@ public class Assignment {
         try{
             String filterCondition = "";
             if (!"All".equals(filter)) {
-                filterCondition = " AND "+ filter + " LIKE '%" + search + "%'";
+                filterCondition = " AND "+ filter + " LIKE '" + search + "%'";
             }
             else{
                 filterCondition = " AND " +
-                        "(a.[Asset_id] LIKE '%" + search + "%' OR " +
-                        "a.[Asset_Name] LIKE '%" + search + "%' OR " +
-                        "c.[Category_Name] LIKE '%" + search + "%' OR " +
-                        "u_user.Fullname LIKE '%" + search + "%' OR " +
-                        "u_admin.Fullname LIKE '%" + search + "%' OR " +
-                        "assign.[Status] LIKE '%" + search + "%' OR " +
-                        "assign.[StartDate] LIKE '%" + search + "%' OR " +
-                        "assign.[EndDate] LIKE '%" + search + "%' OR " +
-                        "assign.[Assignment_id] LIKE '%" + search + "%')";
+                        "(a.[Asset_id] LIKE '" + search + "%' OR " +
+                        "a.[Asset_Name] LIKE '" + search + "%' OR " +
+                        "c.[Category_Name] LIKE '" + search + "%' OR " +
+                        "u_user.Fullname LIKE '" + search + "%' OR " +
+                        "u_admin.Fullname LIKE '" + search + "%' OR " +
+                        "assign.[Status] LIKE '" + search + "%' OR " +
+                        "assign.[StartDate] LIKE '" + search + "%' OR " +
+                        "assign.[EndDate] LIKE '" + search + "%' OR " +
+                        "assign.[Assignment_id] LIKE '" + search + "%')";
             }
             SQLServer connection = new SQLServer();
             connect = connection.ConnectionSql();
@@ -252,19 +253,19 @@ public class Assignment {
         try{
             String filterCondition = "";
             if (!"All".equals(filter)) {
-                filterCondition = " AND "+ filter + " LIKE '%" + search + "%'";
+                    filterCondition = " AND "+ filter + " LIKE '" + search + "%'";
             }
             else{
                 filterCondition = " AND " +
-                "(a.[Asset_id] LIKE '%" + search + "%' OR " +
-                        "a.[Asset_Name] LIKE '%" + search + "%' OR " +
-                        "c.[Category_Name] LIKE '%" + search + "%' OR " +
-                        "u_user.Fullname LIKE '%" + search + "%' OR " +
-                        "u_admin.Fullname LIKE '%" + search + "%' OR " +
-                        "assign.[Status] LIKE '%" + search + "%' OR " +
-                        "assign.[StartDate] LIKE '%" + search + "%' OR " +
-                        "assign.[EndDate] LIKE '%" + search + "%' OR " +
-                        "assign.[Assignment_id] LIKE '%" + search + "%')";
+                        "(a.[Asset_id] LIKE '" + search + "%' OR " +
+                        "a.[Asset_Name] LIKE '" + search + "%' OR " +
+                        "c.[Category_Name] LIKE '" + search + "%' OR " +
+                        "u_user.Fullname LIKE '" + search + "%' OR " +
+                        "u_admin.Fullname LIKE '" + search + "%' OR " +
+                        "assign.[Status] LIKE '" + search + "%' OR " +
+                        "assign.[StartDate] LIKE '" + search + "%' OR " +
+                        "assign.[EndDate] LIKE '" + search + "%' OR " +
+                        "assign.[Assignment_id] LIKE '" + search + "%')";
             }
             SQLServer connection = new SQLServer();
             connect = connection.ConnectionSql();
@@ -293,7 +294,8 @@ public class Assignment {
 
                     switch (status){
                         case "1":status = "Assigned";break;
-                        case "2":status = "Returning";break;
+                        case "2":status = "Recovered";break;
+                        case "3":status = "Recovering";break;
                         default:break;
                     }
 
@@ -343,9 +345,11 @@ public class Assignment {
                     String startDate = rs.getString("StartDate");
                     String EndDate = rs.getString("EndDate");
                     String status = rs.getString("Status");
-                    Log.e("categoryName",categoryName);
+                    Log.e("Asset_id",assetID);
+                    Log.e("assetName",assetName);
                     Log.e("startDate",startDate);
-                    Log.e("EndDate",EndDate);
+                    Log.e("categoryName",categoryName);
+                    Log.e("status",status);
                     switch (status){
                         case "1":status = "Assigned";break;
                         case "2":status = "Returning";break;
@@ -360,7 +364,7 @@ public class Assignment {
                             null,
                             null,
                             startDate,
-                            EndDate,
+                            null,
                             null,
                             status);
 
@@ -459,16 +463,25 @@ public class Assignment {
         }
     }
 
-    public void HandlerAssignment(String AdminID,String assignmentID){
+    public void UpdateRequestAssignment(String AdminID,String assignmentID,String assetID,
+                                 String category_id,
+                                 String currentDate,String returnDate,
+                                 String state){
         try {
             SQLServer connection = new SQLServer();
             connect = connection.ConnectionSql();
             if (connect != null) {
-                String queryString = "UPDATE [dbo].[Assignment] SET Status = '1', Admin_id = ? " +
+                String queryString = "UPDATE [dbo].[Assignment] SET Status = ?, Admin_id = ?, " +
+                        "Asset_id = ?, Category_id = ?, StartDate = ?, EndDate = ? " +
                         "WHERE Assignment_id = ?";
                 PreparedStatement preparedStatement = connect.prepareStatement(queryString);
-                preparedStatement.setString(1, AdminID);
-                preparedStatement.setString(2, assignmentID);
+                preparedStatement.setString(1, state);
+                preparedStatement.setString(2, AdminID);
+                preparedStatement.setString(3, assetID);
+                preparedStatement.setString(4, category_id);
+                preparedStatement.setString(5, currentDate);
+                preparedStatement.setString(6, returnDate);
+                preparedStatement.setString(7, assignmentID);
 
                 int rowsDeleted = preparedStatement.executeUpdate();
 
@@ -483,6 +496,36 @@ public class Assignment {
             throw new RuntimeException(e);
         }
     }
+
+    public void UpdateEditAssignment(String assignmentID,
+                                        String returnDate,
+                                        String state){
+        try {
+            SQLServer connection = new SQLServer();
+            connect = connection.ConnectionSql();
+            if (connect != null) {
+                String queryString = "UPDATE [dbo].[Assignment] SET Status = ?, " +
+                        "EndDate = ? " +
+                        "WHERE Assignment_id = ?";
+                PreparedStatement preparedStatement = connect.prepareStatement(queryString);
+                preparedStatement.setString(1, state);
+                preparedStatement.setString(2, returnDate);
+                preparedStatement.setString(3, assignmentID);
+
+                int rowsDeleted = preparedStatement.executeUpdate();
+
+                if (rowsDeleted > 0) {
+                    // Delete was successful
+                }
+                else{
+                    //Delete was insuccessfull
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 
     public void DeleteAssigment(String AssignmentID){
         try {

@@ -23,16 +23,9 @@ public class AssignmentActivity_ModelView extends BaseObservable {
         this.search = search;
         notifyPropertyChanged(BR.search);
     }
-    public List<Assignment> GetAllAssignment(String userID){
-        Assignment assignment = new Assignment();
-        List<Assignment> listAssign = assignment.GetAllAssignmentByUser(userID);
-        return listAssign;
-    }
+
 
     public List<Assignment> GetAssignmentBySearch(String search,String filter,String userID){
-
-        Log.e("modelview",search);
-
         Assignment assignment = new Assignment();
         List<Assignment> listAssign = new ArrayList<>();
 
