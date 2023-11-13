@@ -14,13 +14,12 @@ import com.example.navigationdrawer.model.SQLServer.SQLServer;
 
 public class Asset {
     private Connection connect;
-    private String asset_id, asset_name, asset_category, quantity, status;
+    private String asset_id, asset_name, asset_category, status;
 
-    public Asset(String asset_id, String asset_name, String asset_category, String quantity, String status) {
+    public Asset(String asset_id, String asset_name, String asset_category, String status) {
         this.asset_id = asset_id;
         this.asset_name = asset_name;
         this.asset_category = asset_category;
-        this.quantity = quantity;
         this.status = status;
     }
 
@@ -59,13 +58,13 @@ public class Asset {
         this.asset_category = asset_category;
     }
 
-    public List<Asset> GetAllAsset() {
+    public List<Asset> GetAllAssets() {
         List<Asset> listAsset = new ArrayList<>();
         try {
             SQLServer connection = new SQLServer();
             connect = connection.ConnectionSql();
             if (connect != null) {
-                String query = "select [Asset_id],[Asset_Name],[Category_Name],[Quantity],[Status]" +
+                String query = "select [Asset_id],[Asset_Name],[Category_Name],[Status]" +
                         "from Asset a inner join [dbo].[Category] c on a.[Category_id] = c.Category_id ";
                 Statement st = connect.createStatement();
                 ResultSet rs = st.executeQuery(query);
@@ -73,14 +72,15 @@ public class Asset {
                     String id = rs.getString("Asset_id");
                     String name = rs.getString("Asset_Name");
                     String categoryName = rs.getString("Category_Name");
-                    String quantity = rs.getString("Quantity");
                     String status = rs.getString("Status");
 
-                    if(status.equalsIgnoreCase("0"))
-                        status = "Not Available";
-                    else status = "Available";
+                    switch (status){
+                        case "0":status = "Not Available";break;
+                        case "1":status = "Available";break;
+                        default:break;
+                    }
 
-                    Asset a = new Asset(id, name, categoryName, quantity, status);
+                    Asset a = new Asset(id, name, categoryName, status);
                     listAsset.add((a));
 
                 }
@@ -89,6 +89,53 @@ public class Asset {
             }
         } catch (Exception e) {
             Log.e(e.getMessage(), "Log error");
+        }
+        return null;
+    }
+    public List<Asset> GetAssetsAdminBySearch(String search, String filter){
+        Log.e("search",search);
+        List<Asset> listAsset = new ArrayList<>();
+        try{
+            String filterCondition = " ";
+            if (!"All".equals(filter)) {
+                filterCondition = filter + " LIKE '" + search + "%'";
+            }
+            else{
+                filterCondition =
+                        "(a.[Asset_id] LIKE '" + search + "%' OR " +
+                        "a.[Asset_Name] LIKE '" + search + "%' OR " +
+                        "c.[Category_Name] LIKE '" + search + "%' OR " +
+                        "a.[Status] LIKE '" + search + "%')";
+            }
+            SQLServer connection = new SQLServer();
+            connect = connection.ConnectionSql();
+            if(connect != null){
+                String query = "select [Asset_id],[Asset_Name],[Category_Name],[Status]" +
+                        "from Asset a inner join [dbo].[Category] c on a.[Category_id] = c.Category_id " +
+                        "WHERE " + filterCondition;
+                Statement st = connect.createStatement();
+                ResultSet rs = st.executeQuery(query);
+
+                while(rs.next()){
+                    String assetID = rs.getString("Asset_id");
+                    String assetName = rs.getString("Asset_Name");
+                    String categoryName = rs.getString("Category_Name");
+                    String status = rs.getString("Status");
+
+                    switch (status){
+                        case "0":status = "Not Available";break;
+                        case "1":status = "Available";break;
+                        default:break;
+                    }
+
+                    Asset a = new Asset(assetID, assetName, categoryName, status);
+                    listAsset.add((a));
+                }
+                return listAsset;
+
+            }
+        }catch(Exception e){
+            Log.e(e.getMessage(),"Log error");
         }
         return null;
     }
@@ -110,9 +157,8 @@ public class Asset {
                     String id = rs.getString("Asset_id");
                     String name = rs.getString("Asset_Name");
                     String categoryId = rs.getString("Category_id");
-                    String quantity = rs.getString("Quantity");
                     String status = rs.getString("Status");
-                    Asset a = new Asset(id,name,categoryId,quantity,status);
+                    Asset a = new Asset(id,name,categoryId,status);
                     listAsset.add((a));
 
                 }
@@ -129,14 +175,39 @@ public class Asset {
             SQLServer connection = new SQLServer();
             connect = connection.ConnectionSql();
             if (connect != null) {
-                String query = "INSERT INTO [dbo].[Asset] ([Asset_Name],[Category_id],[Quantity],[Status])" +
-                        "VALUES (?, ?, ?, ?)";
+                String query = "INSERT INTO [dbo].[Asset] ([Asset_Name],[Category_id],[Status])" +
+                        "VALUES (?, ?, ?)";
                 PreparedStatement preparedStatement = connect.prepareStatement(query);
                 preparedStatement.setString(1, asset_name);
                 preparedStatement.setString(2, asset_category);
-                preparedStatement.setString(3, quantity);
-                preparedStatement.setString(4, status);
+                preparedStatement.setString(3, status);
                 preparedStatement.executeUpdate();
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    public void UpdateEditAsset(String asset_id, String asset_name, String status){
+        try {
+            SQLServer connection = new SQLServer();
+            connect = connection.ConnectionSql();
+            if (connect != null) {
+                String queryString = "UPDATE [dbo].[Asset] SET Status = ?, " +
+                        "Asset_Name = ? " +
+                        "WHERE Asset_id = ?";
+                PreparedStatement preparedStatement = connect.prepareStatement(queryString);
+                preparedStatement.setString(1, status);
+                preparedStatement.setString(2, asset_name);
+                preparedStatement.setString(3, asset_id);
+
+                int rowsDeleted = preparedStatement.executeUpdate();
+
+                if (rowsDeleted > 0) {
+                    // Delete was successful
+                }
+                else{
+                    //Delete was insuccessfull
+                }
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);

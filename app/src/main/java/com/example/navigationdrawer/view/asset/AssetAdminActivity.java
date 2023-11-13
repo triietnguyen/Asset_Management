@@ -4,8 +4,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -13,10 +17,15 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
+import androidx.databinding.DataBindingUtil;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.navigationdrawer.databinding.ActivityAssetAdminBinding;
+import com.example.navigationdrawer.databinding.ActivityAssignmentAdminBinding;
+import com.example.navigationdrawer.model.Asset;
+import com.example.navigationdrawer.model.Assignment;
 import com.example.navigationdrawer.view.assignment.AssignmentAdminActivity;
 import com.example.navigationdrawer.view.login.LoginActivity;
 import com.example.navigationdrawer.view.main.MainAdminActivity;
@@ -25,9 +34,13 @@ import com.example.navigationdrawer.view.profile.ProfileAdminActivity;
 import com.example.navigationdrawer.view.report.ReportActivity;
 import com.example.navigationdrawer.view.request.RequestAdminActivity;
 import com.example.navigationdrawer.view.user.UserAdminActivity;
+import com.example.navigationdrawer.viewmodel.admin.AssignmentAdminActivity_ModelView;
 import com.google.android.material.navigation.NavigationView;
 
 import com.example.navigationdrawer.viewmodel.admin.AssetAdminActivity_ModelView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class AssetAdminActivity extends AppCompatActivity {
     DrawerLayout drawerLayout;
@@ -35,19 +48,23 @@ public class AssetAdminActivity extends AppCompatActivity {
     ActionBarDrawerToggle toggle;
     RecyclerView recyclerView;
     AssetAdminApdapter assetAdminApdapter;
-
     AssetAdminActivity_ModelView assetAdminActivityModelView;
-
     Button btn_create;
-
+    Spinner spinner_filter;
+    String choiceFilter ="All";
+    String search = "";
     ImageView imageMenu;
+    ImageButton imgBtn_Search;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_asset_admin);
+        ActivityAssetAdminBinding _binding = DataBindingUtil.setContentView(this,R.layout.activity_asset_admin);
+        assetAdminActivityModelView = new AssetAdminActivity_ModelView();
+        _binding.setAssetAdminActivityModelView(assetAdminActivityModelView);
         AnhXa();
         Handle_Component();
         setRecycleView();
+        AssetFilterAdapter();
     }
 
     @Override
@@ -64,11 +81,40 @@ public class AssetAdminActivity extends AppCompatActivity {
         }
     }//onActivityResult
 
+    public void AssetFilterAdapter(){
+
+        List<String> listFilter = new ArrayList<>();
+        listFilter.add("All");
+        listFilter.add("Asset Code");
+        listFilter.add("Asset Name");
+        listFilter.add("Category");
+        ArrayAdapter arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, listFilter);
+        arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        spinner_filter.setAdapter(arrayAdapter);
+        spinner_filter.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                choiceFilter = parentView.getItemAtPosition(position).toString();
+                // Làm gì đó với mục đã chọn
+                Toast.makeText(getApplicationContext(), choiceFilter, Toast.LENGTH_SHORT).show();
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {
+
+            }
+        });
+
+    }
     private void setRecycleView() {
-        assetAdminActivityModelView = new AssetAdminActivity_ModelView();
+        if(assetAdminActivityModelView.getSearchStr() != null) {
+            search = assetAdminActivityModelView.getSearchStr();
+        }
+        List<Asset> listAsset = assetAdminActivityModelView.GetAssetBySearch(search,choiceFilter);
+        if(listAsset == null) return;
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        assetAdminApdapter = new AssetAdminApdapter(this, assetAdminActivityModelView.GetAllAsset());
+        assetAdminApdapter = new AssetAdminApdapter(this,listAsset);
         recyclerView.setAdapter(assetAdminApdapter);
     }
 
@@ -76,8 +122,10 @@ public class AssetAdminActivity extends AppCompatActivity {
         btn_create = (Button) findViewById(R.id.btn_create);
         drawerLayout = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.nav_View);
+        spinner_filter = findViewById(R.id.spinner_filter);
         imageMenu = findViewById(R.id.imageMenu);
         recyclerView = findViewById(R.id.recycler_view_asset_layout_admin);
+        imgBtn_Search = (ImageButton) findViewById(R.id.imgBtn_Search_Asset_Page);
     }
     void Handle_Component(){
         // Navigation Drawer------------------------------
@@ -150,6 +198,13 @@ public class AssetAdminActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(AssetAdminActivity.this, CreateAssetAdminActivity.class);
                 startActivityForResult(intent,1);
+            }
+        });
+
+        imgBtn_Search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setRecycleView();
             }
         });
     }

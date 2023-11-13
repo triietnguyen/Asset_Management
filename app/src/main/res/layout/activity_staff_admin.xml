@@ -115,7 +115,7 @@
                 android:id="@+id/btn_Create_User"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Create New User"
+                android:text="Create"
                 android:backgroundTint="#FB6771"
                 android:textStyle="bold"
                 android:textSize="20dp">

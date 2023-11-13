@@ -156,7 +156,6 @@ public class CreateUserAdminActivity extends AppCompatActivity {
 }
 
     public void RoleUserAdapter(){
-
         List<Role> listRole = userAdminActivityModelView.GetAllRole();
         listRoleName.clear();
         for(Role c : listRole){
@@ -170,13 +169,10 @@ public class CreateUserAdminActivity extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
                 // Sự kiện xảy ra khi một mục được chọn
                 SharedPreferences.Editor editor = sharedPreferences.edit();
-
                 Role c = listRole.get(position);
                 String selectedId = c.getId();
-
                 editor.putString("Role_id",selectedId);
                 editor.commit();
-
                 // Làm gì đó với mục đã chọn
                 Toast.makeText(getApplicationContext(), "Id đã chọn: " + selectedId, Toast.LENGTH_SHORT).show();
             }

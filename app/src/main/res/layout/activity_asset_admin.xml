@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="AssetAdminActivity_ModelView"
+            type="com.example.navigationdrawer.viewmodel.admin.AssetAdminActivity_ModelView" />
+    </data>
     <androidx.drawerlayout.widget.DrawerLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -53,58 +58,85 @@
 
         <LinearLayout
             android:layout_marginVertical="20dp"
-            android:layout_width="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:gravity="center"
             android:orientation="horizontal">
             <ImageView
                 android:layout_width="50dp"
-                android:layout_height="60dp"
+                android:layout_height="50dp"
                 android:src="@drawable/device"></ImageView>
             <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:background="@drawable/custom_bg_filter"
                 android:layout_marginHorizontal="5dp"
-                android:paddingHorizontal="20dp"
+                android:paddingHorizontal="10dp"
+                android:layout_gravity="center"
+                android:gravity="center"
                 android:orientation="horizontal">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:layout_gravity="center"
-                    android:textStyle="bold"
-                    android:textSize="20dp"
-                    android:text="Search...">
-                </TextView>
+                    android:layout_marginStart="25dp"
+                    android:hint="Search..."
+                    android:text="@={AssetAdminActivity_ModelView.searchStr}"
+                    android:textSize="20dp"></EditText>
                 <ImageButton
+                    android:id="@+id/imgBtn_Search_Asset_Page"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
+                    android:layout_marginRight="20dp"
                     android:src="@drawable/baseline_search_24">
                 </ImageButton>
             </LinearLayout>
-            <LinearLayout
-                android:layout_width="94dp"
-                android:layout_height="wrap_content"
+
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal">
+            <RelativeLayout
+                android:layout_width="150dp"
+                android:layout_height="match_parent"
                 android:layout_marginHorizontal="5dp"
                 android:background="@drawable/custom_bg_filter"
                 android:orientation="horizontal"
                 android:paddingHorizontal="5dp">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                <Spinner
+                    android:id="@+id/spinner_filter"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:layout_gravity="center"
-                    android:text="Filter"
                     android:textSize="20dp"
-                    android:textStyle="bold"></TextView>
+                    android:textStyle="bold"></Spinner>
 
-                <ImageButton
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:src="@drawable/baseline_filter_list_24"></ImageButton>
-            </LinearLayout>
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="150dp"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="5dp"
+                android:background="@drawable/custom_bg_filter"
+                android:orientation="horizontal"
+                android:paddingHorizontal="5dp">
 
+                <Spinner
+                    android:id="@+id/spinner_state_filter"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:textSize="20dp"
+                    android:textStyle="bold"></Spinner>
+
+            </RelativeLayout>
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"

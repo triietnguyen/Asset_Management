@@ -8,11 +8,10 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 
 public class SQLServer {
-    Connection con;
     String uname, pass, ip, port, database;
     @SuppressLint("NewApi")
     public Connection ConnectionSql(){
-        ip = "10.102.69.65";
+        ip = "192.168.2.7";
         database = "Asset_Management";
         uname = "sa";
         pass = "1";

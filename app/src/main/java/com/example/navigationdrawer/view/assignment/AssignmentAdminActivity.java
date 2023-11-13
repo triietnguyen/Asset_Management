@@ -46,9 +46,7 @@ public class AssignmentAdminActivity extends AppCompatActivity {
     DrawerLayout drawerLayout;
     NavigationView navigationView;
     ActionBarDrawerToggle toggle;
-
     RecyclerView recycler_view_admin;
-
     AssignmentAdminAdapter adapter;
     ImageView imageMenu;
     Button btn_New_Request;
@@ -56,7 +54,6 @@ public class AssignmentAdminActivity extends AppCompatActivity {
     Spinner spinnerFilter;
     EditText edt_Search;
     AssignmentAdminActivity_ModelView assignmentAdminActivity_modelView;
-
     String choiceFilter ="all";
     String search = "";
 
@@ -64,16 +61,13 @@ public class AssignmentAdminActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         ActivityAssignmentAdminBinding _binding = DataBindingUtil.setContentView(this,R.layout.activity_assignment_admin);
         assignmentAdminActivity_modelView = new AssignmentAdminActivity_ModelView();
         _binding.setAssignmentAdminActivityModelView(assignmentAdminActivity_modelView);
-
         AnhXa();
         Handle_Component();
         setRecycleView();
         AssignmentFilterAdapter();
-
     }
 
     @Override
@@ -114,7 +108,6 @@ public class AssignmentAdminActivity extends AppCompatActivity {
                 // Làm gì đó với mục đã chọn
                 Toast.makeText(getApplicationContext(), choiceFilter, Toast.LENGTH_SHORT).show();
             }
-
             @Override
             public void onNothingSelected(AdapterView<?> parentView) {
 
@@ -144,7 +137,7 @@ public class AssignmentAdminActivity extends AppCompatActivity {
         recycler_view_admin = findViewById(R.id.recycler_view_admin);
         spinnerFilter = findViewById(R.id.spinner_filter);
         edt_Search = (EditText) findViewById(R.id.edt_Search_AssigmentPage);
-        imgBtn_Search = (ImageButton) findViewById(R.id.imgBtn_Search_AssigmentAdmin_Page);
+        imgBtn_Search = (ImageButton) findViewById(R.id.imgBtn_Search_AssignmentAdmin_Page);
     }
 
     void Handle_Component(){

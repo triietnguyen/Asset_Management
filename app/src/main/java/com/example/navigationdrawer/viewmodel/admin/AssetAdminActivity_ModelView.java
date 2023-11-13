@@ -11,16 +11,28 @@ import androidx.databinding.Bindable;
 
 import com.example.navigationdrawer.BR;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.example.navigationdrawer.model.Asset;
+import com.example.navigationdrawer.model.Assignment;
 import com.example.navigationdrawer.model.Category;
 
 public class AssetAdminActivity_ModelView extends BaseObservable {
 
     SharedPreferences sharedPreferences;
 
-    private String  asset_name , asset_category, quantity, status;
+    private String  asset_name , asset_category, status;
+    public String searchStr;
+
+    @Bindable
+    public String getSearchStr() {
+        return searchStr;
+    }
+    public void setSearchStr(String searchStr) {
+        this.searchStr = searchStr;
+        notifyPropertyChanged(BR.searchStr);
+    }
 
     @Bindable
     public String getAsset_name() {
@@ -41,15 +53,6 @@ public class AssetAdminActivity_ModelView extends BaseObservable {
         notifyPropertyChanged(BR.asset_category);
     }
     @Bindable
-    public String getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(String quantity) {
-        this.quantity = quantity;
-        notifyPropertyChanged(BR.quantity);
-    }
-    @Bindable
     public String getStatus() {
         return status;
     }
@@ -59,9 +62,9 @@ public class AssetAdminActivity_ModelView extends BaseObservable {
         notifyPropertyChanged(BR.status);
     }
 
-    public List<Asset> GetAllAsset(){
+    public List<Asset> GetAllAssets(){
         Asset asset = new Asset();
-        List<Asset> listUser = asset.GetAllAsset();
+        List<Asset> listUser = asset.GetAllAssets();
         return listUser;
     }
 
@@ -69,14 +72,33 @@ public class AssetAdminActivity_ModelView extends BaseObservable {
         Category c = new Category();
         return c.GetAllCategory();
     }
+
+    public List<Asset> GetAssetBySearch(String search, String filter){
+        Asset asset = new Asset();
+        List<Asset> listAsset = new ArrayList<>();
+
+        if(filter.equalsIgnoreCase("all") && search.equalsIgnoreCase("")){
+            listAsset = asset.GetAllAssets();
+        }
+        else{
+            switch (filter){
+                case "all": filter = "all";break;
+                case "Asset Code": filter ="Asset_id";break;
+                case "Asset Name": filter ="Asset_Name";break;
+                case "Category": filter ="Category_Name";break;
+                default:break;
+            }
+            listAsset = asset.GetAssetsAdminBySearch(search,filter);
+        }
+        return listAsset;
+    }
     public void OnClickSaveButton(Context context) {
             sharedPreferences = context.getSharedPreferences("Asset", Context.MODE_PRIVATE);
             asset_name = sharedPreferences.getString("Asset_Name",getAsset_name());
             asset_category = sharedPreferences.getString("Category_id","");
-            quantity = sharedPreferences.getString("Quantity",getQuantity());
             status = sharedPreferences.getString("Status","");
 
-            Asset a = new Asset(null,getAsset_name().toString(),getAsset_category().toString(),getQuantity().toString(),getStatus().toString());
+            Asset a = new Asset(null,getAsset_name().toString(),getAsset_category().toString(),getStatus().toString());
             a.AddAsset();
             Intent returnIntent = new Intent();
             ((Activity)context).setResult(RESULT_OK, returnIntent);

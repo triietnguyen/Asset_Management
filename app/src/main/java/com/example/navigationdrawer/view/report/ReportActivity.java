@@ -13,12 +13,10 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.navigationdrawer.R;
 import com.example.navigationdrawer.view.asset.AssetAdminActivity;
-import com.example.navigationdrawer.view.asset.AssetApdapter;
 import com.example.navigationdrawer.view.assignment.AssignmentAdminActivity;
 import com.example.navigationdrawer.view.login.LoginActivity;
 import com.example.navigationdrawer.view.main.MainAdminActivity;
@@ -27,17 +25,11 @@ import com.example.navigationdrawer.view.request.RequestAdminActivity;
 import com.example.navigationdrawer.view.user.UserAdminActivity;
 import com.google.android.material.navigation.NavigationView;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import com.example.navigationdrawer.model.Asset;
-
 public class ReportActivity extends AppCompatActivity {
     DrawerLayout drawerLayout;
     NavigationView navigationView;
     ActionBarDrawerToggle toggle;
     RecyclerView recyclerView;
-    AssetApdapter assetApdapter;
     ImageView imageMenu;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -45,24 +37,6 @@ public class ReportActivity extends AppCompatActivity {
         setContentView(R.layout.activity_report_admin);
         AnhXa();
         Handle_Component();
-//        setRecycleView();
-    }
-
-    private void setRecycleView() {
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        assetApdapter = new AssetApdapter(this, getList());
-        recyclerView.setAdapter(assetApdapter);
-    }
-
-    private List<Asset> getList() {
-        List<Asset> assetList = new ArrayList<>();
-        assetList.add(new Asset("a","a","a","1","a"));
-        assetList.add(new Asset("a","a","a","1","a"));
-        assetList.add(new Asset("a","a","a","1","a"));
-        assetList.add(new Asset("a","a","a","1","a"));
-
-        return  assetList;
     }
 
     void AnhXa(){

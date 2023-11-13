@@ -22,6 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.example.navigationdrawer.model.Category;
+import com.example.navigationdrawer.model.Role;
 import com.example.navigationdrawer.viewmodel.admin.AssetAdminActivity_ModelView;
 
 public class CreateAssetAdminActivity extends AppCompatActivity {
@@ -67,20 +68,15 @@ public class CreateAssetAdminActivity extends AppCompatActivity {
         asset_spinner_state.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
-                for(int i =0; i<listState.size();i++){
-                    if(listState.get(i).equalsIgnoreCase("Not Available")){
-                        listState.set(i,"0");
-                    }
-                    else{
-                        listState.set(i,"1");
-                    }
-                }
                 // Sự kiện xảy ra khi một mục được chọn
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 String selectedId = listState.get(position);
+                switch (selectedId){
+                    case "Available": selectedId = "1"; break;
+                    default : selectedId = "0"; break;
+                }
                 editor.putString("Status",selectedId);
                 editor.commit();
-
                 // Làm gì đó với mục đã chọn
                 Toast.makeText(getApplicationContext(), "Id đã chọn: " + selectedId, Toast.LENGTH_SHORT).show();
             }

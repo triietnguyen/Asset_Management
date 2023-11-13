@@ -55,44 +55,54 @@
                 app:tint="#FFFFFF" />
         </LinearLayout>
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:gravity="center"
+            android:layout_marginHorizontal="20dp"
             android:layout_marginVertical="20dp"
             android:orientation="horizontal">
             <ImageView
                 android:layout_width="50dp"
-                android:layout_height="60dp"
+                android:layout_height="50dp"
                 android:src="@drawable/ic_baseline_assignment_24"></ImageView>
             <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:background="@drawable/custom_bg_filter"
                 android:layout_marginHorizontal="5dp"
                 android:paddingHorizontal="10dp"
+                android:layout_gravity="center"
+                android:gravity="center"
                 android:orientation="horizontal">
 
                 <EditText
                     android:id="@+id/edt_Search_AssigmentPage"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_gravity="center"
+                    android:layout_marginStart="25dp"
                     android:text="@={AssignmentAdminActivity_ModelView.searchStr}"
                     android:hint="Search..."
                     android:textSize="20dp"></EditText>
-
                 <ImageButton
-                    android:id="@+id/imgBtn_Search_AssigmentAdmin_Page"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center"
-                    android:src="@drawable/baseline_search_24">
-                </ImageButton>
+                    android:id="@+id/imgBtn_Search_AssignmentAdmin_Page"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginRight="20dp"
+                    android:src="@drawable/baseline_search_24"/>
             </LinearLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal">
             <RelativeLayout
-                android:layout_width="120dp"
-                android:layout_height="wrap_content"
+                android:layout_width="150dp"
+                android:layout_height="match_parent"
                 android:layout_marginHorizontal="5dp"
                 android:background="@drawable/custom_bg_filter"
                 android:orientation="horizontal"
@@ -101,21 +111,31 @@
                 <Spinner
                     android:id="@+id/spinner_filter"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_gravity="center"
-                    android:layout_marginTop="10dp"
                     android:textSize="20dp"
                     android:textStyle="bold"></Spinner>
 
-                <ImageButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"
-                    android:src="@drawable/baseline_filter_list_24"></ImageButton>
             </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="150dp"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="5dp"
+                android:background="@drawable/custom_bg_filter"
+                android:orientation="horizontal"
+                android:paddingHorizontal="5dp">
 
+                <Spinner
+                    android:id="@+id/spinner_state_filter"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:textSize="20dp"
+                    android:textStyle="bold"></Spinner>
+
+            </RelativeLayout>
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
