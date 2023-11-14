@@ -5,6 +5,7 @@ import android.util.Log;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -146,7 +147,7 @@ public class User {
         return null;
     }
 
-        public List<User> GetAllUser(){
+    public List<User> GetAllUser(){
         List<User> listUser = new ArrayList<>();
         try{
             SQLServer connection = new SQLServer();
@@ -221,6 +222,68 @@ public class User {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+    }
+    public List<User> GetUserBySearch(String search, String filter){
+        List<User> listUser = new ArrayList<>();
+        try{
+            String filterCondition = "";
+            if (!"All".equals(filter)) {
+                filterCondition = filter + " LIKE '" + search + "%'";
+            }
+            else{
+                filterCondition =
+                        "(User_id LIKE '" + search + "%' OR " +
+                        "Fullname LIKE '" + search + "%' OR " +
+                        "Joined_Date LIKE '" + search + "%' OR " +
+                        "Role_id LIKE '" + search + "%')";
+            }
+            SQLServer connection = new SQLServer();
+            connect = connection.ConnectionSql();
+            if(connect != null){
+                String query = "Select *\n" +
+                        "From [dbo].[User]"+
+                        "WHERE " + filterCondition;
+                Statement st = connect.createStatement();
+                ResultSet rs = st.executeQuery(query);
+
+                while(rs.next()){
+                    String idUser = rs.getString("User_id");
+                    String emailUser = rs.getString("Email");
+                    String passwordUser = rs.getString("Password");
+                    String fullNameUser = rs.getString("Fullname");
+                    String addressUser = rs.getString("Address");
+                    String dateUser = rs.getString("Date_of_birth");
+                    String genderUser = rs.getString("Gender");
+                    String dateJoinUser = rs.getString("Joined_Date");
+                    String imageUser = rs.getString("Image");
+                    String roleIdUser = rs.getString("Role_id");
+                    String phoneUser = rs.getString("Phone");
+
+                    if(roleIdUser.equalsIgnoreCase("1"))
+                        roleIdUser = "Admin";
+                    else
+                        roleIdUser = "User";
+
+                    User u = new User(idUser,
+                            emailUser,
+                            passwordUser,
+                            fullNameUser,
+                            addressUser,
+                            dateUser,
+                            genderUser,
+                            dateJoinUser,
+                            imageUser,
+                            roleIdUser,
+                            phoneUser);
+                    listUser.add(u);
+                }
+                return listUser;
+
+            }
+        }catch(Exception e){
+            Log.e(e.getMessage(),"Log error");
+        }
+        return null;
     }
 
 }

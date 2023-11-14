@@ -15,16 +15,29 @@ import com.example.navigationdrawer.BR;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import com.example.navigationdrawer.model.Assignment;
 import com.example.navigationdrawer.model.Gender;
 import com.example.navigationdrawer.model.Role;
 import com.example.navigationdrawer.model.User;
 
 public class UserAdminActivity_ModelView extends BaseObservable {
     private String date,email,password,fullname,address,birthday,phone;
+    private String searchStr;
+    @Bindable
+    public String getSearchStr() {
+        return searchStr;
+    }
+
+    public void setSearchStr(String searchStr) {
+        this.searchStr = searchStr;
+        notifyPropertyChanged(BR.searchStr);
+    }
+
     @Bindable
     public String getBirthday() {
         return birthday;
@@ -174,6 +187,26 @@ public class UserAdminActivity_ModelView extends BaseObservable {
             return;
         }
 
+    }
+
+    public List<User> GetUsersBySearch(String search, String filter){
+        User user = new User();
+        List<User> listUsers = new ArrayList<>();
+
+        if(filter.equalsIgnoreCase("All") && search.equalsIgnoreCase("")){
+            listUsers = user.GetAllUser();
+        }
+        else{
+            switch (filter){
+                case "All": filter = "All";break;
+                case "ID": filter ="User_id";break;
+                case "Name": filter ="Fullname";break;
+                case "Joined Date": filter ="Joined_Date";break;
+                default:break;
+            }
+            listUsers = user.GetUserBySearch(search,filter);
+        }
+        return listUsers;
     }
 
 }
