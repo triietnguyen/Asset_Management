@@ -31,16 +31,16 @@ public class AssignmentAdminActivity_ModelView extends BaseObservable {
         return listAssign;
     }
 
-    public List<Assignment> GetAssignmentBySearch(String search,String filter){
+    public List<Assignment> GetAssignmentBySearch(String search,String filter, String status){
         Assignment assignment = new Assignment();
         List<Assignment> listAssign = new ArrayList<>();
 
-        if(filter.equalsIgnoreCase("all") && search.equalsIgnoreCase("")){
+        if(filter.equalsIgnoreCase("All") && search.equalsIgnoreCase("") && status.equalsIgnoreCase("All")){
             listAssign = assignment.GetAllAssignmentAvailable();
         }
         else{
             switch (filter){
-                case "all": filter = "all";break;
+                case "All": filter = "All";break;
                 case "ID": filter ="Assignment_id";break;
                 case "Asset Code": filter ="Asset_id";break;
                 case "Asset Name": filter ="Asset_Name";break;
@@ -51,7 +51,14 @@ public class AssignmentAdminActivity_ModelView extends BaseObservable {
                 case "State": filter ="Status";break;
                 default:break;
             }
-            listAssign = assignment.GetAssignmentsAdminBySearch(search,filter);
+            switch (status){
+                case "All": status = "All";break;
+                case "Assigned": status ="1";break;
+                case "Returned": status ="2";break;
+                case "Returning": status ="3";break;
+                default:break;
+            }
+            listAssign = assignment.GetAssignmentsAdminBySearch(search,filter,status);
         }
         return listAssign;
     }

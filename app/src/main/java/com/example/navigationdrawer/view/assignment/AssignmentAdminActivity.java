@@ -51,10 +51,10 @@ public class AssignmentAdminActivity extends AppCompatActivity {
     ImageView imageMenu;
     Button btn_New_Request;
     ImageButton imgBtn_Search;
-    Spinner spinnerFilter;
+    Spinner spinnerFilter,spinner_state_filter;
     EditText edt_Search;
     AssignmentAdminActivity_ModelView assignmentAdminActivity_modelView;
-    String choiceFilter ="all";
+    String choiceFilter ="All", choiceStatusFilter ="All";
     String search = "";
 
 
@@ -68,6 +68,7 @@ public class AssignmentAdminActivity extends AppCompatActivity {
         Handle_Component();
         setRecycleView();
         AssignmentFilterAdapter();
+        StatusFilterAdapter();
     }
 
     @Override
@@ -95,7 +96,6 @@ public class AssignmentAdminActivity extends AppCompatActivity {
         listFilter.add("Assigned To");
         listFilter.add("Assigned By");
         listFilter.add("Assigned Date");
-        listFilter.add("State");
 
         ArrayAdapter arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, listFilter);
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -116,12 +116,39 @@ public class AssignmentAdminActivity extends AppCompatActivity {
 
     }
 
+    public void StatusFilterAdapter(){
+
+        List<String> listFilter = new ArrayList<>();
+        listFilter.add("All");
+        listFilter.add("Assigned");
+        listFilter.add("Returned");
+        listFilter.add("Returning");
+
+        ArrayAdapter arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, listFilter);
+        arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        spinner_state_filter.setAdapter(arrayAdapter);
+        spinner_state_filter.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                choiceStatusFilter = parentView.getItemAtPosition(position).toString();
+                // Làm gì đó với mục đã chọn
+                Toast.makeText(getApplicationContext(), choiceStatusFilter, Toast.LENGTH_SHORT).show();
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {
+
+            }
+        });
+
+    }
+
 
     private void setRecycleView() {
         if(assignmentAdminActivity_modelView.getSearchStr() != null) {
             search = assignmentAdminActivity_modelView.getSearchStr();
         }
-        List<Assignment> listAssign = assignmentAdminActivity_modelView.GetAssignmentBySearch(search,choiceFilter);
+        List<Assignment> listAssign = assignmentAdminActivity_modelView.GetAssignmentBySearch(search,choiceFilter, choiceStatusFilter);
         if(listAssign == null) return;
         recycler_view_admin.setHasFixedSize(true);
         recycler_view_admin.setLayoutManager(new LinearLayoutManager(this));
@@ -136,6 +163,7 @@ public class AssignmentAdminActivity extends AppCompatActivity {
         btn_New_Request = (Button)findViewById(R.id.btn_New_Request_AssignmentPage);
         recycler_view_admin = findViewById(R.id.recycler_view_admin);
         spinnerFilter = findViewById(R.id.spinner_filter);
+        spinner_state_filter = findViewById(R.id.spinner_state_filter);
         edt_Search = (EditText) findViewById(R.id.edt_Search_AssigmentPage);
         imgBtn_Search = (ImageButton) findViewById(R.id.imgBtn_Search_AssignmentAdmin_Page);
     }

@@ -50,7 +50,7 @@ public class AssignmentActivity extends AppCompatActivity {
     ImageView imageMenu;
     Spinner spinnerFilter;
     AssignmentActivity_ModelView assignmentActivityModelView;
-    String choiceFilter ="all";
+    String choiceFilter ="All";
     String search = "";
     ImageButton imgBtn_Search;
     @Override
@@ -89,7 +89,6 @@ public class AssignmentActivity extends AppCompatActivity {
         listFilter.add("Assigned To");
         listFilter.add("Assigned By");
         listFilter.add("Assigned Date");
-        listFilter.add("State");
 
         ArrayAdapter arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, listFilter);
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);

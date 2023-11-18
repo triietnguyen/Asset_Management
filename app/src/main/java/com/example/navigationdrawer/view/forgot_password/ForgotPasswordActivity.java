@@ -46,6 +46,13 @@ public class ForgotPasswordActivity extends AppCompatActivity {
                 finish();
             }
         });
+        imgbtn_Send.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                imgbtn_Send.setEnabled(false);
+                Handler();
+            }
+        });
     }
 
 

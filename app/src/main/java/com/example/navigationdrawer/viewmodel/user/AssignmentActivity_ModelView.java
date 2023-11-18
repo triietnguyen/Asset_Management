@@ -29,12 +29,12 @@ public class AssignmentActivity_ModelView extends BaseObservable {
         Assignment assignment = new Assignment();
         List<Assignment> listAssign = new ArrayList<>();
 
-        if(filter.equalsIgnoreCase("all") && search.equalsIgnoreCase("")){
+        if(filter.equalsIgnoreCase("All") && search.equalsIgnoreCase("")){
             listAssign = assignment.GetAllAssignmentByUser(userID);
         }
         else{
             switch (filter){
-                case "all": filter = "all";break;
+                case "All": filter = "All";break;
                 case "ID": filter ="Assignment_id";break;
                 case "Asset Code": filter ="Asset_id";break;
                 case "Asset Name": filter ="Asset_Name";break;
@@ -42,7 +42,6 @@ public class AssignmentActivity_ModelView extends BaseObservable {
                 case "Assigned To": filter ="u_user.Fullname";break;
                 case "Assigned By": filter ="u_admin.Fullname";break;
                 case "Assigned Date": filter ="StartDate";break;
-                case "State": filter ="Status";break;
                 default:break;
             }
             listAssign = assignment.GetAssignmentsUserBySearch(search,filter,userID);

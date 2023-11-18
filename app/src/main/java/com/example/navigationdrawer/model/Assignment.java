@@ -141,8 +141,8 @@ public class Assignment {
 
                     switch (status){
                         case "1":status = "Assigned";break;
-                        case "2":status = "Recovered";break;
-                        case "3":status = "Recovering";break;
+                        case "2":status = "Returned";break;
+                        case "3":status = "Returning";break;
                         default:break;
                     }
 
@@ -220,7 +220,8 @@ public class Assignment {
 
                     switch (status){
                         case "1":status = "Assigned";break;
-                        case "2":status = "Returning";break;
+                        case "2":status = "Returned";break;
+                        case "3":status = "Returning";break;
                         default:break;
                     }
 
@@ -247,25 +248,24 @@ public class Assignment {
         return null;
     }
 
-    public List<Assignment> GetAssignmentsAdminBySearch(String search, String filter){
+    public List<Assignment> GetAssignmentsAdminBySearch(String search, String filter, String status_filter){
         Log.e("search",search);
         List<Assignment> listAssignment = new ArrayList<>();
         try{
             String filterCondition = "";
-            if (!"All".equals(filter)) {
-                    filterCondition = " AND "+ filter + " LIKE '" + search + "%'";
+            if (!"All".equals(filter) && !"All".equals(status_filter)) {
+                    filterCondition = " AND "+ filter + " LIKE '" + search + "%' AND assign.[Status] LIKE '" + status_filter + "'";
             }
             else{
                 filterCondition = " AND " +
-                        "(a.[Asset_id] LIKE '" + search + "%' OR " +
-                        "a.[Asset_Name] LIKE '" + search + "%' OR " +
-                        "c.[Category_Name] LIKE '" + search + "%' OR " +
-                        "u_user.Fullname LIKE '" + search + "%' OR " +
-                        "u_admin.Fullname LIKE '" + search + "%' OR " +
-                        "assign.[Status] LIKE '" + search + "%' OR " +
-                        "assign.[StartDate] LIKE '" + search + "%' OR " +
-                        "assign.[EndDate] LIKE '" + search + "%' OR " +
-                        "assign.[Assignment_id] LIKE '" + search + "%')";
+                        "(a.[Asset_id] LIKE '" + search + "%' AND assign.[Status] LIKE '" + status_filter + "' OR " +
+                        "a.[Asset_Name] LIKE '" + search + "%' AND assign.[Status] LIKE '" + status_filter + "' OR " +
+                        "c.[Category_Name] LIKE '" + search + "%' AND assign.[Status] LIKE '" + status_filter + "' OR " +
+                        "u_user.Fullname LIKE '" + search + "%' AND assign.[Status] LIKE '" + status_filter + "' OR " +
+                        "u_admin.Fullname LIKE '" + search + "%' AND assign.[Status] LIKE '" + status_filter + "' OR " +
+                        "assign.[StartDate] LIKE '" + search + "%' AND assign.[Status] LIKE '" + status_filter + "' OR " +
+                        "assign.[EndDate] LIKE '" + search + "%' AND assign.[Status] LIKE '" + status_filter + "' OR " +
+                        "assign.[Assignment_id] LIKE '" + search + "%' AND assign.[Status] LIKE '" + status_filter + "')";
             }
             SQLServer connection = new SQLServer();
             connect = connection.ConnectionSql();
@@ -294,8 +294,8 @@ public class Assignment {
 
                     switch (status){
                         case "1":status = "Assigned";break;
-                        case "2":status = "Recovered";break;
-                        case "3":status = "Recovering";break;
+                        case "2":status = "Returned";break;
+                        case "3":status = "Returning";break;
                         default:break;
                     }
 
@@ -352,7 +352,8 @@ public class Assignment {
                     Log.e("status",status);
                     switch (status){
                         case "1":status = "Assigned";break;
-                        case "2":status = "Returning";break;
+                        case "2":status = "Returned";break;
+                        case "3":status = "Returning";break;
                         default:break;
                     }
 

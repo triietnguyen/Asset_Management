@@ -3,6 +3,7 @@ package com.example.navigationdrawer.model;
 import android.util.Log;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -13,7 +14,7 @@ import com.example.navigationdrawer.model.SQLServer.SQLServer;
 public class Gender {
     String id, name;
 
-    private Connection connect;
+    private static Connection connect;
     public Gender(){
 
     }
@@ -38,7 +39,8 @@ public class Gender {
     public void setName(String name) {
         this.name = name;
     }
-        public List<Gender> GetAllGender(){
+
+    public List<Gender> GetAllGender(){
         List<Gender> listGender = new ArrayList<>();
         try{
             SQLServer connection = new SQLServer();
@@ -54,7 +56,6 @@ public class Gender {
                     Gender u = new Gender(idGender,
                             namelGender);
                     listGender.add(u);
-
                 }
                 return listGender;
 

@@ -286,4 +286,44 @@ public class User {
         return null;
     }
 
+    public void UpdateEditUser(String user_id, String email, String password, String name, String address, String date_of_birth, String gender, String date_joined, String Role, String Phone){
+        try {
+            SQLServer connection = new SQLServer();
+            connect = connection.ConnectionSql();
+            if (connect != null) {
+                String queryString = "UPDATE [dbo].[User] SET Email = ?, " +
+                        "Password = ? ," +
+                        "Fullname = ? ," +
+                        "Address = ? ," +
+                        "Date_of_birth = ? ," +
+                        "Gender = ? ," +
+                        "Joined_Date = ? ," +
+                        "Role_id = ? ," +
+                        "Phone = ? " +
+                        "WHERE User_id = ? ";
+                PreparedStatement preparedStatement = connect.prepareStatement(queryString);
+                preparedStatement.setString(1, email);
+                preparedStatement.setString(2, password);
+                preparedStatement.setString(3, name);
+                preparedStatement.setString(4, address);
+                preparedStatement.setString(5, date_of_birth);
+                preparedStatement.setString(6, gender);
+                preparedStatement.setString(7, date_joined);
+                preparedStatement.setString(8, Role);
+                preparedStatement.setString(9, Phone);
+                preparedStatement.setString(10, user_id);
+                int rowsDeleted = preparedStatement.executeUpdate();
+
+                if (rowsDeleted > 0) {
+                    // Delete was successful
+                }
+                else{
+                    //Delete was insuccessfull
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 }

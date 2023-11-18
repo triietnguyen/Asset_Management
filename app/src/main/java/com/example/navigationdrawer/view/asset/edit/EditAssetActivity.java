@@ -89,7 +89,6 @@ public class EditAssetActivity extends AppCompatActivity {
                 break;
             }
         }
-
         listState.add(0,stateRequest);
 
         ArrayAdapter arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, listState);

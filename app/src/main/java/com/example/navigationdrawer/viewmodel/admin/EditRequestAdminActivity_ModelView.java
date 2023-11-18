@@ -93,7 +93,7 @@ public class EditRequestAdminActivity_ModelView extends BaseObservable {
                         break;
                 }
                 if (returnDate == null) {
-                    assigment.UpdateRequestAssignment(adminID.trim(), assignmentID.trim(), assetID.trim(), categoryID.trim(), currentDate, null, state);
+                    assigment.UpdateRequestAssignment(adminID.trim(), assignmentID.trim(), assetID.trim(), categoryID.trim(), currentDate,null, state);
 
                     Intent returnIntent = new Intent();
                     ((Activity) context).setResult(RESULT_OK, returnIntent);

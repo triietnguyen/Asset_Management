@@ -50,8 +50,8 @@ public class AssetAdminActivity extends AppCompatActivity {
     AssetAdminApdapter assetAdminApdapter;
     AssetAdminActivity_ModelView assetAdminActivityModelView;
     Button btn_create;
-    Spinner spinner_filter;
-    String choiceFilter ="All";
+    Spinner spinner_filter,spinner_state_filter;
+    String choiceFilter ="All", choiceStatusFilter ="All";
     String search = "";
     ImageView imageMenu;
     ImageButton imgBtn_Search;
@@ -65,6 +65,7 @@ public class AssetAdminActivity extends AppCompatActivity {
         Handle_Component();
         setRecycleView();
         AssetFilterAdapter();
+        StatusFilterAdapter();
     }
 
     @Override
@@ -80,7 +81,30 @@ public class AssetAdminActivity extends AppCompatActivity {
             }
         }
     }//onActivityResult
+    public void StatusFilterAdapter(){
 
+        List<String> listFilter = new ArrayList<>();
+        listFilter.add("All");
+        listFilter.add("Available");
+        listFilter.add("Not Available");
+        ArrayAdapter arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, listFilter);
+        arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        spinner_state_filter.setAdapter(arrayAdapter);
+        spinner_state_filter.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                choiceStatusFilter = parentView.getItemAtPosition(position).toString();
+                // Làm gì đó với mục đã chọn
+                Toast.makeText(getApplicationContext(), choiceStatusFilter, Toast.LENGTH_SHORT).show();
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {
+
+            }
+        });
+
+    }
     public void AssetFilterAdapter(){
 
         List<String> listFilter = new ArrayList<>();
@@ -110,7 +134,7 @@ public class AssetAdminActivity extends AppCompatActivity {
         if(assetAdminActivityModelView.getSearchStr() != null) {
             search = assetAdminActivityModelView.getSearchStr();
         }
-        List<Asset> listAsset = assetAdminActivityModelView.GetAssetBySearch(search,choiceFilter);
+        List<Asset> listAsset = assetAdminActivityModelView.GetAssetBySearch(search,choiceFilter, choiceStatusFilter);
         if(listAsset == null) return;
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -123,6 +147,7 @@ public class AssetAdminActivity extends AppCompatActivity {
         drawerLayout = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.nav_View);
         spinner_filter = findViewById(R.id.spinner_filter);
+        spinner_state_filter = findViewById(R.id.spinner_state_filter);
         imageMenu = findViewById(R.id.imageMenu);
         recyclerView = findViewById(R.id.recycler_view_asset_layout_admin);
         imgBtn_Search = (ImageButton) findViewById(R.id.imgBtn_Search_Asset_Page);

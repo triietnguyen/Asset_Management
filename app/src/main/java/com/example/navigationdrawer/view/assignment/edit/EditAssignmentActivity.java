@@ -90,8 +90,8 @@ public class EditAssignmentActivity extends AppCompatActivity {
     public void StateRequestAdapter(){
         List<String> listState = new ArrayList<>();
         listState.add("Assigned");
-        listState.add("Recovered");
-        listState.add("Recovering");
+        listState.add("Returned");
+        listState.add("Returning");
 
         String assignmentID = dataBundle.getString("id");
 

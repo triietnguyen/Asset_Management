@@ -92,20 +92,19 @@ public class Asset {
         }
         return null;
     }
-    public List<Asset> GetAssetsAdminBySearch(String search, String filter){
+    public List<Asset> GetAssetsAdminBySearch(String search, String filter, String status_filter){
         Log.e("search",search);
         List<Asset> listAsset = new ArrayList<>();
         try{
             String filterCondition = " ";
-            if (!"All".equals(filter)) {
-                filterCondition = filter + " LIKE '" + search + "%'";
+            if (!"All".equals(filter) && !"All".equals(status_filter)) {
+                filterCondition = filter + " LIKE '" + search + "%' AND a.[Status] LIKE '" + status_filter + "'";
             }
             else{
                 filterCondition =
-                        "(a.[Asset_id] LIKE '" + search + "%' OR " +
-                        "a.[Asset_Name] LIKE '" + search + "%' OR " +
-                        "c.[Category_Name] LIKE '" + search + "%' OR " +
-                        "a.[Status] LIKE '" + search + "%')";
+                        "(a.[Asset_id] LIKE '" + search + "%' AND a.[Status] LIKE '" + status_filter + "' OR " +
+                        "a.[Asset_Name] LIKE '" + search + "%' AND a.[Status] LIKE '" + status_filter + "' OR " +
+                        "c.[Category_Name] LIKE '" + search + "%' AND a.[Status] LIKE '" + status_filter + "')";
             }
             SQLServer connection = new SQLServer();
             connect = connection.ConnectionSql();

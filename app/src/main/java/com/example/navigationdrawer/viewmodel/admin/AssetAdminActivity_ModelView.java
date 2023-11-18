@@ -73,22 +73,28 @@ public class AssetAdminActivity_ModelView extends BaseObservable {
         return c.GetAllCategory();
     }
 
-    public List<Asset> GetAssetBySearch(String search, String filter){
+    public List<Asset> GetAssetBySearch(String search, String filter, String status){
         Asset asset = new Asset();
         List<Asset> listAsset = new ArrayList<>();
 
-        if(filter.equalsIgnoreCase("all") && search.equalsIgnoreCase("")){
+        if(filter.equalsIgnoreCase("All") && search.equalsIgnoreCase("") && status.equalsIgnoreCase("All")){
             listAsset = asset.GetAllAssets();
         }
         else{
             switch (filter){
-                case "all": filter = "all";break;
+                case "All": filter = "All";break;
                 case "Asset Code": filter ="Asset_id";break;
                 case "Asset Name": filter ="Asset_Name";break;
                 case "Category": filter ="Category_Name";break;
                 default:break;
             }
-            listAsset = asset.GetAssetsAdminBySearch(search,filter);
+            switch (status){
+                case "All": status = "All";break;
+                case "Available": status ="1";break;
+                case "Not Available": status ="0";break;
+                default:break;
+            }
+            listAsset = asset.GetAssetsAdminBySearch(search,filter,status);
         }
         return listAsset;
     }

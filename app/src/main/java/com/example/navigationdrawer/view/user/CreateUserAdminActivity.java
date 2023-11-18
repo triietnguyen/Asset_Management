@@ -140,7 +140,6 @@ public class CreateUserAdminActivity extends AppCompatActivity {
                 Gender c = listGender.get(position);
                 String selectedId = c.getId();
 
-
                 editor.putString("Gender",selectedId);
                 editor.commit();
 

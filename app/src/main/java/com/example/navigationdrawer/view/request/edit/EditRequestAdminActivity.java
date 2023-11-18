@@ -93,6 +93,22 @@ public class EditRequestAdminActivity extends AppCompatActivity {
         editRequestAdminActivityModelView.setEdt_currentDate(currentDate_Str);
     }
 
+    public void Pick_Date_Birth(){
+        Calendar calendar = Calendar.getInstance();
+        int date = calendar.get(Calendar.DATE);
+        int month = calendar.get(Calendar.MONTH);
+        int year = calendar.get(Calendar.YEAR);
+        DatePickerDialog datePickerDialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                calendar.set(year,month,dayOfMonth);
+                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                edt_DateOfReturning_Layout.setText(simpleDateFormat.format(calendar.getTime()));
+            }
+        }, year,month,date);
+        datePickerDialog.show();
+    }
+
     public void CategoryRequestAdapter(){
 
         if (dataBundle != null) {
@@ -225,20 +241,6 @@ public class EditRequestAdminActivity extends AppCompatActivity {
         });
     }
 
-    public void Pick_Date_Birth(){
-        Calendar calendar = Calendar.getInstance();
-        int date = calendar.get(Calendar.DATE);
-        int month = calendar.get(Calendar.MONTH);
-        int year = calendar.get(Calendar.YEAR);
-        DatePickerDialog datePickerDialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
-            @Override
-            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                calendar.set(year,month,dayOfMonth);
-                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-                edt_DateOfReturning_Layout.setText(simpleDateFormat.format(calendar.getTime()));
-            }
-        }, year,month,date);
-        datePickerDialog.show();
-    }
+
 
 }
