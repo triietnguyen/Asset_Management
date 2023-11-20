@@ -31,7 +31,7 @@ public class Asset {
     }
 
     public void setStatus(String status) {
-        this.status = status;
+        this.status =  status;
     }
 
     public String getAsset_id() {
@@ -77,6 +77,7 @@ public class Asset {
                     switch (status){
                         case "0":status = "Not Available";break;
                         case "1":status = "Available";break;
+                        case "2":status = "Deleted";break;
                         default:break;
                     }
 
@@ -124,6 +125,7 @@ public class Asset {
                     switch (status){
                         case "0":status = "Not Available";break;
                         case "1":status = "Available";break;
+                        case "2":status = "Deleted";break;
                         default:break;
                     }
 
@@ -212,5 +214,29 @@ public class Asset {
             throw new RuntimeException(e);
         }
     }
+
+    public void HandlerAsset(String AssetID){
+        try {
+            SQLServer connection = new SQLServer();
+            connect = connection.ConnectionSql();
+            if (connect != null) {
+                String queryString = "UPDATE [dbo].[Asset] SET Status = '2'" +
+                        "WHERE Asset_id = ?";
+                PreparedStatement preparedStatement = connect.prepareStatement(queryString);
+                preparedStatement.setString(1, AssetID);
+                int rowsDeleted = preparedStatement.executeUpdate();
+
+                if (rowsDeleted > 0) {
+                    // Delete was successful
+                }
+                else{
+                    //Delete was insuccessfull
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 }
 

@@ -43,7 +43,6 @@ public class RequestAdminAdapter extends RecyclerView.Adapter<RequestAdminAdapte
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        User u = new User();
         Assignment assign = new Assignment();
         if(assignment_list !=null && assignment_list.size()>0){
             Assignment assignment = assignment_list.get(position);
@@ -74,7 +73,6 @@ public class RequestAdminAdapter extends RecyclerView.Adapter<RequestAdminAdapte
                 public void onClick(View v) {
                     assignment_list.remove(assignment);
                     notifyItemRemoved(holder.getAdapterPosition());
-
                     assign.DeleteAssigment(assignment.getAssignmentID());
                 }
             });

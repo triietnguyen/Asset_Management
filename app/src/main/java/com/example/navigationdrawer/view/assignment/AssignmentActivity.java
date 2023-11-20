@@ -82,12 +82,9 @@ public class AssignmentActivity extends AppCompatActivity {
 
         List<String> listFilter = new ArrayList<>();
         listFilter.add("All");
-        listFilter.add("ID");
         listFilter.add("Asset Code");
         listFilter.add("Asset Name");
         listFilter.add("Category");
-        listFilter.add("Assigned To");
-        listFilter.add("Assigned By");
         listFilter.add("Assigned Date");
 
         ArrayAdapter arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, listFilter);

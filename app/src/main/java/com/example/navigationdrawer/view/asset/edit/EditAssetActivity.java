@@ -79,17 +79,22 @@ public class EditAssetActivity extends AppCompatActivity {
         List<String> listState = new ArrayList<>();
         listState.add("Available");
         listState.add("Not Available");
-
         String assetID = dataBundle.getString("Asset_id");
-
         String stateRequest = dataBundle.getString("Status");
-        for(int i=0;i<listState.size();i++){
+
+        for(int i=0; i<listState.size(); i++){
             if(listState.get(i).equalsIgnoreCase(stateRequest)){
                 listState.remove(i);
                 break;
             }
         }
         listState.add(0,stateRequest);
+        for(int i = 0; i<listState.size(); i++ ){
+            if(listState.get(i).equalsIgnoreCase("Deleted")){
+                listState.remove(i);
+                break;
+            }
+        }
 
         ArrayAdapter arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, listState);
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);

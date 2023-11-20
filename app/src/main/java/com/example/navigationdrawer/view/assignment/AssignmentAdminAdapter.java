@@ -96,7 +96,6 @@ public class AssignmentAdminAdapter extends RecyclerView.Adapter<AssignmentAdmin
             txt_assigned_date_admin = itemView.findViewById(R.id.txt_assigned_date_admin);
             txt_endDate_admin = itemView.findViewById(R.id.txt_end_date_admin);
             txt_state_admin = itemView.findViewById(R.id.txt_state_admin);
-
             img_assignment_update_layout = itemView.findViewById(R.id.img_assignment_update_layout);
         }
     }

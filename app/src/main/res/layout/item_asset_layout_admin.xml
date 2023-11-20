@@ -48,7 +48,7 @@
                 >
             </ImageView>
             <ImageView
-                android:id="@+id/img_staff_delete_layout"
+                android:id="@+id/img_asset_delete_layout"
                 android:layout_width="50dp"
                 android:src="@drawable/baseline_delete_24"
                 >
