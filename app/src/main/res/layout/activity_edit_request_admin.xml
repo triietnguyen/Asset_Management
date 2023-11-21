@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     >
     <data>
         <variable
@@ -10,12 +11,12 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center"
         android:orientation="vertical">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
+            android:layout_marginTop="40dp"
             android:layout_marginBottom="10dp"
             android:layout_marginHorizontal="20dp"
             android:orientation="horizontal">
@@ -154,35 +155,37 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:gravity="center"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="50dp"
                 android:orientation="horizontal">
                 <Button
-                    android:id="@+id/btn_Save_Page"
-                    android:layout_width="wrap_content"
+                    android:id="@+id/img_CancelPage"
+                    android:layout_width="130dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:text="Save"
-                    android:onClick="@{()->EditRequestAdminActivity_ModelView.OnClickButton(context)}"
+                    android:text="Cancel"
                     android:textSize="25dp"
                     android:layout_marginHorizontal="10dp"
-                    android:backgroundTint="#FB6771"
+                    android:background="@drawable/bg_gray_corner_10"
+                    app:backgroundTint="@null"
                     android:textStyle="bold"
                     android:textColor="@color/white"
                     android:textAppearance="@style/TextAppearance.AppCompat.Large"
                     >
                 </Button>
                 <Button
-                    android:id="@+id/img_CancelPage"
-                    android:layout_width="wrap_content"
+                    android:id="@+id/btn_Save_Page"
+                    android:layout_width="130dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:text="Cancel"
+                    android:text="Save"
+                    android:onClick="@{()->EditRequestAdminActivity_ModelView.OnClickButton(context)}"
                     android:textSize="25dp"
                     android:layout_marginHorizontal="10dp"
-                    android:backgroundTint="#555659"
+                    android:background="@drawable/custom_bg_border"
+                    app:backgroundTint="@null"
                     android:textStyle="bold"
                     android:textColor="@color/white"
                     android:textAppearance="@style/TextAppearance.AppCompat.Large"

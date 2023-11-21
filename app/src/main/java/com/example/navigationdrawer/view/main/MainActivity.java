@@ -7,13 +7,21 @@ import androidx.core.view.GravityCompat;
 import androidx.databinding.DataBindingUtil;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.example.navigationdrawer.R;
 import com.example.navigationdrawer.view.assignment.AssignmentActivity;
@@ -32,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
     DrawerLayout drawer_Layout;
     NavigationView navigation_View;
     ActionBarDrawerToggle action_Toggle;
-    ImageView img_Menu, img_Notification;
+    ImageView img_Menu, img_Notification, img_request, img_assign, img_support, img_logout;
     Main_ModelView modelView = new Main_ModelView();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,14 +66,59 @@ public class MainActivity extends AppCompatActivity {
         navigation_View = findViewById(R.id.nav_View);
         img_Notification = findViewById(R.id.bell);
         img_Menu = findViewById(R.id.imageMenu);
+        img_request = findViewById(R.id.img_request);
+        img_assign = findViewById(R.id.img_assign);
+        img_support = findViewById(R.id.img_support);
+        img_logout = findViewById(R.id.img_logout);
     }
+    private void openDialog(int gravity){
+        final Dialog dialog = new Dialog(this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.layout_diaglog_feedback);
 
+        Window window = dialog.getWindow();
+        if(window == null){
+            return;
+        }
+        window.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT);
+        window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+        WindowManager.LayoutParams windowAttributes = window.getAttributes();
+        windowAttributes.gravity = gravity;
+        window.setAttributes(windowAttributes);
+
+        if(Gravity.BOTTOM ==gravity){
+            dialog.setCancelable(true);
+        }
+        else{
+            dialog.setCancelable(false);
+        }
+
+        Button No = dialog.findViewById(R.id.btn_no_thanks);
+        Button Send = dialog.findViewById(R.id.btn_send);
+
+        No.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+
+        Send.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(MainActivity.this, "Sent", Toast.LENGTH_SHORT).show();
+                dialog.dismiss();
+            }
+        });
+
+        dialog.show();
+    }
     void Handle_Component(){
         // Navigation Drawer------------------------------
         action_Toggle = new ActionBarDrawerToggle(MainActivity.this, drawer_Layout, R.string.open, R.string.close);
         drawer_Layout.addDrawerListener(action_Toggle);
         action_Toggle.syncState();
-
 
         // Drawer click event
         navigation_View.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
@@ -94,6 +147,9 @@ public class MainActivity extends AppCompatActivity {
                     finish();
                     drawer_Layout.closeDrawers();
                 }
+                else if (itemId == R.id.mContact) {
+                    openDialog(Gravity.CENTER);
+                }
                 else if (itemId == R.id.mLogout) {
                     Intent intent = new Intent(MainActivity.this, LoginActivity.class);
                     startActivity(intent);
@@ -116,6 +172,40 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, NotificationActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+        img_request.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, RequestActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+        img_assign.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, AssignmentActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+        img_support.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openDialog(Gravity.CENTER);
+            }
+        });
+
+        img_logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, LoginActivity.class);
                 startActivity(intent);
                 finish();
             }

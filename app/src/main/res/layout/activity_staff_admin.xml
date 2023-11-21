@@ -56,11 +56,12 @@
 
         </LinearLayout>
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:gravity="center"
             android:layout_marginVertical="20dp"
+            android:layout_marginHorizontal="10dp"
             android:orientation="horizontal">
             <ImageView
                 android:layout_width="50dp"
@@ -78,10 +79,9 @@
 
                 <EditText
                     android:id="@+id/edt_Search_AssetPage"
-                    android:layout_width="match_parent"
+                    android:layout_width="100dp"
                     android:layout_height="match_parent"
-                    android:layout_gravity="center"
-                    android:layout_marginStart="25dp"
+                    android:background="@null"
                     android:text="@={UserAdminActivity_ModelView.searchStr}"
                     android:hint="Search..."
                     android:textSize="20dp"></EditText>
@@ -89,7 +89,6 @@
                     android:id="@+id/imgBtn_Search_AssetAdmin_Page"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
-                    android:layout_marginRight="20dp"
                     android:src="@drawable/baseline_search_24"/>
             </LinearLayout>
             <RelativeLayout
@@ -111,26 +110,9 @@
             </RelativeLayout>
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginVertical="10dp"
-            android:layout_marginHorizontal="30dp"
-            android:gravity="end"
-            >
-            <Button
-                android:id="@+id/btn_Create_User"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Create"
-                android:backgroundTint="#FB6771"
-                android:textStyle="bold"
-                android:textSize="20dp">
-            </Button>
-        </LinearLayout>
         <HorizontalScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="300dp">
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -191,6 +173,25 @@
                     </TableLayout>
                 </LinearLayout>
         </HorizontalScrollView>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginHorizontal="20dp"
+            android:gravity="center"
+            >
+            <Button
+                android:id="@+id/btn_Create_User"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_marginBottom="20dp"
+                android:text="Create"
+                android:background="@drawable/custom_bg_border"
+                app:backgroundTint="@null"
+                android:textStyle="bold"
+                android:textSize="20dp">
+            </Button>
+        </LinearLayout>
 
     </LinearLayout>
         <com.google.android.material.navigation.NavigationView

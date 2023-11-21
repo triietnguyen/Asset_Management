@@ -36,7 +36,7 @@ public class MainAdminActivity extends AppCompatActivity {
     DrawerLayout drawerLayout;
     NavigationView navigationView;
     ActionBarDrawerToggle toggle;
-    ImageView imageMenu, bell;
+    ImageView imageMenu, bell, img_device, img_staff, img_assign, img_request, img_export, img_logout;
     MainAdmin_ModelView modelView = new MainAdmin_ModelView();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,7 +67,12 @@ public class MainAdminActivity extends AppCompatActivity {
         navigationView = findViewById(R.id.nav_View);
         bell = findViewById(R.id.bell);
         imageMenu = findViewById(R.id.imageMenu);
-
+        img_device = findViewById(R.id.img_device);
+        img_staff = findViewById(R.id.img_staff);
+        img_assign = findViewById(R.id.img_assign);
+        img_request = findViewById(R.id.img_request);
+        img_export = findViewById(R.id.img_export);
+        img_logout = findViewById(R.id.img_logout);
     }
 
     public void Handle_Component(){
@@ -87,26 +92,31 @@ public class MainAdminActivity extends AppCompatActivity {
                 else if (itemId == R.id.mAsset) {
                     Intent intent = new Intent(MainAdminActivity.this, AssetAdminActivity.class);
                     startActivity(intent);
+                    finish();
                     drawerLayout.closeDrawers();
                 }
                 else if (itemId == R.id.mAssignment) {
                     Intent intent = new Intent(MainAdminActivity.this, AssignmentAdminActivity.class);
                     startActivity(intent);
+                    finish();
                     drawerLayout.closeDrawers();
                 }
                 else if (itemId == R.id.mRequest) {
                     Intent intent = new Intent(MainAdminActivity.this, RequestAdminActivity.class);
                     startActivity(intent);
+                    finish();
                     drawerLayout.closeDrawers();
                 }
                 else if (itemId == R.id.mProfile) {
                     Intent intent = new Intent(MainAdminActivity.this, ProfileAdminActivity.class);
                     startActivity(intent);
+                    finish();
                     drawerLayout.closeDrawers();
                 }
                 else if (itemId == R.id.mStaff) {
                     Intent intent = new Intent(MainAdminActivity.this, UserAdminActivity.class);
                     startActivity(intent);
+                    finish();
                     drawerLayout.closeDrawers();
                 }
                 else if (itemId == R.id.mFeedback) {
@@ -116,13 +126,14 @@ public class MainAdminActivity extends AppCompatActivity {
                 else if (itemId == R.id.mReport) {
                     Intent intent = new Intent(MainAdminActivity.this, ReportActivity.class);
                     startActivity(intent);
+                    finish();
                     drawerLayout.closeDrawers();
                 }
                 else if (itemId == R.id.mLogout) {
                     Intent intent = new Intent(MainAdminActivity.this, LoginActivity.class);
                     startActivity(intent);
-                    drawerLayout.closeDrawers();
                     finish();
+                    drawerLayout.closeDrawers();
                 }
                 return false;
             }
@@ -138,6 +149,60 @@ public class MainAdminActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainAdminActivity.this, NotificationAdminActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+        img_device.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainAdminActivity.this, AssetAdminActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+        img_staff.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainAdminActivity.this, UserAdminActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+        img_assign.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainAdminActivity.this, AssignmentAdminActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+        img_request.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainAdminActivity.this, RequestAdminActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+        img_export.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainAdminActivity.this, ReportActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+        img_logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainAdminActivity.this, LoginActivity.class);
                 startActivity(intent);
                 finish();
             }

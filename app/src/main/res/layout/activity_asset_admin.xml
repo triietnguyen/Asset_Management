@@ -78,10 +78,9 @@
                 android:gravity="center"
                 android:orientation="horizontal">
                 <EditText
-                    android:layout_width="match_parent"
+                    android:layout_width="230dp"
                     android:layout_height="match_parent"
-                    android:layout_gravity="center"
-                    android:layout_marginStart="25dp"
+                    android:background="@null"
                     android:hint="Search..."
                     android:text="@={AssetAdminActivity_ModelView.searchStr}"
                     android:textSize="20dp"></EditText>
@@ -89,7 +88,6 @@
                     android:id="@+id/imgBtn_Search_Asset_Page"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
-                    android:layout_marginRight="20dp"
                     android:src="@drawable/baseline_search_24">
                 </ImageButton>
             </LinearLayout>
@@ -138,25 +136,10 @@
 
             </RelativeLayout>
         </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="40dp"
-            android:gravity="end"
-            >
-            <Button
-                android:id="@+id/btn_create"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Create"
-                android:backgroundTint="#FB6771"
-                android:textStyle="bold"
-                android:textSize="20dp">
-            </Button>
-        </LinearLayout>
+
         <HorizontalScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="400dp"
             >
                     <TableLayout
                         android:id="@+id/tableLayout1"
@@ -212,7 +195,25 @@
                             android:layout_height="wrap_content"/>
                     </TableLayout>
         </HorizontalScrollView>
-
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginHorizontal="20dp"
+            android:gravity="center"
+            >
+            <Button
+                android:id="@+id/btn_create"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_marginBottom="20dp"
+                android:text="Create"
+                android:background="@drawable/custom_bg_border"
+                app:backgroundTint="@null"
+                android:textStyle="bold"
+                android:textSize="20dp">
+            </Button>
+        </LinearLayout>
     </LinearLayout>
         <com.google.android.material.navigation.NavigationView
             android:id="@+id/nav_View"

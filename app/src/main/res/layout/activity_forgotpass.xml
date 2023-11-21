@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     >
     <data>
         <variable
@@ -81,10 +82,11 @@
 
         <Button
             android:id="@+id/btn_Submit_ForgotPass_Layout"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="15dp"
-            android:backgroundTint="#64B5F6"
+            android:layout_marginHorizontal="20dp"
+            android:background="@drawable/custom_bg_border"
+            app:backgroundTint="@null"
             android:text="Submit"
             android:onClick="@{()->ForgotPassword.OnClickButtonOTP(context)}"
             android:textSize="20dp"

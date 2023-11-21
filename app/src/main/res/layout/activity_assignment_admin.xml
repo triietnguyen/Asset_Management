@@ -78,10 +78,9 @@
 
                 <EditText
                     android:id="@+id/edt_Search_AssigmentPage"
-                    android:layout_width="match_parent"
+                    android:layout_width="240dp"
                     android:layout_height="match_parent"
-                    android:layout_gravity="center"
-                    android:layout_marginStart="25dp"
+                    android:background="@null"
                     android:text="@={AssignmentAdminActivity_ModelView.searchStr}"
                     android:hint="Search..."
                     android:textSize="20dp"></EditText>
@@ -89,7 +88,6 @@
                     android:id="@+id/imgBtn_Search_AssignmentAdmin_Page"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
-                    android:layout_marginRight="20dp"
                     android:src="@drawable/baseline_search_24"/>
             </LinearLayout>
         </LinearLayout>
@@ -136,26 +134,10 @@
             </RelativeLayout>
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="30dp"
-            android:gravity="end">
-            <Button
-                android:id="@+id/btn_New_Request_AssignmentPage"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:backgroundTint="#FB6771"
-                android:text="Creat"
-                android:textSize="20dp"
-                >
-            </Button>
-        </LinearLayout>
-
         <HorizontalScrollView
             android:id="@+id/hsv"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="300dp"
             android:fillViewport="true"
             android:measureAllChildren="false"
             android:scrollbars="horizontal" >
@@ -255,6 +237,25 @@
             </LinearLayout>
 
         </HorizontalScrollView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginHorizontal="20dp"
+            android:gravity="center">
+            <Button
+                android:id="@+id/btn_New_Request_AssignmentPage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/custom_bg_border"
+                app:backgroundTint="@null"
+                android:text="Creat"
+                android:textSize="20dp"
+                >
+            </Button>
+        </LinearLayout>
 
     </LinearLayout>
         <com.google.android.material.navigation.NavigationView

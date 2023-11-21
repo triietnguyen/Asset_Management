@@ -79,13 +79,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:background="@drawable/custom_bg_filter"
-                android:layout_marginHorizontal="5dp"
                 android:paddingHorizontal="10dp"
                 android:orientation="horizontal">
 
                 <EditText
-                    android:layout_width="wrap_content"
+                    android:layout_width="120dp"
                     android:layout_height="match_parent"
+                    android:background="@null"
                     android:layout_gravity="center"
                     android:hint="Search..."
                     android:text="@={AssignmentActivity_ModelView.search}"
@@ -95,7 +95,6 @@
                     android:id="@+id/imgBtn_Search_Assignment_Page"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:layout_gravity="center"
                     android:src="@drawable/baseline_search_24">
                 </ImageButton>
             </LinearLayout>

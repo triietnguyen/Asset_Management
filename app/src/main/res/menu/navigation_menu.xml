@@ -26,7 +26,7 @@
                     android:title="Profile"
                     android:icon="@drawable/ic_baseline_person_pin_24"></item>
                 <item android:id="@+id/mContact"
-                    android:title="Support"
+                    android:title="Feedback"
                     android:icon="@drawable/ic_baseline_email_24"></item>
                 <item android:id="@+id/mLogout"
                     android:title="Logout"

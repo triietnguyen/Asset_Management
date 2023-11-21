@@ -128,48 +128,7 @@ public class AssetAdminApdapter extends RecyclerView.Adapter<AssetAdminApdapter.
         }
     }
 
-    private void openDialog(int gravity){
-        final Dialog dialog = new Dialog(context);
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dialog.setContentView(R.layout.layout_diaglog);
 
-        Window window = dialog.getWindow();
-        if(window == null){
-            return;
-        }
-        window.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT);
-        window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-
-        WindowManager.LayoutParams windowAttributes = window.getAttributes();
-        windowAttributes.gravity = gravity;
-        window.setAttributes(windowAttributes);
-
-        if(Gravity.BOTTOM ==gravity){
-            dialog.setCancelable(true);
-        }
-        else{
-            dialog.setCancelable(false);
-        }
-
-        Button No = dialog.findViewById(R.id.No);
-        Button Yes = dialog.findViewById(R.id.Yes);
-
-        No.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog.dismiss();
-            }
-        });
-
-        Yes.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(context, "OK", Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        dialog.show();
-    }
     @Override
     public int getItemCount() {
         return assetList.size();

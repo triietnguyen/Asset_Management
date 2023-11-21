@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     >
     <data>
         <variable
@@ -140,29 +141,31 @@
                 android:layout_marginTop="10dp"
                 android:orientation="horizontal">
                 <Button
-                    android:id="@+id/btn_Save_NewRequestPage"
-                    android:layout_width="wrap_content"
+                    android:id="@+id/img_Back_NewRequestPage"
+                    android:layout_width="130dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:text="Save"
-                    android:onClick="@{()->NewRequestAdminActivity_ModelView.OnClickSaveButton(context)}"
+                    android:text="Cancel"
                     android:textSize="25dp"
                     android:layout_marginHorizontal="10dp"
-                    android:backgroundTint="#FB6771"
+                    app:backgroundTint="@null"
+                    android:background="@drawable/bg_gray_corner_10"
                     android:textStyle="bold"
                     android:textColor="@color/white"
                     android:textAppearance="@style/TextAppearance.AppCompat.Large"
                     >
                 </Button>
                 <Button
-                    android:id="@+id/img_Back_NewRequestPage"
-                    android:layout_width="wrap_content"
+                    android:id="@+id/btn_Save_NewRequestPage"
+                    android:layout_width="130dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:text="Cancel"
+                    android:text="Save"
+                    android:onClick="@{()->NewRequestAdminActivity_ModelView.OnClickSaveButton(context)}"
                     android:textSize="25dp"
                     android:layout_marginHorizontal="10dp"
-                    android:backgroundTint="#555659"
+                    app:backgroundTint="@null"
+                    android:background="@drawable/custom_bg_border"
                     android:textStyle="bold"
                     android:textColor="@color/white"
                     android:textAppearance="@style/TextAppearance.AppCompat.Large"
