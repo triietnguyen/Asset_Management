@@ -76,6 +76,9 @@ public class NewRequestAdminActivity_ModelView extends BaseObservable {
         String adminID = u.GetNameUserByEmail(MyApplication.getInstance().GetSharedData());
         Assignment a = new Assignment(null,assetID,null,categoryID,userID,adminID,currentDate_Str,null,"","1");
         a.AddAssignment();
+
+        Asset ast = new Asset();
+        ast.UpdateAssetStatus(assetID, "0");
         Intent returnIntent = new Intent();
         ((Activity)context).setResult(RESULT_OK, returnIntent);
         ((Activity)context).finish();

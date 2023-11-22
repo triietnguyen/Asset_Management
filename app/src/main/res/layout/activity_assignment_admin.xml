@@ -251,7 +251,7 @@
                 android:layout_marginBottom="20dp"
                 android:background="@drawable/custom_bg_border"
                 app:backgroundTint="@null"
-                android:text="Creat"
+                android:text="Create"
                 android:textSize="20dp"
                 >
             </Button>

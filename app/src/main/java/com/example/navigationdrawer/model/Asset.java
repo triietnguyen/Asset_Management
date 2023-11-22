@@ -215,6 +215,31 @@ public class Asset {
         }
     }
 
+    public void UpdateAssetStatus(String asset_id, String status){
+        try {
+            SQLServer connection = new SQLServer();
+            connect = connection.ConnectionSql();
+            if (connect != null) {
+                String queryString = "UPDATE [dbo].[Asset] SET Status = ? " +
+                        "WHERE Asset_id = ?";
+                PreparedStatement preparedStatement = connect.prepareStatement(queryString);
+                preparedStatement.setString(1, status);
+                preparedStatement.setString(2, asset_id);
+
+                int rowsDeleted = preparedStatement.executeUpdate();
+
+                if (rowsDeleted > 0) {
+                    // Delete was successful
+                }
+                else{
+                    //Delete was insuccessfull
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     public void HandlerAsset(String AssetID){
         try {
             SQLServer connection = new SQLServer();

@@ -75,6 +75,7 @@ public class AssetAdminApdapter extends RecyclerView.Adapter<AssetAdminApdapter.
             holder.img_asset_delete_layout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+
                     int gravity = Gravity.CENTER;
                     final Dialog dialog = new Dialog(context);
                     dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -111,11 +112,19 @@ public class AssetAdminApdapter extends RecyclerView.Adapter<AssetAdminApdapter.
                     Yes.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            Toast.makeText(context, "OK", Toast.LENGTH_SHORT).show();
-                            ast.HandlerAsset(asset.getAsset_id());
-                            dialog.dismiss();
-                            Intent intent = new Intent(context, AssetAdminActivity.class);
-                            ((Activity) context).startActivityForResult(intent, 1);
+                            if(asset.getStatus()== "Not Available"){
+                                Toast.makeText(context, "Can not delete cause NOT AVAILABLE", Toast.LENGTH_SHORT).show();
+                            }
+                            else{
+                                Toast.makeText(context, "OK", Toast.LENGTH_SHORT).show();
+                                ast.HandlerAsset(asset.getAsset_id());
+                                dialog.dismiss();
+                                // Kết thúc activity hiện tại
+                                ((Activity) context).finish();
+                                // Tạo Intent và bắt đầu Activity mới
+                                Intent intent = new Intent(context, AssetAdminActivity.class);
+                                ((Activity) context).startActivityForResult(intent, 1);
+                            }
                         }
                     });
 

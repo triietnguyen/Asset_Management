@@ -60,7 +60,6 @@ public class CreateAssetAdminActivity extends AppCompatActivity {
         });
     }
     public void StateAsset(){
-        listState.add("Not Available");
         listState.add("Available");
         ArrayAdapter arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, listState);
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);

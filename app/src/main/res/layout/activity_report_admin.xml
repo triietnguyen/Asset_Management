@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="ReportAdminActivity_ModelView"
+            type="com.example.navigationdrawer.viewmodel.admin.ReportAdminActivity_ModelView" />
+    </data>
     <androidx.drawerlayout.widget.DrawerLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -67,8 +72,7 @@
         </LinearLayout>
         <HorizontalScrollView
             android:layout_width="match_parent"
-            android:layout_height="300dp"
-            >
+            android:layout_height="300dp">
                     <TableLayout
                         android:id="@+id/tableLayout1"
                         android:layout_width="match_parent"
@@ -126,7 +130,7 @@
                                 android:textStyle="bold"/>
                         </TableRow>
                         <androidx.recyclerview.widget.RecyclerView
-                            android:id="@+id/recycler_view_asset_layout_admin"
+                            android:id="@+id/recycler_view_report_layout_admin"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
                     </TableLayout>

@@ -12,6 +12,7 @@ import androidx.databinding.BaseObservable;
 import androidx.databinding.Bindable;
 
 import com.example.navigationdrawer.BR;
+import com.example.navigationdrawer.model.Asset;
 import com.example.navigationdrawer.model.Assignment;
 import com.example.navigationdrawer.model.MyApplication;
 import com.example.navigationdrawer.model.User;
@@ -66,6 +67,7 @@ public class EditAssignmentActivity_ModelView extends BaseObservable {
 
         String assignmentID = sharedPreferences.getString("Assignment_id","");
         String state = sharedPreferences.getString("State","");
+        String assetID = sharedPreferences.getString("Asset_id","");
         String currentDate = currentDate_edt;
         String returnDate = returnDate_txt;
 
@@ -73,10 +75,10 @@ public class EditAssignmentActivity_ModelView extends BaseObservable {
             case "Assigned":
                 state = "1";
                 break;
-            case "Recovered":
+            case "Returned":
                 state = "2";
                 break;
-            case "Recovering":
+            case "Returning":
                 state = "3";
                 break;
             default:
@@ -85,7 +87,6 @@ public class EditAssignmentActivity_ModelView extends BaseObservable {
 
         if(returnDate == null){
             assignment.UpdateEditAssignment(assignmentID,null,state);
-
             Intent returnIntent = new Intent();
             ((Activity) context).setResult(RESULT_OK, returnIntent);
             ((Activity) context).finish();
@@ -108,7 +109,6 @@ public class EditAssignmentActivity_ModelView extends BaseObservable {
             } else if (d1.compareTo(d2) < 0) {
                 Toast.makeText(context, "Sua thanh cong", Toast.LENGTH_LONG).show();
                 assignment.UpdateEditAssignment(assignmentID,returnDate,state);
-
                 Intent returnIntent = new Intent();
                 ((Activity) context).setResult(RESULT_OK, returnIntent);
                 ((Activity) context).finish();

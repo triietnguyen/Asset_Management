@@ -17,6 +17,7 @@ import com.example.navigationdrawer.R;
 
 import java.util.List;
 
+import com.example.navigationdrawer.model.Asset;
 import com.example.navigationdrawer.model.Assignment;
 import com.example.navigationdrawer.model.MyApplication;
 import com.example.navigationdrawer.view.SplashActivity;
@@ -54,7 +55,12 @@ public class AssignmentAdminAdapter extends RecyclerView.Adapter<AssignmentAdmin
             holder.txt_assigned_date_admin.setText(assignment.getAssigned_date());
             holder.txt_endDate_admin.setText(assignment.getEndDate());
             holder.txt_state_admin.setText(assignment.getStatus());
-
+            Asset a = new Asset();
+            if(assignment.getStatus()=="Returned"){
+                a.UpdateAssetStatus(assignment.getAsset_code(),"1");
+            }else{
+                a.UpdateAssetStatus(assignment.getAsset_code(),"0");
+            }
             holder.img_assignment_update_layout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
