@@ -54,13 +54,14 @@
             <TextView
                 android:id="@+id/edt_Joined_Date_Layout"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="wrap_content"
                 android:text="@={EditUserActivity_ModelView.joined_date}"
                 android:background="@drawable/custom_bg_edt"
                 android:textSize="20dp"
                 android:layout_marginVertical="10dp"
                 android:inputType="date"
                 android:paddingHorizontal="10dp"
+                android:padding="15dp"
                 >
             </TextView>
 
@@ -74,13 +75,14 @@
             <TextView
                 android:id="@+id/edt_Name_Layout"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="wrap_content"
                 android:background="@drawable/custom_bg_edt"
                 android:text="@={EditUserActivity_ModelView.name}"
                 android:textSize="20dp"
                 android:layout_marginVertical="10dp"
                 android:inputType="textPersonName"
                 android:paddingHorizontal="10dp"
+                android:padding="15dp"
                 >
             </TextView>
 
@@ -178,13 +180,14 @@
             </TextView>
             <TextView
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="wrap_content"
                 android:background="@drawable/custom_bg_edt"
                 android:textSize="20dp"
                 android:text="@={EditUserActivity_ModelView.email}"
                 android:layout_marginVertical="10dp"
                 android:inputType="textEmailAddress"
                 android:paddingHorizontal="10dp"
+                android:padding="15dp"
                 >
             </TextView>
 

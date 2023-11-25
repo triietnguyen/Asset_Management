@@ -118,7 +118,7 @@
         <HorizontalScrollView
             android:id="@+id/hsv"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="400dp"
             android:fillViewport="true"
             android:layout_marginVertical="20dp"
             android:measureAllChildren="false"
@@ -131,46 +131,47 @@
                     android:id="@+id/tableLayout1"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginHorizontal="10dp">
+                    >
                     <TableRow
-                        android:layout_marginVertical="10dp">
+                        android:layout_marginTop="10dp"
+                        android:layout_marginLeft="10dp">
                         <TextView
                             android:layout_weight="0.5"
-                            android:layout_marginHorizontal="10dp"
-                            android:gravity="center"
+                            android:layout_marginRight="10dp"
                             android:layout_width="120dp"
+                            android:background="@drawable/header_border"
                             android:textSize="16dp"
                             android:text="Asset Code"
                             android:textStyle="bold"/>
                         <TextView
                             android:layout_weight="0.5"
+                            android:layout_marginRight="10dp"
                             android:layout_width="120dp"
-                            android:layout_marginHorizontal="10dp"
-                            android:gravity="center"
+                            android:background="@drawable/header_border"
                             android:textSize="16dp"
                             android:text="Asset_Name"
                             android:textStyle="bold"/>
                         <TextView
                             android:layout_weight="0.5"
-                            android:layout_marginHorizontal="10dp"
+                            android:layout_marginRight="10dp"
                             android:layout_width="120dp"
-                            android:gravity="center"
+                            android:background="@drawable/header_border"
                             android:textSize="16dp"
                             android:text="Category"
                             android:textStyle="bold"/>
                         <TextView
                             android:layout_weight="0.5"
-                            android:layout_marginHorizontal="10dp"
+                            android:layout_marginRight="10dp"
                             android:layout_width="120dp"
-                            android:gravity="center"
+                            android:background="@drawable/header_border"
                             android:textSize="16dp"
                             android:text="Assigned_Date"
                             android:textStyle="bold"/>
                         <TextView
                             android:layout_weight="0.5"
-                            android:layout_marginHorizontal="10dp"
+                            android:layout_marginRight="10dp"
                             android:layout_width="120dp"
-                            android:gravity="center"
+                            android:background="@drawable/header_border"
                             android:textSize="16dp"
                             android:text="State"
                             android:textStyle="bold"/>

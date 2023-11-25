@@ -125,10 +125,24 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:text="Description"
+                android:textSize="25dp"
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/custom_bg_edt"
+                android:text="@={EditRequestAdminActivity_ModelView.description}"
+                android:textSize="20dp"
+                android:layout_gravity="center"
+                android:layout_marginVertical="10dp"
+                android:padding="15dp"
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:text="State"
-                android:textSize="25dp">
-
-            </TextView>
+                android:textSize="25dp"/>
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">

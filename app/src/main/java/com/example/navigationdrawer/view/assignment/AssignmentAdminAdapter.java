@@ -65,7 +65,6 @@ public class AssignmentAdminAdapter extends RecyclerView.Adapter<AssignmentAdmin
                 @Override
                 public void onClick(View v) {
                     Bundle dataBundle = new Bundle();
-
                     dataBundle.putString("endDate", assignment.getEndDate());
                     dataBundle.putString("startDate", assignment.getAssigned_date());
                     dataBundle.putString("categoryName", assignment.getCategory());

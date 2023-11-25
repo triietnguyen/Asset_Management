@@ -1,9 +1,14 @@
 package com.example.navigationdrawer.view.report;
+import android.Manifest;
+import android.app.Activity;
+import android.content.pm.PackageManager;
+import android.util.Log;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -11,6 +16,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 import androidx.core.view.GravityCompat;
 import androidx.databinding.DataBindingUtil;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -43,23 +49,28 @@ public class ReportActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     ImageView imageMenu;
     ReportAdminActivity_ModelView reportAdminActivityModelView;
-    ReportAdminApdapter reportAdminApdapter;
+    ReportAdminAdapter reportAdminApdapter;
+    Button exportButton ;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ActivityReportAdminBinding _binding = DataBindingUtil.setContentView(this,R.layout.activity_report_admin);
         reportAdminActivityModelView = new ReportAdminActivity_ModelView();
         _binding.setReportAdminActivityModelView(reportAdminActivityModelView);
-        setRecycleView();
+        ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE,
+        Manifest.permission.READ_EXTERNAL_STORAGE}, PackageManager.PERMISSION_GRANTED);
         AnhXa();
+        setRecycleView();
         Handle_Component();
     }
+
 
     void AnhXa(){
         drawerLayout = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.nav_View);
         imageMenu = findViewById(R.id.imageMenu);
         recyclerView = findViewById(R.id.recycler_view_report_layout_admin);
+        exportButton = findViewById(R.id.btn_export_button_id);
     }
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
@@ -73,14 +84,16 @@ public class ReportActivity extends AppCompatActivity {
             }
         }
     }//onActivityResult
+
     private void setRecycleView() {
         List<Report> listReport = reportAdminActivityModelView.GetAllReports();
         if(listReport == null) return;
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        reportAdminApdapter = new ReportAdminApdapter(this,listReport);
+        reportAdminApdapter = new ReportAdminAdapter(this,listReport);
         recyclerView.setAdapter(reportAdminApdapter);
     }
+
     void Handle_Component(){
         // Navigation Drawer------------------------------
         toggle = new ActionBarDrawerToggle(ReportActivity.this, drawerLayout, R.string.open, R.string.close);
@@ -147,5 +160,13 @@ public class ReportActivity extends AppCompatActivity {
                 drawerLayout.openDrawer(GravityCompat.START);
             }
         });
+
+        exportButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                reportAdminApdapter.createExcelFile();
+            }
+        });
+
     }
 }

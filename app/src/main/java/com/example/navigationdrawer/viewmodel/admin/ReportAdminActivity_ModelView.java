@@ -17,15 +17,18 @@ import com.example.navigationdrawer.model.Report;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class ReportAdminActivity_ModelView extends BaseObservable {
 
-    SharedPreferences sharedPreferences;
-    public List<Report> GetAllReports(){
+    public List<Report> GetAllReports() {
         Report report = new Report();
-        List<Report> listReport = report.GetAllReports();
+        Map<String, Report> reportMap = report.GetAllReports();
+        List<Report> listReport = new ArrayList<>(reportMap.values());
         return listReport;
     }
+
 }
+
 
 

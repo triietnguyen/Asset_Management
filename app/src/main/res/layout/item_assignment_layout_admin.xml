@@ -1,86 +1,104 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout>
-    <TableLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
+
+    <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:stretchColumns="1,2,3,4,5,6,7,8">
-        <TableRow
-            android:layout_marginVertical="10dp">
+
+        <TableRow android:layout_marginLeft="10dp">
+
             <TextView
                 android:id="@+id/txt_id_admin"
-                android:layout_marginHorizontal="10dp"
                 android:layout_width="120dp"
-                android:textSize="16dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
                 android:layout_weight="0.5"
+                android:background="@drawable/header_border"
                 android:ellipsize="end"
                 android:maxLines="1"
-                android:gravity="center"/>
+                android:textSize="16dp" />
+
             <TextView
                 android:id="@+id/txt_asset_id_admin"
-                android:layout_marginHorizontal="10dp"
                 android:layout_width="120dp"
-                android:textSize="16dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
                 android:layout_weight="0.5"
+                android:background="@drawable/header_border"
                 android:ellipsize="end"
                 android:maxLines="1"
-                android:gravity="center"/>
+                android:textSize="16dp" />
+
             <TextView
                 android:id="@+id/txt_asset_name_admin"
-                android:layout_marginHorizontal="10dp"
                 android:layout_width="120dp"
-                android:textSize="16dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
                 android:layout_weight="0.5"
-                android:gravity="center" />
+                android:background="@drawable/header_border"
+                android:textSize="16dp" />
+
             <TextView
                 android:id="@+id/txt_category_name_admin"
-                android:layout_marginHorizontal="10dp"
                 android:layout_width="120dp"
-                android:textSize="16dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
                 android:layout_weight="0.5"
-                android:gravity="center"/>
+                android:background="@drawable/header_border"
+                android:textSize="16dp" />
+
             <TextView
                 android:id="@+id/txt_assigned_to_admin"
-                android:layout_marginHorizontal="10dp"
                 android:layout_width="120dp"
-                android:textSize="16dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
                 android:layout_weight="0.5"
-                android:gravity="center" />
+                android:background="@drawable/header_border"
+                android:textSize="16dp" />
+
             <TextView
                 android:id="@+id/txt_assigned_by_admin"
-                android:layout_marginHorizontal="10dp"
                 android:layout_width="120dp"
-                android:textSize="16dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
                 android:layout_weight="0.5"
-                android:gravity="center" />
+                android:background="@drawable/header_border"
+                android:textSize="16dp" />
+
             <TextView
                 android:id="@+id/txt_assigned_date_admin"
-                android:layout_marginHorizontal="10dp"
                 android:layout_width="120dp"
-                android:textSize="16dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
                 android:layout_weight="0.5"
-                android:gravity="center" />
+                android:background="@drawable/header_border"
+                android:textSize="16dp" />
+
             <TextView
                 android:id="@+id/txt_end_date_admin"
-                android:layout_marginHorizontal="10dp"
                 android:layout_width="120dp"
-                android:textSize="16dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
                 android:layout_weight="0.5"
-                android:gravity="center" />
+                android:background="@drawable/header_border"
+                android:textSize="16dp" />
+
             <TextView
                 android:id="@+id/txt_state_admin"
-                android:layout_marginHorizontal="10dp"
                 android:layout_width="120dp"
-                android:textSize="16dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
                 android:layout_weight="0.5"
-                android:gravity="center" />
+                android:background="@drawable/header_border"
+                android:textSize="16dp" />
+
             <ImageView
                 android:id="@+id/img_assignment_update_layout"
-                android:layout_width="50dp"
-                android:layout_weight="0.5"
-                android:gravity="center"
-                android:src="@drawable/baseline_edit_24"
-                ></ImageView>
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginTop="10dp"
+                android:src="@drawable/baseline_edit_24"></ImageView>
 
         </TableRow>
     </TableLayout>

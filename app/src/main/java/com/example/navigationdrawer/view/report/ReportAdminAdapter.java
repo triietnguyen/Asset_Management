@@ -1,5 +1,6 @@
 package com.example.navigationdrawer.view.report;
-
+import org.apache.poi.ss.usermodel.*;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import android.content.Context;
 import android.os.Environment;
 import android.view.LayoutInflater;
@@ -13,12 +14,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.navigationdrawer.R;
 import com.example.navigationdrawer.model.Report;
-import org.apache.poi.ss.usermodel.*;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.List;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class ReportAdminAdapter extends RecyclerView.Adapter<ReportAdminAdapter.ViewHolder> {
 
@@ -59,7 +58,6 @@ public class ReportAdminAdapter extends RecyclerView.Adapter<ReportAdminAdapter.
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView txt_category_id_layout, txt_total_layout, txt_assigned_layout, txt_available_layout, txt_not_available_layout, txt_waiting_layout;
-
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             txt_category_id_layout = itemView.findViewById(R.id.txt_category_id_layout);
@@ -68,35 +66,23 @@ public class ReportAdminAdapter extends RecyclerView.Adapter<ReportAdminAdapter.
             txt_available_layout = itemView.findViewById(R.id.txt_available_layout);
             txt_not_available_layout = itemView.findViewById(R.id.txt_not_available_layout);
             txt_waiting_layout = itemView.findViewById(R.id.txt_waiting_layout);
-
-            // Example: Export to Excel when an item is clicked
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    exportToExcel("YourExcelFileName.xlsx");
-                }
-            });
         }
     }
-
-    public void exportToExcel(String fileName) {
+    public void createExcelFile() {
         Workbook workbook = new XSSFWorkbook();
         Sheet sheet = workbook.createSheet("Report Data");
-
         // Create header row
         Row headerRow = sheet.createRow(0);
-        headerRow.createCell(0).setCellValue("Category ID");
-        headerRow.createCell(1).setCellValue("Total");
-        headerRow.createCell(2).setCellValue("Assigned");
-        headerRow.createCell(3).setCellValue("Available");
-        headerRow.createCell(4).setCellValue("Not Available");
-        headerRow.createCell(5).setCellValue("Waiting");
+        String[] headers = {"Category", "Total", "Assigned", "Available", "Not Available", "Waiting for recycling"};
+        for (int i = 0; i < headers.length; i++) {
+            Cell cell = headerRow.createCell(i);
+            cell.setCellValue(headers[i]);
+        }
 
-        // Add data rows
+        // Populate data
         for (int i = 0; i < listReport.size(); i++) {
             Report report = listReport.get(i);
             Row dataRow = sheet.createRow(i + 1);
-
             dataRow.createCell(0).setCellValue(report.getCategory_id());
             dataRow.createCell(1).setCellValue(report.getTotal());
             dataRow.createCell(2).setCellValue(report.getAssigned());
@@ -105,13 +91,16 @@ public class ReportAdminAdapter extends RecyclerView.Adapter<ReportAdminAdapter.
             dataRow.createCell(5).setCellValue(report.getWaiting());
         }
 
-        // Save the workbook to external storage
-        try (FileOutputStream fileOut = new FileOutputStream(Environment.getExternalStorageDirectory() + "/" + fileName)) {
+        // Save the workbook to a file
+        try {
+            String filePath = Environment.getExternalStorageDirectory().getPath() + "/ReportData.xlsx";
+            FileOutputStream fileOut = new FileOutputStream(filePath);
             workbook.write(fileOut);
-            Toast.makeText(context, "Exported to Excel", Toast.LENGTH_SHORT).show();
+            fileOut.close();
+            Toast.makeText(context, "Excel file created successfully", Toast.LENGTH_SHORT).show();
         } catch (IOException e) {
             e.printStackTrace();
-            Toast.makeText(context, "Error exporting to Excel", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, "Error creating Excel file", Toast.LENGTH_SHORT).show();
         }
     }
 }

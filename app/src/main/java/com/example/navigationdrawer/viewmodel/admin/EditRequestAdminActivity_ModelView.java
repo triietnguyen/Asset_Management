@@ -25,7 +25,17 @@ import java.util.Date;
 import java.util.List;
 
 public class EditRequestAdminActivity_ModelView extends BaseObservable {
-    String edt_currentDate,edt_returnDate;
+    String edt_currentDate,edt_returnDate, description;
+    @Bindable
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+        notifyPropertyChanged(BR.description);
+    }
+
     @Bindable
     public String getEdt_currentDate() {
         return edt_currentDate;

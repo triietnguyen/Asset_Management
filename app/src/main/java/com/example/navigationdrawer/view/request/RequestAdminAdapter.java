@@ -60,7 +60,7 @@ public class RequestAdminAdapter extends RecyclerView.Adapter<RequestAdminAdapte
                     dataBundle.putString("categoryName", assignment.getCategory());
                     dataBundle.putString("state", assignment.getStatus());
                     dataBundle.putString("id", assignment.getId());
-
+                    dataBundle.putString("description", assignment.getDescription());
                     Intent intent = new Intent(context, EditRequestAdminActivity.class);
 
                     intent.putExtras(dataBundle);

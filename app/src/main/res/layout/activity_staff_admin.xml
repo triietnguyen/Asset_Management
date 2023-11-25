@@ -112,7 +112,7 @@
 
         <HorizontalScrollView
             android:layout_width="match_parent"
-            android:layout_height="300dp">
+            android:layout_height="400dp">
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -121,50 +121,50 @@
                         android:id="@+id/tableLayout1"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_marginHorizontal="10dp"
                         android:stretchColumns="1,2,3,4,5,6">
                         <TableRow
-                            android:layout_marginVertical="10dp">
+                            android:layout_marginTop="10dp"
+                            android:layout_marginLeft="10dp">
                             <TextView
                                 android:layout_weight="0.5"
+                                android:layout_marginRight="10dp"
                                 android:layout_width="120dp"
-                                android:layout_marginHorizontal="10dp"
-                                android:gravity="center"
                                 android:textSize="16dp"
-                                android:text="Id"
+                                android:background="@drawable/header_border"
+                                android:text="User ID"
                                 android:textStyle="bold"/>
                             <TextView
                                 android:layout_weight="0.5"
+                                android:layout_marginRight="10dp"
                                 android:layout_width="120dp"
-                                android:layout_marginHorizontal="10dp"
-                                android:gravity="center"
                                 android:textSize="16dp"
-                                android:text="Name"
+                                android:background="@drawable/header_border"
+                                android:text="User Name"
                                 android:textStyle="bold"/>
                             <TextView
                                 android:layout_weight="0.5"
-                                android:layout_marginHorizontal="10dp"
+                                android:layout_marginRight="10dp"
                                 android:layout_width="120dp"
-                                android:gravity="center"
                                 android:textSize="16dp"
+                                android:background="@drawable/header_border"
                                 android:text="Join Date"
                                 android:textStyle="bold"/>
                             <TextView
                                 android:layout_weight="0.5"
-                                android:layout_marginHorizontal="10dp"
+                                android:layout_marginRight="10dp"
                                 android:layout_width="120dp"
-                                android:gravity="center"
                                 android:textSize="16dp"
-                                android:text="Type"
+                                android:background="@drawable/header_border"
+                                android:text="Role"
                                 android:textStyle="bold"/>
                             <TextView
-                                android:layout_weight="0.5"
-                                android:layout_width="50dp"
-                                android:gravity="center"
-                                android:textStyle="bold"/>
+                                android:layout_width="24dp"
+                                android:layout_height="24dp"
+                                />
                             <TextView
-                                android:layout_width="50dp"
-                                android:textStyle="bold"/>
+                                android:layout_width="24dp"
+                                android:layout_height="24dp"
+                                />
                         </TableRow>
                         <androidx.recyclerview.widget.RecyclerView
                             android:id="@+id/recycler_view_staff_layout_admin"

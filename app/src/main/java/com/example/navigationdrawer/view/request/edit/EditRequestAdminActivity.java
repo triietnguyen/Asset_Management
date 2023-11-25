@@ -91,6 +91,8 @@ public class EditRequestAdminActivity extends AppCompatActivity {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
         String currentDate_Str = simpleDateFormat.format(calendar.getTime());
         editRequestAdminActivityModelView.setEdt_currentDate(currentDate_Str);
+        String description = dataBundle.getString("description");
+        editRequestAdminActivityModelView.setDescription(description);
     }
 
     public void Pick_Date_Birth(){

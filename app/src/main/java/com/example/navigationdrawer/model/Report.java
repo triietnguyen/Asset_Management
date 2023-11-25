@@ -7,10 +7,13 @@ import com.example.navigationdrawer.model.SQLServer.SQLServer;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Report {
     private Connection connect;
@@ -81,8 +84,8 @@ public class Report {
         this.waiting = waiting;
     }
 
-    public List<Report> GetAllReports() {
-        List<Report> listReport = new ArrayList<>();
+    public Map<String, Report> GetAllReports() {
+        Map<String, Report> listReport = new HashMap<>();
         try {
             SQLServer connection = new SQLServer();
             connect = connection.ConnectionSql();
@@ -100,23 +103,21 @@ public class Report {
                 Statement st = connect.createStatement();
                 ResultSet rs = st.executeQuery(query);
                 while (rs.next()) {
-                    category_id = rs.getString("Category_Name");
-                    total = rs.getString("Total");
-                    assigned = rs.getString("Assigned");
-                    available = rs.getString("Not Available");
-                    not_available = rs.getString("Status");
-                    waiting = rs.getString("Waiting for recycling");
-                    Report r = new Report(category_id, total, assigned, available,not_available,waiting);
-                    listReport.add((r));
+                    String category_id = rs.getString("Category_Name");
+                    String total = rs.getString("Total");
+                    String assigned = rs.getString("Assigned");
+                    String available = rs.getString("Available");
+                    String not_available = rs.getString("Not Available");
+                    String waiting = rs.getString("Waiting for recycling");
+                    Report r = new Report(category_id, total, assigned, available, not_available, waiting);
+                    listReport.put(category_id, r);
                 }
                 return listReport;
-
             }
         } catch (Exception e) {
-            Log.e(e.getMessage(), "Log error");
+            Log.e("Log error", e.getMessage());
         }
         return null;
     }
-
 }
 

@@ -162,7 +162,7 @@ public class UserAdminActivity_ModelView extends BaseObservable {
             throw new RuntimeException(e);
         }
 
-        if(dateOfUser.compareTo(currentDate) < 0){
+        if(dateOfUser.compareTo(currentDate) <= 0){
             SharedPreferences sharedPreferences = context.getSharedPreferences("User", Context.MODE_PRIVATE);
             email = sharedPreferences.getString("Email",getEmail());
             password = sharedPreferences.getString("Password",getPassword());
@@ -175,7 +175,6 @@ public class UserAdminActivity_ModelView extends BaseObservable {
             phone = sharedPreferences.getString("Phone",getPhone());
 
             birthday = Pick_Date_Birth();
-            
             User a = new User(null,email,password,fullname,address,birthday,gender,date,image,role,phone);
             a.AddUser();
             Intent returnIntent = new Intent();
