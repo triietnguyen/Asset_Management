@@ -58,6 +58,7 @@ public class Account {
     public boolean IsValidPassword(){
         return !TextUtils.isEmpty(password) && password.length() >=6;
     }
+
     public boolean IsCheckValidAccount(){
         try{
             SQLServer connection = new SQLServer();

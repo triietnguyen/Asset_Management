@@ -32,6 +32,12 @@ import com.example.navigationdrawer.view.login.LoginActivity;
 import com.example.navigationdrawer.view.notification.NotificationActivity;
 import com.example.navigationdrawer.view.profile.ProfileActivity;
 import com.example.navigationdrawer.view.request.RequestActivity;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
 
 import com.example.navigationdrawer.viewmodel.user.Main_ModelView;
@@ -42,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
     ActionBarDrawerToggle action_Toggle;
     ImageView img_Menu, img_Notification, img_request, img_assign, img_support, img_logout;
     Main_ModelView modelView = new Main_ModelView();
+    GoogleSignInClient mGoogleSignInClient;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,6 +67,13 @@ public class MainActivity extends AppCompatActivity {
 
         AnhXa();
         Handle_Component();
+        // Configure sign-in to request the user's ID, email address, and basic
+        // profile. ID and basic profile are included in DEFAULT_SIGN_IN.
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestEmail()
+                .build();
+        // Build a GoogleSignInClient with the options specified by gso.
+        mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
     }
     void AnhXa(){
         drawer_Layout = findViewById(R.id.drawer_layout);
@@ -205,11 +219,33 @@ public class MainActivity extends AppCompatActivity {
         img_logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, LoginActivity.class);
-                startActivity(intent);
-                finish();
+                signOut();
             }
         });
+    }
+
+    private void signOut() {
+        mGoogleSignInClient.signOut()
+                .addOnCompleteListener(this, new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        startActivity(new Intent(MainActivity.this, LoginActivity.class));
+                        finish();
+                    }
+                });
+    }
+    @Override
+    protected void onStart() {
+        super.onStart();
+        // Check for existing Google Sign In account, if the user is already signed in
+        // the GoogleSignInAccount will be non-null.
+        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
+        if(account!=null){
+
+        }
+        else{
+            signOut();
+        }
     }
 }
 
