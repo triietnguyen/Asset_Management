@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.databinding.ViewDataBinding;
@@ -25,12 +26,16 @@ import com.example.navigationdrawer.R;
 
 
 import java.sql.Connection;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
 
 import com.example.navigationdrawer.view.homepage.HomePageActivity;
 import com.example.navigationdrawer.view.main.MainActivity;
+import com.example.navigationdrawer.view.main.MainAdminActivity;
 import com.example.navigationdrawer.viewmodel.Login_ModelView;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -45,11 +50,7 @@ public class LoginActivity extends AppCompatActivity {
     private static final int RC_SIGN_IN = 1000;
     Button googleSignIn;
     TextView txt_Forgot;
-
     private Login_ModelView loginModelView = new Login_ModelView();
-    ;
-    Connection connect;
-    String ConnectionResult = "";
     GoogleSignInClient mGoogleSignInClient;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,22 +68,38 @@ public class LoginActivity extends AppCompatActivity {
         // Build a GoogleSignInClient with the options specified by gso.
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
     }
-    private void handleSignInResult(Task<GoogleSignInAccount> completedTask) {
+    private void handleSignInResult(@NonNull Task<GoogleSignInAccount> completedTask) {
         try {
+            // Lấy ngày tháng năm hiện tại
+            LocalDateTime ngayThangNamHienTai = LocalDateTime.now();
+            // Định dạng ngày tháng năm
+            DateTimeFormatter dinhDang = DateTimeFormatter.ofPattern("dd/MM/yyyy");
             GoogleSignInAccount account = completedTask.getResult(ApiException.class);
+            String idToken = account.getIdToken();
             // Signed in successfully, show authenticated UI.
-            goToHome();
+            GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(this);
+            String personEmail = acct.getEmail();
+            String personName = acct.getDisplayName();
+            String currentDate = ngayThangNamHienTai.format(dinhDang);
+            MyApplication.getInstance().SetSharedData(personEmail.trim());
+            User user = new User();
+            if(user.isEmailInDatabase(personEmail)==0){
+                user = new User(null,personEmail,null,personName,null,null,"1",currentDate,null,"2",null);
+                user.AddUser();
+                goToHome();
+            }
+            else{
+                goToHome();
+            }
         } catch (ApiException e) {
             // The ApiException status code indicates the detailed failure reason.
             // Please refer to the GoogleSignInStatusCodes class reference for more information.
-            Log.w(TAG, "signInResult:failed code=" + e.getStatusCode());
-            Toast.makeText(this,e.getMessage(),Toast.LENGTH_SHORT).show();
+            Log.w(TAG, "handleSignInResult:error", e);
         }
     }
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
         // Result returned from launching the Intent from GoogleSignInClient.getSignInIntent(...);
         if (requestCode == RC_SIGN_IN) {
             // The Task returned from this call is always completed, no need to attach
@@ -132,33 +149,6 @@ public class LoginActivity extends AppCompatActivity {
     public void goToSignIn() {
         Intent signInIntent = mGoogleSignInClient.getSignInIntent();
         startActivityForResult(signInIntent, RC_SIGN_IN);
-    }
-
-
-    public boolean OnValid_OTP(List<Integer> numberRandom, String numberOfUser) {
-        String str_numberRandom = "";
-        for (int i = 0; i < numberRandom.size(); i++) {
-            str_numberRandom = str_numberRandom + numberRandom.get(i);
-        }
-        if (str_numberRandom.trim().equalsIgnoreCase(numberOfUser.trim())) {
-            Log.e("123", "Correct");
-            return true;
-        }
-        Log.e("123", "User : " + numberOfUser.trim());
-        Log.e("123", "Random : " + str_numberRandom.trim());
-        Log.e("123", "InCorrect");
-        return false;
-    }
-
-    public List<Integer> HandleOtp_SMS() {
-        List<Integer> numberRandom = new ArrayList<Integer>();
-        Random random = new Random();
-        int idxRandom;
-        for (int i = 0; i < 6; i++) {
-            idxRandom = random.nextInt(10);
-            numberRandom.add((idxRandom));
-        }
-        return numberRandom;
     }
 
 }

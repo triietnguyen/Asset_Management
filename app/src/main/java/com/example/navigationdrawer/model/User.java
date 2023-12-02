@@ -123,19 +123,21 @@ public class User {
     }
 
     public int isEmailInDatabase(String email) {
-        // TODO: Implement the SQL query to check if the email exists in the database
-        // Replace the placeholders with your actual database connection details and query
-        String query = "SELECT COUNT(*) FROM [dbo].[User] WHERE Email = ?";
-        try (PreparedStatement preparedStatement = connect.prepareStatement(query)) {
-            preparedStatement.setString(1, email);
-            try (ResultSet resultSet = preparedStatement.executeQuery()) {
-                if (resultSet.next()) {
-                    int count = resultSet.getInt(1);
-                    return count;
+        SQLServer connection = new SQLServer();
+        connect = connection.ConnectionSql();
+        if (connect != null) {
+            String query = "SELECT COUNT(*) FROM [dbo].[User] WHERE Email = ?";
+            try (PreparedStatement preparedStatement = connect.prepareStatement(query)) {
+                preparedStatement.setString(1, email);
+                try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                    if (resultSet.next()) {
+                        int count = resultSet.getInt(1);
+                        return count;
+                    }
                 }
+            } catch (SQLException e) {
+                e.printStackTrace();
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
         }
         return 0;
     }

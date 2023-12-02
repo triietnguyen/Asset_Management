@@ -42,25 +42,17 @@ public class MainAdminActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ActivityMainAdminBinding binding = (ActivityMainAdminBinding) DataBindingUtil.setContentView(this, R.layout.activity_main_admin);
-
         modelView.GetData();
-
         DrawarAdminHeadLayoutBinding drawarAdminHeadLayoutBinding = DataBindingUtil.inflate(LayoutInflater.from(this), R.layout.drawar_admin_head_layout, binding.navView, false);
         if(modelView.getImage() != null){
             Uri uri = Uri.parse(modelView.getImage());
             drawarAdminHeadLayoutBinding.imgAdminDrawerPage.setImageURI(uri);
         }
-
-
-
         drawarAdminHeadLayoutBinding.setDrawerModelView(modelView);
-
         binding.navView.addHeaderView(drawarAdminHeadLayoutBinding.getRoot());
-
         AnhXa();
         Handle_Component();
     }
-
 
     public void AnhXa(){
         drawerLayout = findViewById(R.id.drawer_layout);
